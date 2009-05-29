@@ -26,7 +26,7 @@ import tin.engine.exceptions.TINException;
  * "message content":"Stream closed"|"Data corrupted"|Data (gdy typ to "Data")
  */
 // TODO: dokonczyc komentarz
-public class ApplicationReader extends StreamReaderWithID {
+public class ApplicationReader extends ReaderWithID {
 
 	/**
 	 * Ten konstruktor nie moze byc uzyty w tej klasie, bo nie podaje sie unikalnego ID.
@@ -48,7 +48,7 @@ public class ApplicationReader extends StreamReaderWithID {
 	}
 
 	/* (non-Javadoc)
-	 * @see tin.engine.streams.readers.StreamReaderWithID#readDataPacketFromStream()
+	 * @see tin.engine.streams.readers.ReaderWithID#readDataPacketFromStream()
 	 */
 	@Override
 	protected Data readDataPacketFromStream() throws Exception 

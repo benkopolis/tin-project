@@ -10,10 +10,10 @@ import tin.engine.data.Data;
 import tin.engine.exceptions.TINException;
 
 /**
- * Kolektor w postaci mapy umo¿liwiaj¹cej wyszukiwanie danych po kluczu lub po wartosci.
- * Za przyjmowanie poleceñ wyszukiwania i ich realizacjê odpowiada funkcja processData(Data data) 
+ * Kolektor w postaci mapy umoï¿½liwiajï¿½cej wyszukiwanie danych po kluczu lub po wartosci.
+ * Za przyjmowanie poleceï¿½ wyszukiwania i ich realizacjï¿½ odpowiada funkcja processData(Data data) 
  */
-public abstract class SearchableMap extends MapCollector
+public class SearchableMap extends MapCollector
 {
 
 	/**
