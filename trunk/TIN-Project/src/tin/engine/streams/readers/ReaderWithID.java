@@ -12,7 +12,7 @@ import tin.engine.exceptions.TINException;
  * Abstrakcyjna klasa bazowa dla Readerow, ktore musza dodawac do produkowanych paczek
  * danych swoj wlasny numer ID, ktory jest Readerowi nadawany podczas tworzenia.
  */
-public abstract class StreamReaderWithID extends StreamReader {
+public abstract class ReaderWithID extends StreamReader {
 
 	/**
 	 * Numer ID nadawany instancji Readera podczas tworzenia.
@@ -24,16 +24,16 @@ public abstract class StreamReaderWithID extends StreamReader {
 	 * @param inputStream
 	 * @throws TINException
 	 */
-	public StreamReaderWithID(InputStream inputStream) throws TINException {
+	public ReaderWithID(InputStream inputStream) throws TINException {
 		super(inputStream);
 		throw new TINException("This constructor can not be used in this class.");
 	}
 	
 	/**
-	 * @param InputStream inputStream - strumieñ wejœciowy
+	 * @param InputStream inputStream - strumieï¿½ wejï¿½ciowy
 	 * @param int id - unikalny numer ID nadawany instancji Readera
 	 */
-	public StreamReaderWithID(InputStream inputStream, int id) {
+	public ReaderWithID(InputStream inputStream, int id) {
 		super(inputStream);
 		readerID = new Integer(id);
 	}

@@ -10,28 +10,40 @@ import tin.engine.exceptions.TINException;
 import tin.project.common.IDCreator;
 
 /**
- * Klasa posiadajaca zbior socketow serwerowych, oraz pozwalaj¹ca na zarz¹dzanie 
- * zbiorem tych socketów serwerowych (dodawnie, usuwanie, stopowanie, startowanie).
- * We w³asnym w¹tku wy³uskuje sockety z synów i wydobywa z nich strumienie, a nastêpnie
+ * Klasa posiadajaca zbior socketow serwerowych, oraz pozwalajï¿½ca na zarzï¿½dzanie 
+ * zbiorem tych socketï¿½w serwerowych (dodawnie, usuwanie, stopowanie, startowanie).
+ * We wï¿½asnym wï¿½tku wyï¿½uskuje sockety z synï¿½w i wydobywa z nich strumienie, a nastï¿½pnie
  * przekazuje dalej.
  */
 public class ServerSocketsSetThread extends Thread
 {
 	/**
-	 * kolekjca socketow serwerowych
+	 * kolekjca wÄ…tkÃ³w socketow serwerowych
 	 */
 	private LinkedBlockingQueue<ServerSocketThread> servers; 
 	
+	/**
+	 * kolejka socketÃ³w zbindowanych, uzyskanych przez accepty, przez wszystkie wÄ…tki serwerowe
+	 */
 	private LinkedBlockingQueue<Socket> sockets;
 	
+	/**
+	 * kolejka input streamow wyluskanych z socketow
+	 */
 	private LinkedBlockingQueue<InputStream> ins;
 	
+	/**
+	 * kolejka output streamow wyluskanych z socketow 
+	 */
 	private LinkedBlockingQueue<OutputStream> out;
 	
+	/**
+	 * id creator - do przydzielania id
+	 */
 	private IDCreator ids;
 	
 	/**
-	 * Konstruktor domyœlny-bezparametrowy klasy.
+	 * Konstruktor domyï¿½lny-bezparametrowy klasy.
 	 */
 	public ServerSocketsSetThread()
 	{
@@ -41,7 +53,7 @@ public class ServerSocketsSetThread extends Thread
 	}
 	
 	/**
-	 * Dodaje do kolejki socketów serwerowych socketa o zadanym numerze portu.
+	 * Dodaje do kolejki socketï¿½w serwerowych socketa o zadanym numerze portu.
 	 * UWAGA nie uruchamia go!
 	 * @param sockNR
 	 */
@@ -59,8 +71,8 @@ public class ServerSocketsSetThread extends Thread
 	}
 	
 	/**
-	 * Dodaje do kolejki socketów serwerowych socketa o zadanym numerze portu.
-	 * Uruchamia go, je¿eli parametr start jest true, je¿eli false to nie jest 
+	 * Dodaje do kolejki socketï¿½w serwerowych socketa o zadanym numerze portu.
+	 * Uruchamia go, jeï¿½eli parametr start jest true, jeï¿½eli false to nie jest 
 	 * uruchamiany.
 	 * @param sockNR
 	 * @param start
@@ -81,7 +93,7 @@ public class ServerSocketsSetThread extends Thread
 	}
 	
 	/**
-	 * Uruchamia w¹tek socketa.
+	 * Uruchamia wï¿½tek socketa.
 	 * @param portNumber
 	 * @throws TINException
 	 */
@@ -95,10 +107,10 @@ public class ServerSocketsSetThread extends Thread
 	
 	/**
 	 * W zbiorze ServerSockeetThreadow jest wyszukiwany socket o zadanym nuemrze portu,
-	 * gdy zostanie znaleziony zostaje usuniêty i jest zwracany, gdy nie bêdzie 
-	 * znaleziony lub nie uda siê go usun¹æ, to rzucany jest wyj¹tek.
+	 * gdy zostanie znaleziony zostaje usuniï¿½ty i jest zwracany, gdy nie bï¿½dzie 
+	 * znaleziony lub nie uda siï¿½ go usunï¿½ï¿½, to rzucany jest wyjï¿½tek.
 	 * 
-	 * UWAGA nie stopuje w¹tku serwera.
+	 * UWAGA nie stopuje wï¿½tku serwera.
 	 * @param portNumber
 	 * @return
 	 * @throws TINException
@@ -145,6 +157,7 @@ public class ServerSocketsSetThread extends Thread
 						sockets.put(s);
 						ins.put(s.getInputStream());
 						out.put(s.getOutputStream());
+						//TODO 
 					} catch (InterruptedException e)
 					{
 						// TODO Auto-generated catch block

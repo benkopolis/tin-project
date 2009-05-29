@@ -8,7 +8,7 @@ import java.util.Vector;
 import tin.engine.exceptions.TINException;
 
 /**
- * Jest to klasa s³u¿¹ca do uruchamiania aplikacji, trzymania referencji na nie, pobierania ich strumieni wejœciwych i wyjœciowych. 
+ * Jest to klasa sï¿½uï¿½ï¿½ca do uruchamiania aplikacji, trzymania referencji na nie, pobierania ich strumieni wejï¿½ciwych i wyjï¿½ciowych. 
  *
  */
 public class ApplicationLauncher
@@ -23,12 +23,13 @@ public class ApplicationLauncher
 	}
 	
 	/**
-	 * Metoda ta uruchamia aplikacjê i dodaje j¹ do zbioru uruchomionych aplikacji.
-	 * @param String path - œcie¿ka do uruchomianego programu
-	 * @param String[] args - tablica argumentów dla uruchamianego programu
-	 * @throws TINException - wyj¹tek rzucany gdy tablica jest nullem, lub apliacja nie uruchomi sie.
+	 * Metoda ta uruchamia aplikacjï¿½ i dodaje jï¿½ do zbioru uruchomionych aplikacji.
+	 * @param String path - ï¿½cieï¿½ka do uruchomianego programu
+	 * @param String[] args - tablica argumentï¿½w dla uruchamianego programu
+	 * @throws TINException - wyjï¿½tek rzucany gdy tablica jest nullem, lub apliacja nie uruchomi sie.
 	 */
 	public void launchApplication(String path, String[] args) throws TINException {
+		System.out.println("Otrzymalem: " + path + args);
 		Runtime r = Runtime.getRuntime();
 		try {
 		String[] temp = new String[args.length + 1];

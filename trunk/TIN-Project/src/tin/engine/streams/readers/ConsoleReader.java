@@ -12,14 +12,14 @@ import tin.engine.exceptions.TINException;
  * @author zby
  *
  */
-public class SocketReader extends ReaderWithID
+public class ConsoleReader extends ReaderWithID
 {
 
 	/**
 	 * @param inputStream
 	 * @throws TINException
 	 */
-	public SocketReader(InputStream inputStream) throws TINException
+	public ConsoleReader(InputStream inputStream) throws TINException
 	{
 		super(inputStream);
 		// TODO Auto-generated constructor stub
@@ -29,7 +29,7 @@ public class SocketReader extends ReaderWithID
 	 * @param inputStream
 	 * @param id
 	 */
-	public SocketReader(InputStream inputStream, int id)
+	public ConsoleReader(InputStream inputStream, int id)
 	{
 		super(inputStream, id);
 		// TODO Auto-generated constructor stub
