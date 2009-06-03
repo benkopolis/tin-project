@@ -8,9 +8,9 @@ import tin.engine.exceptions.TINException;
 import tin.engine.interactive.Interactive;
 
 /**
- * Transformer s�u��cy do wypakowania klasy Data (z ID) z Data.content i przes�ania jej dalej.
+ * Transformer s�u��cy do wypakowania klasy Data (z ID) z Data.content i przes�ania jej dalej. TODO niezgodne z protokolem
  * <br>Pobiera i zwraca:<br>
- * Data z "message type" (musi byc rowny "Data") i zwraca Data.attribs["content"] (typu Data).
+ * Data z "message type" (musi byc rowny "Data") i zwraca Data.attribs["content"] (typu Data). TODO niezgodne z protokolem
  */
 public class DataUnpackerTransformer extends Interactive {
 
@@ -25,7 +25,7 @@ public class DataUnpackerTransformer extends Interactive {
 	 * @see tin.engine.interactive.Interactive#processData(tin.engine.data.Data)
 	 */
 	@Override
-	protected Data processData(Data data) {
+	protected Data processData(Data data) { // TODO co z id???
 		try {
 			if (  (  (String)(data.getData("message type"))  ).equals("Data") == true   ) {
 				Data d = (Data) data.getData("message content");
@@ -36,8 +36,16 @@ public class DataUnpackerTransformer extends Interactive {
 			} 				
 		} catch (TINException e) 
 		{
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			try
+			{
+				Data error = new Data();
+				error.addObject("cause", "Blaaaaaaaaaaa"); // TODO ??
+				sendError(error);
+			} catch (TINException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return null; // TODO ?
 		}
 		return null;
@@ -48,7 +56,7 @@ public class DataUnpackerTransformer extends Interactive {
 	 */
 	@Override
 	protected void propagateData(Data data) throws Exception {
-		if (data == null) throw new TINException("Data packet not correct.");
+		if (data == null) return;
 		for (Interactive i : targets) {
 			i.addToBuffer(data);
 		}
