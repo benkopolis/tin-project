@@ -16,14 +16,14 @@ import tin.engine.exceptions.TINException;
 /**
  * Klasa, kt�ra s�u�y do odczytywania danych ze strumienia aplikacji.
  * Przyjmuje dane w postaci: [target]:[length]:{data}, gdzie:<br>
- * target - { U | N } (U - User, N - Net)<br>
+ * target - { U | N } (U - User, N - Net)<br> TODO to tez zle
  * length - liczba oznaczaj�ca ilo�� bajt�w do przeczytania (w danych binarnych) lub 0, gdy s� to dane tekstowe i nale�y wczyta� je a� do wyst�pienia \0.<br>
  * data - dane - binarne lub tekstowe.
  * <br>
  * Zwraca Data:
  * "readerID":Integer<br>
- * "message type":"System"|"Data"
- * "message content":"Stream closed"|"Data corrupted"|Data (gdy typ to "Data")
+ * "message type":"System"|"Data" TODO powinno byc Normal
+ * "message content":"Stream closed"|"Data corrupted"|Data (gdy typ to "Data") TODO loool totalny protkoly pominiete
  */
 // TODO: dokonczyc komentarz
 public class ApplicationReader extends ReaderWithID {
