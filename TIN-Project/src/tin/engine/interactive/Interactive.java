@@ -24,7 +24,9 @@ public abstract class Interactive {
 	 * nale¿y przekazaæ dane po ich ewentualnym przetworzeniu
 	 * (to, czy przetwrzenie bêdzie mia³o miejsce zale¿y od rodzaju elementu).
 	 */
-	protected Vector<Interactive> targets = new 	Vector<Interactive>(5);
+	protected Vector<Interactive> targets = new Vector<Interactive>(5);
+	
+	protected Vector<Interactive> errorTargets = new Vector<Interactive>(5);
 	
 	/**
 	 * Synchronizowana kolejka FIFO u¿ywana jako bufor.
@@ -44,6 +46,15 @@ public abstract class Interactive {
 	protected abstract Data processData(Data data);
 	
 	/**
+	 * Metoda posyla wyjatek pod errorTarget
+	 * @throws TINException
+	 */
+	protected void sendError(Data data) throws TINException {
+		for(Interactive i: errorTargets)
+			i.addToBuffer(data);
+	}
+	
+	/**
 	 * Dodaje do listy targetów podany w parametrze target. Aby element móg³ dzia³aæ
 	 * musi posiadaæ przynajmniej jeden target.
 	 * @param Interactive target - referencja do elementu, który bêdzie targetem
@@ -52,6 +63,16 @@ public abstract class Interactive {
 	public void addTarget(Interactive target) throws TINException {
 		if (target == null) throw new TINException("Target can not be null.");
 		targets.add(target);
+	}
+	
+	/**
+	 * Metoda dodaj¹ca nowe error targety
+	 * @param Interactive errorTarget
+	 * @throws TINException
+	 */
+	public void addErrorTarget(Interactive errorTarget) throws TINException {
+		if(errorTarget == null) throw new TINException("ErrorTarget can not be null.");
+		errorTargets.add(errorTarget);
 	}
 	
 	/**
