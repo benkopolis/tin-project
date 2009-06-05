@@ -99,18 +99,18 @@ public class InfoFromDataExtractor extends RawTransformer {
 	 * Metoda wyluskuje Integera z podanego stringa - jak sie nie uda to rzuca wyjatek o tresci
 	 * podanej w error. Na podstawie lower i upper -Bound sprawdza czy miesci sie w
 	 * w wymaganej przez sytuacje dziedzinie.
-	 * @param tmp
-	 * @param error
-	 * @param lowerBound
-	 * @param upperBound
-	 * @return
+	 * @param String tmp - obrabiany string
+	 * @param Strin gerror - tekst ladowany do wyjatku w razie bledu
+	 * @param int lowerBound - dolna granica dziedziny
+	 * @param int upperBound - gorna granica dziedziny
+	 * @return Integer: referencja na wyluskanego i zgodnego z dziedzina Integera
 	 * @throws TINException 
 	 */
 	private Integer extractInteger(String tmp, String error, int lowerBound, int upperBound) throws TINException {
 		Integer i = null;
 		try {
 			i = Integer.parseInt(tmp);
-			if(i < lowerBound || i > upperBound)
+			if(i.intValue() < lowerBound || i.intValue() > upperBound)
 				throw new TINException(error);
 		} catch(NumberFormatException e) {
 			throw new TINException(error);
