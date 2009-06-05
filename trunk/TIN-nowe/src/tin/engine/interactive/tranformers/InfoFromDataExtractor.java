@@ -3,13 +3,11 @@
  */
 package tin.engine.interactive.tranformers;
 
-import java.awt.TrayIcon.MessageType;
 import java.util.StringTokenizer;
 
 import tin.engine.data.Data;
 import tin.engine.data.MessageTypes;
 import tin.engine.exceptions.TINException;
-import tin.engine.interactive.Interactive;
 import tin.engine.streams.TargetType;
 
 /**
@@ -21,13 +19,17 @@ import tin.engine.streams.TargetType;
  * sie strumienia - jedyne co trzeba wtedy zrobic to przekazac taki pakiet dalej (w koncu trafi on do SystemMessageHandler, 
  * ktory to wygeneruje dla zaintersowanych aplikacji odpowiedni pakiet).
  */
+/**
+ * @author zby
+ *
+ */
 public class InfoFromDataExtractor extends RawTransformer {
 
 	/**
 	 * 
 	 */
 	public InfoFromDataExtractor() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	/**
@@ -44,11 +46,13 @@ public class InfoFromDataExtractor extends RawTransformer {
 			if(data.getData("MessageType") == MessageTypes.Normal) {
 				StringTokenizer st = new StringTokenizer((String) data.getData("Data"), ":");
 				String userInfo;
-				String tmp, text;
+				String tmp=null, text = null, dane = new String();
 				TargetType tt;
 				MessageTypes mt = MessageTypes.Normal;
+				Integer id, size;
 				boolean throwError = false;
 				int i=0;
+				
 				while(st.hasMoreTokens())
 				{
 					tmp = st.nextToken();
@@ -60,8 +64,17 @@ public class InfoFromDataExtractor extends RawTransformer {
 						} else if(mt == MessageTypes.System) {
 							text = extractText(tmp);
 						}
-					}
-					
+					} else if(i == 2) {
+						if(mt == MessageTypes.Normal) {
+							size = extractInteger(tmp, "Invalid info size.", 0, Integer.MAX_VALUE);
+						} else if(mt == MessageTypes.System) {
+							if(text.equals("rc") || text.equals("dc"))
+								id = extractInteger(tmp, "Invalid reader ID.", 0, Integer.MAX_VALUE);
+						}
+					} else if(mt == MessageTypes.Normal && i>2)
+						dane = dane + tmp;
+					else
+						break;
 					++i;
 				}
 			}
@@ -72,12 +85,46 @@ public class InfoFromDataExtractor extends RawTransformer {
 				; // TODO wygeneruj pakiet bledu
 			} else if(e.getMessage().equals("Invalid system message text")) {
 				; // TODO wygeneruj pakiet bledu
+			} else if(e.getMessage().equals("Invalid info size.")) {
+				; // TODO wygeneruj pakiet bledu
+			} else if(e.getMessage().equals("Invalid reader ID.")) {
+				; // TODO wygeneruj pakiet bledu
 			}
 			
 		}
 		return data;
 	}
 
+	/**
+	 * Metoda wyluskuje Integera z podanego stringa - jak sie nie uda to rzuca wyjatek o tresci
+	 * podanej w error. Na podstawie lower i upper -Bound sprawdza czy miesci sie w
+	 * w wymaganej przez sytuacje dziedzinie.
+	 * @param tmp
+	 * @param error
+	 * @param lowerBound
+	 * @param upperBound
+	 * @return
+	 * @throws TINException 
+	 */
+	private Integer extractInteger(String tmp, String error, int lowerBound, int upperBound) throws TINException {
+		Integer i = null;
+		try {
+			i = Integer.parseInt(tmp);
+			if(i < lowerBound || i > upperBound)
+				throw new TINException(error);
+		} catch(NumberFormatException e) {
+			throw new TINException(error);
+		}
+		return i;
+	}
+
+	/**
+	 * Jezeli tekst niezgadza sie z nizej wyspecyfikowanymi to rzuca wyjatek,
+	 * w normalnym wypadku zwraca dobry tekst.
+	 * @param tmp
+	 * @return
+	 * @throws TINException
+	 */
 	private String extractText(String tmp) throws TINException {
 		if(tmp != null) {
 			if(!tmp.equals("rc") && !tmp.equals("nt") && !tmp.equals("at") && !tmp.equals("dc"))
@@ -87,7 +134,10 @@ public class InfoFromDataExtractor extends RawTransformer {
 	}
 
 	/**
+	 * Na podstawie podanego parametru probuje ustalic typ celu, jezeli sie uda,
+	 * to go zwraca, jezeli nie, to rzuca wyjatkiem.
 	 * @param tmp
+	 * @return
 	 */
 	private TargetType extractTargetType(String tmp) throws TINException {
 		TargetType tt = null;
@@ -107,6 +157,8 @@ public class InfoFromDataExtractor extends RawTransformer {
 	}
 
 	/**
+	 * Na podstawie podanego patrametru prubuje ustalic typ wiadomosci, jezeli sie 
+	 * uda to zwraca odpowiednia wartosc enumeracji, jezeli nie to rzuca wyjatek
 	 * @param tmp
 	 * @param mt
 	 * @return

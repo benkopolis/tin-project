@@ -13,8 +13,6 @@ import tin.engine.interactive.Interactive;
 import tin.engine.interactive.collectors.SearchableMap;
 import tin.engine.interactive.tranformers.DataUnpackerTransformer;
 import tin.engine.interactive.tranformers.RawTransformer;
-import tin.engine.streams.readers.ApplicationReader;
-import tin.engine.streams.readers.LineReader;
 import tin.engine.streams.writers.DataWriter;
 import tin.engine.streams.writers.LineWriter;
 import tin.engine.streams.writers.LogWriter;
