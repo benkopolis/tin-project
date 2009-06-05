@@ -17,7 +17,7 @@ import tin.engine.exceptions.TINException;
  * @author zby
  *
  */
-public class LineWithIDReader<ID> extends ReaderWithID {
+public class LineReaderWithID<ID> extends ReaderWithID {
 
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class LineWithIDReader<ID> extends ReaderWithID {
 	 * @param inputStream
 	 * @throws TINException
 	 */
-	public LineWithIDReader(InputStream inputStream) throws TINException {
+	public LineReaderWithID(InputStream inputStream) throws TINException {
 		super(inputStream);
 		throw new TINException("This constructor in illegal for this class!");
 	}
@@ -40,7 +40,7 @@ public class LineWithIDReader<ID> extends ReaderWithID {
 	 * @param id
 	 * @throws TINException
 	 */
-	public LineWithIDReader(InputStream inputStream, ID id) throws TINException {
+	public LineReaderWithID(InputStream inputStream, ID id) throws TINException {
 		super(inputStream);
 		throw new TINException("This constructor in illegal for this class!");
 	}
@@ -50,12 +50,18 @@ public class LineWithIDReader<ID> extends ReaderWithID {
 	 * @param id
 	 * @param type
 	 */
-	public LineWithIDReader(InputStream inputStream, ID id, ReaderType type) {
+	public LineReaderWithID(InputStream inputStream, ID id, ReaderType type) {
 		super(inputStream, id);
 		this.type = type;
 		this.buffReader = new BufferedReader(new InputStreamReader(inputStream));
 	}
 
+	/**
+	 * Funkcja czyta pakiety ze strumienia. Po otrzymaniu pakietu ze strumienia decyduje co zrobic - czy nadac mu status
+	 * systemowy czy normalny - i w zaleznosci od tego kontruowana jest odpowiednia paczka Danych (opisana w dokumentacji).
+	 * @note pakiet systemowy moze byc tez wyslany przez aplikacje - nasz system na tym poziomie (czyli na poziomie Readera) 
+	 * nie ingeruje w jego zawartosc - bedzie to rozpatrywane w dalszej czesci sieci przeplywowej.
+	 */
 	/* (non-Javadoc)
 	 * @see tin.engine.streams.readers.ReaderWithID#readDataPacketFromStream()
 	 */
