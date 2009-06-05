@@ -73,7 +73,7 @@ public class LineReaderWithID<ID> extends ReaderWithID {
 		d.addObject("ReaderId", readerID);
 		d.addObject("ReaderType", type);
 		if (s != null) 
-		{
+		{ // tworzymy paczke normalna
 			d.addObject("MessageType", MessageTypes.Normal);
 			d.addObject("Data", d2);
 			d2.addObject("DataType", DataType.Text);
@@ -82,16 +82,17 @@ public class LineReaderWithID<ID> extends ReaderWithID {
 			d2.addObject("Data", s);
 			return d;
 		} else 
-		{
+		{ // tworzymy paczke systemowa - wiadomosc dla odpowiednich aplikacji bedzie generowana przez SystemMessageHandlera
 			d.addObject("MessageType", MessageTypes.Normal);
 			d.addObject("Data", null); 
 			d.addObject("MessageContent", d2);
 			if(type == ReaderType.ApplicationReader) 
-				d.addObject("Reason", Reason.ApplicationTerminated);
+				d2.addObject("Reason", Reason.ApplicationTerminated);
 			 else if(type == ReaderType.SocketReader)
-				d.addObject("Reason", Reason.ConnectionClosed);
+				d2.addObject("Reason", Reason.ConnectionClosed);
 			else if(type == ReaderType.UserInputReader)
-				d.addObject("Reason", Reason.Unknown);
+				d2.addObject("Reason", Reason.Unknown);
+			d2.addObject("MessageText", "StreamClosed"); // TODO zamkniety strumien tekst wiadomosci
 			return d;
 		}
 	}
