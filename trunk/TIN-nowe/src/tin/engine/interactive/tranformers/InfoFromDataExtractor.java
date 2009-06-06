@@ -6,6 +6,7 @@ package tin.engine.interactive.tranformers;
 import java.util.StringTokenizer;
 
 import tin.engine.data.Data;
+import tin.engine.data.DataType;
 import tin.engine.data.MessageTypes;
 import tin.engine.exceptions.TINException;
 import tin.engine.streams.TargetType;
@@ -35,7 +36,8 @@ public class InfoFromDataExtractor extends RawTransformer {
 	/**
 	 * Metoda wyluskuje kontekst aplikacji na wierzch. Jezeli pakiet jest zle skonstruowany ze wzgledu na 
 	 * zgodnosc z protokolem, to metoda generuje pakiet bledu - tworzy go na podstawie numeru (przerabianego w chwili 
-	 * napotkania bledu) kroku i dotychczas wyluskanych informacji.
+	 * napotkania bledu) kroku i dotychczas wyluskanych informacji. Tworzony pakiet Data opisany jest w dokumentacji
+	 * jako Data_4.
 	 */
 	/* (non-Javadoc)
 	 * @see tin.engine.interactive.Interactive#processData(tin.engine.data.Data)
@@ -47,20 +49,24 @@ public class InfoFromDataExtractor extends RawTransformer {
 				StringTokenizer st = new StringTokenizer((String) data.getData("Data"), ":");
 				String userInfo;
 				String tmp=null, text = null, dane = new String();
-				TargetType tt;
+				TargetType tt = null;
 				MessageTypes mt = MessageTypes.Normal;
-				Integer id, size;
+				Integer id = null, size = null;
 				boolean throwError = false;
 				int i=0;
 				
-				while(st.hasMoreTokens())
-				{
+				while(st.hasMoreTokens()) {
 					tmp = st.nextToken();
 					if(i == 0) {	
 						mt = extractMessageType(tmp);
 					} else if(i == 1) {
 						if(mt == MessageTypes.Normal) {
 							tt = extractTargetType(tmp);
+							try {
+								id = extractInteger(tmp, "This is not an error.", -1, Integer.MAX_VALUE);
+							} catch (NumberFormatException e) {
+								id = Integer.valueOf(Integer.MAX_VALUE); 
+							}
 						} else if(mt == MessageTypes.System) {
 							text = extractText(tmp);
 						}
@@ -71,14 +77,29 @@ public class InfoFromDataExtractor extends RawTransformer {
 							if(text.equals("rc") || text.equals("dc"))
 								id = extractInteger(tmp, "Invalid reader ID.", 0, Integer.MAX_VALUE);
 						}
-					} else if(mt == MessageTypes.Normal && i>2)
-						dane = dane + tmp;
+					} else if(mt == MessageTypes.Normal && i>2) {
+						if(i==3)
+							dane = dane + tmp;
+						else
+							dane = dane + ":" + tmp;
+					}
 					else
 						break;
 					++i;
-				}
+				} // ponizej jest tworzenie pakietu Data - Normal / System
+				data.setData("MessageType", mt);
+				if(mt == MessageTypes.System)
+				data.setData("MessageContent", text);
+				data.addObject("ID", id);
+				data.setData("TargetType", tt);
+				data.setData("Data", dane);
+				data.addObject("Size", size);
+				if(size.intValue() > 0)
+					data.addObject("DataType", DataType.Binary);
+				else
+					data.addObject("DataType", DataType.Text);
 			}
-		} catch (TINException e) {
+		} catch (TINException e) { // w tym cachu powinien byc tworzony pakiet error do error Handlera
 			if(e.getMessage().equals("Invalid message type.")) {
 				;// TODO wygeneruj pakiet bledu
 			} else if(e.getMessage().equals("Invalid target type.")) {
@@ -90,7 +111,6 @@ public class InfoFromDataExtractor extends RawTransformer {
 			} else if(e.getMessage().equals("Invalid reader ID.")) {
 				; // TODO wygeneruj pakiet bledu
 			}
-			
 		}
 		return data;
 	}
