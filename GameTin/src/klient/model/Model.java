@@ -95,4 +95,10 @@ public class Model extends Observable {
 		return gameOff;
 	}
 
+	/* ustawia aktualna liczbe punktow */
+	public void setPoints(int points) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
