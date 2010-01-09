@@ -6,6 +6,7 @@ import java.net.SocketAddress;
 
 import klient.model.Model;
 
+
 public class UDPSocketThread extends Thread{
 
 	private MulticastSocket socket;
@@ -17,7 +18,19 @@ public class UDPSocketThread extends Thread{
 	}
 	
 	public void run() {
-		
+		while(!isInterrupted()) {
+			try {
+				if (model.isGameOn() && (model.isGameOff() == false)) {
+					//dziala
+				}
+				else if ((model.isGameOn() == false) && model.isGameOff()) {
+					//udpsocket.leaveGroup(group);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
