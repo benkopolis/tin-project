@@ -18,7 +18,7 @@ public class Model extends Observable {
 	
 	protected boolean gameOn = false;
 	
-	protected boolean gameOff = true;
+	protected boolean gameOff = false;
 	
 	
 	public Model() {
@@ -85,13 +85,11 @@ public class Model extends Observable {
 
 	/* funkcja ma ustawiac zmienna (ktora wskazuje czy gra jest w toku) na true */
 	public synchronized void startGame() {
-		this.gameOff = false;
 		this.gameOn = true;
 	}
 	
 	public synchronized void endGame() {
 		this.gameOff = true;
-		this.gameOn = false;
 	}
 	
 	public synchronized boolean isGameOn() {

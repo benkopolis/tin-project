@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 
 import klient.controller.networkctrl.NetworkController;
-import sun.net.NetworkClient;
 import klient.model.Model;
 import klient.view.GameBoardView;
 import klient.view.GameInfoView;
