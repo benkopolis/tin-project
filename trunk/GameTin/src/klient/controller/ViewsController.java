@@ -3,6 +3,7 @@ package klient.controller;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import klient.controller.keyboardctrl.KeyboardController;
 import klient.controller.networkctrl.NetworkController;
 import klient.model.Model;
 import klient.view.GameBoardView;
@@ -20,6 +21,7 @@ public class ViewsController {
 	protected GameInfoView gameInfoView = null;
 	protected GameBoardView gameBoardView = null;
 	protected NetworkController networkController = null;
+	protected KeyboardController keyboardController = null;
 	protected Model model = new Model();
 	
 	public ViewsController() {
@@ -27,6 +29,7 @@ public class ViewsController {
 		gameBoardView = new GameBoardView(this);
 		gameInfoView = new GameInfoView(this);
 		gameOptionsView = new GameOptionsView(this);
+		keyboardController =  new KeyboardController(this);
 		gameOptionsView.init();
 	}
 	
@@ -81,6 +84,15 @@ public class ViewsController {
 
 	public synchronized void setModel(Model model) {
 		this.model = model;
+	}
+
+	public synchronized KeyboardController getKeyboardController() {
+		return keyboardController;
+	}
+
+	public synchronized void setKeyboardController(
+			KeyboardController keyboardController) {
+		this.keyboardController = keyboardController;
 	}
 	
 }
