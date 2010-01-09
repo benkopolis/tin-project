@@ -49,7 +49,7 @@ public class TCPSocketThread extends Thread {
 							int id = Integer.parseInt(tokens[i].split(",")[0]);
 							int x = Integer.parseInt(tokens[i].split(",")[1]);
 							int y = Integer.parseInt(tokens[i].split(",")[2]);
-							model.setActualPlayersPosition(id, x, y);
+							model.setActualPlayerPosition(id, x, y);
 						}
 					}
 					else if (tokens[0].equals("countingdown")) {
@@ -58,6 +58,9 @@ public class TCPSocketThread extends Thread {
 						if (number == 1) {
 							//model.startGame();
 						}
+					}
+					else if (tokens[0].equals("end")) {
+						model.getLm().loadFromMessage(tokens[1]);
 					}
 				}
 			} catch (IOException e) {
