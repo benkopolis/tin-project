@@ -2,6 +2,8 @@ package klient.model;
 
 import java.util.Observable;
 
+import klient.model.fields.Player;
+
 public class Model extends Observable {
 	
 	protected LevelsManager lm = LevelsManager.getInstance();
