@@ -124,6 +124,7 @@ public class GameOptionsView extends GameView implements ActionListener {
 		if(checkIp(str[0]) == false && str[1].isEmpty()==false) {
 			try {
 				ia = (Inet4Address) InetAddress.getByName(str[1]);
+				str[0] = ia.toString();
 			} catch (UnknownHostException e1) {
 				// don't close window - bad address
 				JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta");
@@ -141,6 +142,6 @@ public class GameOptionsView extends GameView implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Nie podano nicka");
 			return;
 		}
-		this.root.play();
+		this.root.play(str[0], str[2]);
 	} 
 }
