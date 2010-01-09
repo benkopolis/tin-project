@@ -22,7 +22,7 @@ public class TCPSocketThread extends Thread {
 	public void run() {
 		while(!isInterrupted()) {
 			try {
-				if (model.isGameOn() != true){
+				if (model.isGameOn() == false && model.isGameOff() == false){
 					/* tab - tablica przeslanych pakietow */
 					String[] tab = InputReader.getStringsFromPacket(socket.getInputStream());
 					/* t - linia stringa, ktora jest pakietem */
@@ -62,7 +62,7 @@ public class TCPSocketThread extends Thread {
 						}
 					}
 				}
-				if (model.isGameOn()) {
+				else if (model.isGameOn() && model.isGameOff() == false) {
 					/* tab - tablica przeslanych pakietow */
 					String[] tab = InputReader.getStringsFromPacket(socket.getInputStream());
 					for(String t:tab) {	
@@ -82,8 +82,7 @@ public class TCPSocketThread extends Thread {
 						}
 					}
 				}
-				
-				if (model.isGameOff()) {
+				else if (model.isGameOn() == false && model.isGameOn()) {
 					String send = "";
 					send.concat(":quit\n");
 					OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
