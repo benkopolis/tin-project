@@ -31,6 +31,11 @@ public class Model extends Observable {
 		
 	}
 
+	public void countDown(int parseInt) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public synchronized LevelsManager getLm() {
 		return lm;
 	}
