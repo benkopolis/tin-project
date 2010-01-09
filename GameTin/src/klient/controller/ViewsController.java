@@ -31,13 +31,13 @@ public class ViewsController {
 	}
 	
 	public void play(String ip, String nick) {
-		try {
-			networkController = new NetworkController(nick, 666, model);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			networkController = new NetworkController(nick, 666, model);
+//		} catch (UnknownHostException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		gameInfoView.init();
 		gameBoardView.init();
 	}

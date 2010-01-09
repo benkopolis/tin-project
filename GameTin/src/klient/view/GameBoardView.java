@@ -14,6 +14,11 @@ import javax.swing.JPanel;
 
 import klient.controller.ViewsController;
 import klient.model.IllegalOperation;
+import klient.model.fields.Coin;
+import klient.model.fields.Field;
+import klient.model.fields.Grass;
+import klient.model.fields.Player;
+import klient.model.fields.Wall;
 
 /**
  * @author zby
@@ -52,11 +57,33 @@ public class GameBoardView extends GameView implements KeyListener {
 					g.drawLine(0, j*rectSize, w*rectSize, j*rectSize);
 				}
 			}
-			
+			this.fillBoard(g);
 		}
 		
 		public void fillBoard(Graphics g) {
-			root.getModel().getLm().getLevel();
+			Field[][] fields = root.getModel().getLm().getLevel();
+			try {
+				for(int i=0; i<root.getModel().getLm().getWidth(); ++i) { //i -x, w
+					for(int j=0; j<root.getModel().getLm().getHeight(); ++j) { // j -y, h
+						if(fields[i][j] instanceof Wall) {
+							g.setColor(Color.GRAY);
+							g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
+						} else if(fields[i][j] instanceof Grass) {
+							g.setColor(Color.GREEN);
+							g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
+						} else if(fields[i][j] instanceof Coin) {
+							g.setColor(Color.YELLOW);
+							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
+						} else if(fields[i][j] instanceof Player) {
+							g.setColor(Color.RED);
+							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
+						}
+						g.setColor(Color.BLACK);
+					}
+				}
+			} catch (IllegalOperation e) {
+				e.printStackTrace();
+			}
 		}
 		
 		public void fillField(Graphics g, int x, int y) throws IllegalOperation {
@@ -84,7 +111,7 @@ public class GameBoardView extends GameView implements KeyListener {
 		setLocation(200, 200);
 		try {
 			h = this.root.getModel().getLm().getHeight();
-			w = this.root.getModel().getLm().getWidth() + 1;
+			w = this.root.getModel().getLm().getWidth();
 			setSize(w*rectSize+10, h*rectSize+20);
 		} catch (IllegalOperation e) {
 			e.printStackTrace();
@@ -100,6 +127,7 @@ public class GameBoardView extends GameView implements KeyListener {
 		panel.addKeyListener(this);
 		panel.setVisible(true);
 		panel.paintComponent(this.getGraphics());
+		//panel.fillBoard(this.getGraphics());
 	}
 	
 	/**
