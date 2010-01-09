@@ -14,9 +14,11 @@ public class Player extends Field {
 	protected int id;
 	protected int score;
 	protected String nick;
-	
-	public Player() {
+
+	public Player(int id2, String nick2) {
 		sign = 'p';
+		id = id2;
+		nick = nick2;
 	}
 
 	public synchronized int getId() {

@@ -1,5 +1,7 @@
 package klient.model;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 
 import klient.model.fields.Player;
@@ -8,7 +10,15 @@ public class Model extends Observable {
 	
 	protected LevelsManager lm = LevelsManager.getInstance();
 	
-	protected Player[] players = null;
+	protected int localPlayerId;
+	
+	protected String localPlayerNick;
+	
+	protected List<PlayerInfo> players = new LinkedList<PlayerInfo>();
+	
+	protected boolean gameOn = false;
+	
+	protected boolean gameOff = true;
 	
 	/* ustawienie id klienta */
 	public void setPlayerID(int id) {
@@ -24,13 +34,25 @@ public class Model extends Observable {
 	
 	/* ustawienie id i nick'a innych graczy */
 	public void addPlayer(String nick, int id) {
-		// TODO Auto-generated method stub
-		
+		players.add(new PlayerInfo(new Player(id, nick), 0, 0));
+		if(nick == localPlayerNick)
+			localPlayerId = id;
 	}
 
 	public void setActualPlayerPosition(int id, int x, int y) {
-		// TODO Auto-generated method stub
-		
+		Player p = null;
+		for(PlayerInfo i: players) {
+			if(i.getPlayer().getId() == id) {
+				p = i.getPlayer();
+				break;
+			}
+		}
+		try {
+			this.lm.setField(x, y, p);
+		} catch (IllegalOperation e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void countDown(int parseInt) {
@@ -46,18 +68,31 @@ public class Model extends Observable {
 		this.lm = lm;
 	}
 
-	public synchronized Player[] getPlayers() {
+	public synchronized List<PlayerInfo> getPlayers() {
 		return players;
 	}
 
-	public synchronized void setPlayers(Player[] players) {
+	public synchronized void setPlayers(List<PlayerInfo> players) {
 		this.players = players;
 	}
 
 	/* funkcja ma ustawiac zmienna (ktora wskazuje czy gra jest w toku) na true */
-	public void startGame() {
-		// TODO Auto-generated method stub
-		
+	public synchronized void startGame() {
+		this.gameOff = false;
+		this.gameOn = true;
+	}
+	
+	public synchronized void endGame() {
+		this.gameOff = true;
+		this.gameOn = false;
+	}
+	
+	public synchronized boolean isGameOn() {
+		return gameOn;
+	}
+	
+	public synchronized boolean isGameOff() {
+		return gameOff;
 	}
 
 }
