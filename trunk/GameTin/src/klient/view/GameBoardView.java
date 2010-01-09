@@ -31,6 +31,9 @@ public class GameBoardView extends GameView {
 			
 		}
 		
+		/**
+		 * Wype³nia planszê na pocz¹tek.
+		 */
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.setColor(Color.BLACK);
@@ -44,42 +47,7 @@ public class GameBoardView extends GameView {
 			}
 			
 		}
-		
-		/**
-		 * Metoda wypelnia plansze pobierajac dane z modelu
-		 * @param g
-		 */
-		public void fillBoard(Graphics g) {
-			
-		}
-		
-		/**
-		 * Metoda wypelnia tylko zadane pole, pobierajac dane z modelu
-		 * @param g
-		 * @param x - musi sie miescic w granicach
-		 * @param y - musi sie miescic w granicach
-		 * @throws rzuca wyj¹tek, je¿eli x, lub y nie mieszcz¹ siê na planszy, 
-		 * albo je¿eli g jest nullem
-		 */
-		public void fillField(Graphics g, int x, int y) throws IllegalOperation {
-			
-		}
-		
-		/**
-		 * Metoda wypelnia zadane pola, pobierajac dane z modelu.
-		 * @param g
-		 * @param x - musi miec ten sam rozmiar co y
-		 * @param y - musi miec ten sam rozmiar co x
-		 * @throws rzuca wyj¹tek, je¿eli jakakolwiek wartoœc z tabeli x lub y
-		 * nie mieœci siê w granicach, lub je¿eli ich rozmiary s¹ ró¿ne, albo
-		 * je¿eli g jest nullem.
-		 */
-		public void fillFields(Graphics g, int[] x, int[] y) throws IllegalOperation {
-			
-		}
 	}
-	
-	
 	
 	/**
 	 * 
@@ -112,5 +80,33 @@ public class GameBoardView extends GameView {
 		this.add(panel);
 		panel.setVisible(true);
 		panel.paintComponent(this.getGraphics());
+	}
+	
+	/**
+	 * Metoda wypelnia plansze pobierajac dane z modelu
+	 */
+	public void fillBoard() {
+		
+	}
+	
+	/**
+	 * Metoda wypelnia tylko zadane pole, pobierajac dane z modelu
+	 * @param x - musi sie miescic w granicach
+	 * @param y - musi sie miescic w granicach
+	 * @throws rzuca wyj¹tek, je¿eli x, lub y nie mieszcz¹ siê na planszy.
+	 */
+	public void fillField(int x, int y) throws IllegalOperation {
+		
+	}
+	
+	/**
+	 * Metoda wypelnia zadane pola, pobierajac dane z modelu.
+	 * @param x - musi miec ten sam rozmiar co y
+	 * @param y - musi miec ten sam rozmiar co x
+	 * @throws rzuca wyj¹tek, je¿eli jakakolwiek wartoœc z tabeli x lub y
+	 * nie mieœci siê w granicach, lub je¿eli ich rozmiary s¹ ró¿ne.
+	 */
+	public void fillFields(int[] x, int[] y) throws IllegalOperation {
+		
 	}
 }
