@@ -90,6 +90,7 @@ public class Model extends Observable {
 	
 	public synchronized void endGame() {
 		this.gameOff = true;
+		this.gameOn = false;
 	}
 	
 	public synchronized boolean isGameOn() {
