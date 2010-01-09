@@ -54,4 +54,10 @@ public class Model extends Observable {
 		this.players = players;
 	}
 
+	/* funkcja ma ustawiac zmienna (ktora wskazuje czy gra jest w toku) na true */
+	public void startGame() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
