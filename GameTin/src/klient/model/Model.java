@@ -103,7 +103,7 @@ public class Model extends Observable {
 	}
 
 	/* ustawia aktualna liczbe punktow */
-	public void setPoints(int points) {
+	public void setPoints(int id, int points) {
 		// TODO Auto-generated method stub
 		
 	}
