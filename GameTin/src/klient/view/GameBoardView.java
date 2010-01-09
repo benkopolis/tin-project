@@ -56,7 +56,7 @@ public class GameBoardView extends GameView implements KeyListener {
 		}
 		
 		public void fillBoard(Graphics g) {
-
+			root.getModel().getLm().getLevel();
 		}
 		
 		public void fillField(Graphics g, int x, int y) throws IllegalOperation {
