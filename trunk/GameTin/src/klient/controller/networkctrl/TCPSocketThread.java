@@ -56,7 +56,7 @@ public class TCPSocketThread extends Thread {
 						int number = Integer.parseInt(tokens[1]);
 						model.countDown(number);
 						if (number == 1) {
-							//model.startGame();
+							model.startGame();
 						}
 					}
 					else if (tokens[0].equals("end")) {
