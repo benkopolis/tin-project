@@ -16,13 +16,17 @@ import klient.view.GameOptionsView;
  */
 public class ViewsController {
 
-	protected GameOptionsView gameOptionsView = new GameOptionsView(this);
-	protected GameInfoView gameInfoView = new GameInfoView(this);
-	protected GameBoardView gameBoardView = new GameBoardView(this);
+	protected GameOptionsView gameOptionsView = null;
+	protected GameInfoView gameInfoView = null;
+	protected GameBoardView gameBoardView = null;
 	protected NetworkController networkController = null;
 	protected Model model = new Model();
 	
 	public ViewsController() {
+		getModel().getLm().createNewLevel(10, 10, false);
+		gameBoardView = new GameBoardView(this);
+		gameInfoView = new GameInfoView(this);
+		gameOptionsView = new GameOptionsView(this);
 		gameOptionsView.init();
 	}
 	
