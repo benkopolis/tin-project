@@ -29,7 +29,7 @@ public class ViewsController {
 	
 	public void play(String ip, String nick) {
 		try {
-			networkController = new NetworkController(nick, 0, model);
+			networkController = new NetworkController(nick, 666, model);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
