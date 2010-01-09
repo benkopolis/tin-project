@@ -44,7 +44,7 @@ public class TCPSocketThread extends Thread {
 						}
 					}
 					else if (tokens[0].equals("board")) {
-						model.lm.loadFromMessage(tokens[1]);
+						model.getLm().loadFromMessage(tokens[1]);
 						for(int i=2; i<tokens.length; i++) {
 							int id = Integer.parseInt(tokens[i].split(",")[0]);
 							int x = Integer.parseInt(tokens[i].split(",")[1]);

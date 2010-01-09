@@ -18,12 +18,24 @@ public abstract class GameView extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -8959215982584247420L;
-	protected ViewsController parent;
+	protected ViewsController root;
 	
 	public GameView(ViewsController p) {
-		parent = p;
+		root = p;
 	}
 	
 	public abstract void init();
+
+	public synchronized ViewsController getRoot() {
+		return root;
+	}
+
+	public synchronized void setRoot(ViewsController parent) {
+		this.root = parent;
+	}
+
+	public static synchronized long getSerialVersionUID() {
+		return serialVersionUID;
+	}
 
 }
