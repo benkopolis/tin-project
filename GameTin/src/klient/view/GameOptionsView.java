@@ -3,6 +3,8 @@ package klient.view;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -22,7 +24,7 @@ import klient.controller.ViewsController;
  * @author zby
  *
  */
-public class GameOptionsView extends GameView implements ActionListener {
+public class GameOptionsView extends GameView implements ActionListener, KeyListener {
 
 	/**
 	 * 
@@ -63,6 +65,7 @@ public class GameOptionsView extends GameView implements ActionListener {
 			}
 		});
 		ok.addActionListener(this);
+		ok.addKeyListener(this);
 		setSize(400, 150);
 		setLocation(300, 200);
 		add(panel);
@@ -115,6 +118,29 @@ public class GameOptionsView extends GameView implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		this.onOKButtonClicked();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(KeyEvent.VK_ENTER == e.getKeyCode())
+			this.onOKButtonClicked();
+		else if(KeyEvent.VK_ESCAPE == e.getKeyCode())
+			this.closeApplication();
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	} 
+	
+	protected void onOKButtonClicked() {
 		String[] str = new String [3];
 		str[0] = textFields[FieldKind.IP_FIELD.ordinal()].getText();
 		str[1] = textFields[FieldKind.HOST_FIELD.ordinal()].getText();
@@ -142,5 +168,5 @@ public class GameOptionsView extends GameView implements ActionListener {
 			return;
 		}
 		this.root.play(str[0], str[2]);
-	} 
+	}
 }
