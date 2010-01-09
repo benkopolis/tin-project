@@ -17,25 +17,67 @@ import klient.view.GameOptionsView;
  */
 public class ViewsController {
 
-	protected GameOptionsView gov = new GameOptionsView(this);
-	protected GameInfoView giv = new GameInfoView(this);
-	protected GameBoardView gbv = new GameBoardView(this);
-	protected NetworkController nc = null;
-	protected Model m = new Model();
+	protected GameOptionsView gameOptionsView = new GameOptionsView(this);
+	protected GameInfoView gameInfoView = new GameInfoView(this);
+	protected GameBoardView gameBoardView = new GameBoardView(this);
+	protected NetworkController networkController = null;
+	protected Model model = new Model();
 	
 	public ViewsController() {
-		gov.init();
+		gameOptionsView.init();
 	}
 	
 	public void play(String ip, String nick) {
 		try {
-			nc = new NetworkController(nick, 0, m);
+			networkController = new NetworkController(nick, 0, model);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		giv.init();
-		gbv.init();
+		gameInfoView.init();
+		gameBoardView.init();
 	}
+
+	public synchronized GameOptionsView getGameOptionsView() {
+		return gameOptionsView;
+	}
+
+	public synchronized void setGameOptionsView(GameOptionsView gameOptionsView) {
+		this.gameOptionsView = gameOptionsView;
+	}
+
+	public synchronized GameInfoView getGameInfoView() {
+		return gameInfoView;
+	}
+
+	public synchronized void setGameInfoView(GameInfoView gameInfoView) {
+		this.gameInfoView = gameInfoView;
+	}
+
+	public synchronized GameBoardView getGameBoardView() {
+		return gameBoardView;
+	}
+
+	public synchronized void setGameBoardView(GameBoardView gameBoardView) {
+		this.gameBoardView = gameBoardView;
+	}
+
+	public synchronized NetworkController getNetworkController() {
+		return networkController;
+	}
+
+	public synchronized void setNetworkController(
+			NetworkController networkController) {
+		this.networkController = networkController;
+	}
+
+	public synchronized Model getModel() {
+		return model;
+	}
+
+	public synchronized void setModel(Model model) {
+		this.model = model;
+	}
+	
 }
