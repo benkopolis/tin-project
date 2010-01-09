@@ -53,10 +53,11 @@ public class TCPSocketThread extends Thread {
 						}
 					}
 					else if (tokens[0].equals("countingdown")) {
-						while (Integer.parseInt(tokens[1]) != 1) {
-							;
+						int number = Integer.parseInt(tokens[1]);
+						model.countDown(number);
+						if (number == 1) {
+							//model.startGame();
 						}
-						
 					}
 				}
 			} catch (IOException e) {
