@@ -90,10 +90,14 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 		panel.add(cancel);
 		ok.setVisible(true);
 		cancel.setVisible(true);
-		for(JLabel l: labels)
+		for(JLabel l: labels) {
 			l.setVisible(true);
-		for(JTextField t: textFields)
+			l.addKeyListener(this);
+		}
+		for(JTextField t: textFields) {
 			t.setVisible(true);
+			t.addKeyListener(this);
+		}
 		panel.setVisible(true);
 	}
 
@@ -123,11 +127,16 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(KeyEvent.VK_ENTER == e.getKeyCode())
-			this.onOKButtonClicked();
-		else if(KeyEvent.VK_ESCAPE == e.getKeyCode())
+		if(KeyEvent.VK_ENTER == e.getKeyCode()) {
+			if(e.getSource() instanceof JButton) {
+				if(((JButton)e.getSource()).equals(cancel)==false)
+					this.onOKButtonClicked();
+				else if(((JButton)e.getSource()).equals(cancel)==true)
+					this.closeApplication();
+			} else 
+				this.onOKButtonClicked();
+		} else if(KeyEvent.VK_ESCAPE == e.getKeyCode())
 			this.closeApplication();
-		
 	}
 
 	@Override
