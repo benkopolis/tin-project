@@ -101,4 +101,24 @@ public class Model extends Observable {
 		
 	}
 
+	public synchronized int getLocalPlayerId() {
+		return localPlayerId;
+	}
+
+	public synchronized void setLocalPlayerId(int localPlayerId) {
+		this.localPlayerId = localPlayerId;
+	}
+
+	public synchronized String getLocalPlayerNick() {
+		return localPlayerNick;
+	}
+
+	public synchronized void setLocalPlayerNick(String localPlayerNick) {
+		this.localPlayerNick = localPlayerNick;
+	}
+
+	public synchronized void setGameOn(boolean gameOn) {
+		this.gameOn = gameOn;
+	}
+
 }
