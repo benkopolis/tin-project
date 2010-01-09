@@ -24,4 +24,9 @@ public class Model extends Observable {
 		
 	}
 
+	public void setActualPlayersPosition(int id, int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
