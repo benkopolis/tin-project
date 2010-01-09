@@ -294,4 +294,8 @@ public class LevelsManager {
 		}
 		tempLevel.clear();
 	}
+
+	public synchronized Field[][] getLevel() {
+		return level;
+	}
 }

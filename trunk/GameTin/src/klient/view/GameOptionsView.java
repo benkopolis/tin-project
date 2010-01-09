@@ -66,6 +66,7 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 		});
 		ok.addActionListener(this);
 		ok.addKeyListener(this);
+		cancel.addKeyListener(this);
 		setSize(400, 150);
 		setLocation(300, 200);
 		add(panel);
@@ -131,7 +132,7 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 			if(e.getSource() instanceof JButton) {
 				if(((JButton)e.getSource()).equals(cancel)==false)
 					this.onOKButtonClicked();
-				else if(((JButton)e.getSource()).equals(cancel)==true)
+				else
 					this.closeApplication();
 			} else 
 				this.onOKButtonClicked();
@@ -176,6 +177,7 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 			JOptionPane.showMessageDialog(null, "Nie podano nicka");
 			return;
 		}
+		this.setVisible(false);
 		this.root.play(str[0], str[2]);
 	}
 }
