@@ -22,7 +22,6 @@ public class Model extends Observable {
 	
 	
 	public Model() {
-		
 	}
 	
 	
