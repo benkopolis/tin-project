@@ -1,4 +1,4 @@
-package tin.klient.model;
+package model;
 
 /**
  * Wyj¹tek oznaczaj¹cy, ¿e podjêta zosta³a próba wykonania operacji na 

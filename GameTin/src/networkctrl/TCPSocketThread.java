@@ -1,10 +1,11 @@
-package tin.klient.networkctrl;
+package networkctrl;
 
 import java.io.IOException;
 import java.net.Socket;
 
-import tin.klient.model.IllegalOperation;
-import tin.klient.model.Model;
+import model.IllegalOperation;
+import model.Model;
+
 
 public class TCPSocketThread extends Thread {
 	

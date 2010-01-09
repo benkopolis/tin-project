@@ -1,4 +1,4 @@
-package tin.klient.model.fields;
+package model.fields;
 
 /**
  * Klasa reprezentuj¹ca pole, po którym mo¿na chodziæ (trawkê ;) ).
