@@ -20,6 +20,13 @@ public class Model extends Observable {
 	
 	protected boolean gameOff = true;
 	
+	
+	public Model() {
+		
+	}
+	
+	
+	
 	/* ustawienie id klienta */
 	public void setPlayerID(int id) {
 		// TODO Auto-generated method stub
