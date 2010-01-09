@@ -22,6 +22,7 @@ public abstract class GameView extends JFrame {
 	
 	public GameView(ViewsController p) {
 		root = p;
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public abstract void init();

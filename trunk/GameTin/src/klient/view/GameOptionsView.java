@@ -69,7 +69,6 @@ public class GameOptionsView extends GameView implements ActionListener {
 		panel.setLayout(new GridLayout(4,2));
 		setTitle("Okno opcji gry w zbieranie monet");
 		setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		labels[FieldKind.IP_FIELD.ordinal()].setSize(100, 30);
 		textFields[FieldKind.IP_FIELD.ordinal()].setSize(100, 30);
 		labels[FieldKind.HOST_FIELD.ordinal()].setSize(100, 30);

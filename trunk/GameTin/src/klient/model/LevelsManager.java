@@ -180,7 +180,7 @@ public class LevelsManager {
 	 * @return wysokoœæ planszy
 	 * @throws IllegalOperation - gdy poziom nie zosta³ utworzony/wczytany
 	 */
-	private int getHeight() throws IllegalOperation {
+	public int getHeight() throws IllegalOperation {
 		if (level == null) throw new IllegalOperation("Level is not created !");
 		return height;
 	}
@@ -189,7 +189,7 @@ public class LevelsManager {
 	 * @return szerokoœæ planszy
 	 * @throws IllegalOperation - gdy poziom nie zosta³ utworzony/wczytany
 	 */
-	private int getWidth() throws IllegalOperation {
+	public int getWidth() throws IllegalOperation {
 		if (level == null) throw new IllegalOperation("Level is not created !");
 		return width;
 	}
