@@ -126,4 +126,11 @@ public class Model extends Observable {
 		this.gameOn = gameOn;
 	}
 
+
+	/* ustawia wspolrzedne monety ktore zostaly odebrane od serwera */
+	public void setActualCoinPosition(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

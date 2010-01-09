@@ -24,18 +24,34 @@ public class UDPSocketThread extends Thread{
 		while(!isInterrupted()) {
 			try {
 				if (model.isGameOn() && (model.isGameOff() == false)) {
-					String msg = "Hello";
+					String msg = String.valueOf(model.getLocalPlayerId());
+					msg.concat(":" + String.valueOf(i));
 					DatagramPacket hi = new DatagramPacket(msg.getBytes(), msg.length(),
                             group, 6789);
 					socket.send(hi);
+					
 					byte[] buf = new byte[1000];
-					String str = "Ala";
-					byte[] tab = str.getBytes();
 					DatagramPacket recv = new DatagramPacket(buf, buf.length);
 					socket.receive(recv);
-
-					/* tab - tablica przeslanych pakietow */
-					//String[] tab = InputReader.getStringsFromPacket();
+					String str = new String(buf);
+					/* tokens - tablica stringow rozdzielonych dwukropkiem */
+					String[] tokens = str.split(":");
+					if (tokens[0].equals("coins")) {
+						int coins = Integer.getInteger(tokens[1]);
+						for (int i=2; i<coins+2; i++) {
+							int x = Integer.parseInt(tokens[i].split(",")[0]);
+							int y = Integer.parseInt(tokens[i].split(",")[1]);
+							model.setActualCoinPosition(x,y);
+						}
+						for (int i=coins+4; i<tokens.length; i++) {
+							int id = Integer.parseInt(tokens[i].split(",")[0]);
+							int newX = Integer.parseInt(tokens[i].split(",")[1]);
+							int newY = Integer.parseInt(tokens[i].split(",")[2]);
+							int points = Integer.parseInt(tokens[i].split(",")[3]);
+							model.setActualPlayerPosition(id, newX, newY);
+							model.setPoints(id, points);
+						}
+					}
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
 					socket.leaveGroup(group);
