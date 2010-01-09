@@ -1,4 +1,4 @@
-package tin.klient.model.fields;
+package model.fields;
 
 /**
 * Klasa bazowa (abstrakcyjna) reprezentuj¹ca pole planszy.

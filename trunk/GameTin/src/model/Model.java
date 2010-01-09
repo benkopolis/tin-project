@@ -1,4 +1,4 @@
-package tin.klient.model;
+package model;
 
 import java.util.Observable;
 

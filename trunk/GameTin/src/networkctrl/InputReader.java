@@ -1,4 +1,4 @@
-package tin.klient.networkctrl;
+package networkctrl;
 
 import java.io.IOException;
 import java.io.InputStream;

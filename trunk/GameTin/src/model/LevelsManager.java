@@ -1,4 +1,4 @@
-package tin.klient.model;
+package model;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,11 +7,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
 
-import tin.klient.model.fields.Coin;
-import tin.klient.model.fields.Field;
-import tin.klient.model.fields.Grass;
-import tin.klient.model.fields.Wall;
-
+import model.fields.Coin;
+import model.fields.Field;
+import model.fields.Grass;
+import model.fields.Wall;
 /**
  * Klasa udostêpniaj¹ca poziom gry. Umo¿liwia za³adowanie go 
  * z zewnêtrznego pliku, jak i utworzenie w czasie dzia³ania aplikacji.

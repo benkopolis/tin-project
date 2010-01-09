@@ -1,10 +1,10 @@
-package tin.klient.networkctrl;
+package networkctrl;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import tin.klient.model.Model;
+import model.Model;
 
 public class NetworkController {
 	private Socket socket;
