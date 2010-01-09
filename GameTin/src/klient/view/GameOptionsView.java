@@ -22,7 +22,7 @@ import klient.controller.ViewsController;
  * @author zby
  *
  */
-public class GameOptionsView extends GameView {
+public class GameOptionsView extends GameView implements ActionListener {
 
 	/**
 	 * 
@@ -62,36 +62,7 @@ public class GameOptionsView extends GameView {
 			    closeApplication();
 			}
 		});
-		ok.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String[] str = new String [3];
-				str[0] = textFields[FieldKind.IP_FIELD.ordinal()].getText();
-				str[1] = textFields[FieldKind.HOST_FIELD.ordinal()].getText();
-				str[2] = textFields[FieldKind.NICK_FIELD.ordinal()].getText();
-				Inet4Address ia;
-				if(checkIp(str[0]) == false && str[1].isEmpty()==false) {
-					try {
-						ia = (Inet4Address) InetAddress.getByName(str[1]);
-					} catch (UnknownHostException e1) {
-						// don't close window - bad address
-						JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta");
-						return;
-					}
-					if(ia==null) {
-						JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta");
-						return;
-					} 
-				} else if(checkIp(str[0]) == false && str[1].isEmpty()==true) {
-					JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta");
-					return;						
-				}
-				if(str[2].isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Nie podano nicka");
-					return;
-				}
-			}
-		});
+		ok.addActionListener(this);
 		setSize(400, 150);
 		setLocation(300, 200);
 		add(panel);
@@ -141,5 +112,35 @@ public class GameOptionsView extends GameView {
             }
         }
         return true;
-    } 
+    }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String[] str = new String [3];
+		str[0] = textFields[FieldKind.IP_FIELD.ordinal()].getText();
+		str[1] = textFields[FieldKind.HOST_FIELD.ordinal()].getText();
+		str[2] = textFields[FieldKind.NICK_FIELD.ordinal()].getText();
+		Inet4Address ia;
+		if(checkIp(str[0]) == false && str[1].isEmpty()==false) {
+			try {
+				ia = (Inet4Address) InetAddress.getByName(str[1]);
+			} catch (UnknownHostException e1) {
+				// don't close window - bad address
+				JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta");
+				return;
+			}
+			if(ia==null) {
+				JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta");
+				return;
+			} 
+		} else if(checkIp(str[0]) == false && str[1].isEmpty()==true) {
+			JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta");
+			return;						
+		}
+		if(str[2].isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Nie podano nicka");
+			return;
+		}
+		this.root.play();
+	} 
 }
