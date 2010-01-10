@@ -8,6 +8,7 @@ import java.net.SocketAddress;
 
 import klient.controller.ViewsController;
 import klient.model.Model;
+import klient.model.Move;
 
 
 public class UDPSocketThread extends Thread{
@@ -32,6 +33,17 @@ public class UDPSocketThread extends Thread{
 					//DatagramPacket hi = new DatagramPacket(msg.getBytes(), msg.length(),
                       //      group, 6789);
 					//socket.send(hi);
+					Move move = model.getMoves().poll();
+					if (move != null) {
+						count++;
+						String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
+						msg = msg.concat(":" + move.getOldX() + "," + move.getNewY());
+						msg = msg.concat(move.getNewX() + "," + move.getNewY() + "\n");
+						
+						DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
+			                            					group, 555);
+						socket.send(d);
+					}
 					
 					byte[] buf = new byte[1000];
 					DatagramPacket recv = new DatagramPacket(buf, buf.length);

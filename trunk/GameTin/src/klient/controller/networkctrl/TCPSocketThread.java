@@ -102,6 +102,7 @@ public class TCPSocketThread extends Thread {
 								model.endGame(); // ustawia zmienna gameOff na true
 							}
 							viewsctrl.refreshBoardView();
+							//TODO refresh end game
 						}
 					}
 				}
