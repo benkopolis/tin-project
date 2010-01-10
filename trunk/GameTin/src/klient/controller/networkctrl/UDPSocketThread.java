@@ -81,9 +81,8 @@ public class UDPSocketThread extends Thread{
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-			
-			System.out.println("Watek UDP zakonczony");
 		}
+		System.out.println("Watek UDP zakonczony");
 	}
 
 }

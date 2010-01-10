@@ -129,8 +129,7 @@ public class TCPSocketThread extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			System.out.println("Watek TCP zakonczony");
 		}
+		System.out.println("Watek TCP zakonczony");
 	}
 }
