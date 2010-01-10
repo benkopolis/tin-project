@@ -108,7 +108,7 @@ public class ViewsController {
 	 * Wywolanie tej funkcji nie powinny wystapic po rozpoczeciu gry.
 	 * @param p
 	 */
-	public void addPlayerToInfoView(Player p) throws IllegalOperation {
+	public synchronized void addPlayerToInfoView(Player p) throws IllegalOperation {
 		if(model.isGameOn())
 			throw new IllegalOperation("Nie wolno dodawac nowych graczy, po starcie gry");
 		gameInfoView.addPlayer(p);
@@ -119,7 +119,7 @@ public class ViewsController {
 	 * Pierwsze wywo³anie powinno nast¹pic dopiero po starcie gry - 
 	 * gdy wszyscy gracze sa juz dodani.
 	 */
-	public void refreshInfoView() throws IllegalOperation {
+	public synchronized void refreshInfoView() throws IllegalOperation {
 		if(model.isGameOn()==false)
 			throw new IllegalOperation("Nie mozna odswierzac, zanim zaczela sie rozgrywka");
 		gameInfoView.refresh();
@@ -128,7 +128,7 @@ public class ViewsController {
 	/**
 	 * Powoduje przemalowanie planszy, wed³ug informacji zawartych w modelu.
 	 */
-	public void refreshBoardView() {
+	public synchronized void refreshBoardView() {
 		try {
 			System.out.print(model.getLm().levelToString(false));
 		} catch (IllegalOperation e) {
@@ -140,7 +140,7 @@ public class ViewsController {
 	/**
 	 * Konczy dzialanie programu
 	 */
-	public void closeApplication() {
+	public synchronized void closeApplication() {
 		this.gameBoardView.setVisible(false);
 		this.gameInfoView.setVisible(false);
 		this.gameOptionsView.setVisible(false);
