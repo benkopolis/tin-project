@@ -6,6 +6,7 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketAddress;
 
+import klient.controller.ViewsController;
 import klient.model.Model;
 
 
@@ -14,10 +15,12 @@ public class UDPSocketThread extends Thread{
 	private MulticastSocket socket;
 	private InetAddress group;
 	private Model model;
+	private ViewsController viewsctrl;
 	
-	public UDPSocketThread(MulticastSocket socket, Model m) {
+	public UDPSocketThread(MulticastSocket socket, Model m, ViewsController v) {
 		this.socket = socket;
 		this.model = m;
+		this.viewsctrl = v;
 	}
 	
 	public void run() {
@@ -42,6 +45,7 @@ public class UDPSocketThread extends Thread{
 							int x = Integer.parseInt(tokens[i].split(",")[0]);
 							int y = Integer.parseInt(tokens[i].split(",")[1]);
 							model.setActualCoinPosition(x,y);
+							viewsctrl.refreshBoardView();
 						}
 						for (int i=coins+4; i<tokens.length; i++) {
 							int id = Integer.parseInt(tokens[i].split(",")[0]);
@@ -50,6 +54,7 @@ public class UDPSocketThread extends Thread{
 							int points = Integer.parseInt(tokens[i].split(",")[3]);
 							model.setActualPlayerPosition(id, newX, newY);
 							model.setPoints(id, points);
+							viewsctrl.refreshInfoView();
 						}
 					}
 				}
