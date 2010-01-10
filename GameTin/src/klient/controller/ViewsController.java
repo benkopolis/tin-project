@@ -128,4 +128,15 @@ public class ViewsController {
 		gameBoardView.repaintBoard();
 	}
 	
+	/**
+	 * Konczy dzialanie programu
+	 */
+	public void closeApplication() {
+		this.gameBoardView.setVisible(false);
+		this.gameInfoView.setVisible(false);
+		this.gameBoardView.dispose();
+		this.gameInfoView.dispose();
+		this.gameOptionsView.setVisible(false);
+		this.gameOptionsView.dispose();
+	}
 }
