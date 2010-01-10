@@ -31,7 +31,7 @@ public class TCPSocketThread extends Thread {
 			String send = "hello:"+ model.getLocalPlayerNick() + "\n";
 			try {
 				OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
-				System.out.println("<<" + send);
+				System.out.print("<<" + send);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -60,7 +60,7 @@ public class TCPSocketThread extends Thread {
 							this.interrupt();
 						}
 						else if (tokens[0].equals("players")) {
-							System.out.println(t);
+							System.out.println(">>" + t);
 							for(int i=1; i<tokens.length; i++) {
 								String nick = tokens[i].split(",")[0];
 								int id = Integer.parseInt(tokens[i].split(",")[1]);
@@ -115,7 +115,7 @@ public class TCPSocketThread extends Thread {
 					String send = String.valueOf(model.getLocalPlayerId());
 					send = send.concat(":quit\n");
 					OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
-					System.out.println("<<" + send);
+					System.out.print("<<" + send);
 					viewsctrl.closeApplication();
 					this.interrupt();
 				}

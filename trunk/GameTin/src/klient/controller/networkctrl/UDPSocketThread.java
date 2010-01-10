@@ -43,7 +43,7 @@ public class UDPSocketThread extends Thread{
 						DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
 			                            					group, 555);
 						dSocket.send(d);
-						System.out.println("<<" + msg);
+						System.out.print("<<" + msg);
 					}
 					
 					byte[] buf = new byte[1000];
