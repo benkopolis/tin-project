@@ -33,7 +33,7 @@ public class NetworkController {
 		udpMsocket = new MulticastSocket(555);
 		group = InetAddress.getByName("225.225.225.225");
 		udpMsocket.joinGroup(group);
-		udpThread = new UDPSocketThread(udpDsocket, udpMsocket, group, m, v);
+		udpThread = new UDPSocketThread(udpDsocket, adres, udpMsocket, group, m, v);
 		udpThread.start();
 	}
 }

@@ -6,6 +6,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketAddress;
+import java.net.UnknownHostException;
 
 import klient.controller.ViewsController;
 import klient.model.Model;
@@ -17,15 +18,17 @@ public class UDPSocketThread extends Thread{
 	private MulticastSocket mSocket;
 	private DatagramSocket dSocket;
 	private InetAddress group;
+	private InetAddress adres;
 	private Model model;
 	private ViewsController viewsctrl;
 	
-	public UDPSocketThread(DatagramSocket d, MulticastSocket socket, InetAddress g, Model m, ViewsController v) {
+	public UDPSocketThread(DatagramSocket d, String adres, MulticastSocket socket, InetAddress g, Model m, ViewsController v) throws UnknownHostException  {
 		this.mSocket = socket;
 		this.group = g;
 		this.model = m;
 		this.viewsctrl = v;
 		this.dSocket = d;
+		this.adres = InetAddress.getByName(adres);
 	}
 	
 	public void run() {
@@ -41,7 +44,7 @@ public class UDPSocketThread extends Thread{
 						msg = msg.concat(move.getNewX() + "," + move.getNewY() + "\n");
 						
 						DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
-			                            					group, 555);
+			                            					adres, 556);
 						dSocket.send(d);
 						System.out.print("<<" + msg);
 					}
