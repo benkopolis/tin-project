@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import klient.model.fields.Coin;
 import klient.model.fields.Player;
 
 public class Model extends Observable {
@@ -102,7 +103,10 @@ public class Model extends Observable {
 
 	/* ustawia aktualna liczbe punktow */
 	public void setPoints(int id, int points) {
-		// TODO Auto-generated method stub
+		for(PlayerInfo pi: players) {
+			if(pi.getPlayer().getId() == id)
+				pi.getPlayer().setScore(points);
+		}
 		
 	}
 
@@ -129,7 +133,11 @@ public class Model extends Observable {
 
 	/* ustawia wspolrzedne monety ktore zostaly odebrane od serwera */
 	public void setActualCoinPosition(int x, int y) {
-		// TODO Auto-generated method stub
+		try {
+			this.lm.setField(x, y, new Coin());
+		} catch (IllegalOperation e) {
+			e.printStackTrace();
+		}
 		
 	}
 
