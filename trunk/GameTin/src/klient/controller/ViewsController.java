@@ -41,9 +41,9 @@ public class ViewsController {
 		try {
 			networkController = new NetworkController(ip, 666, model, this);
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			System.exit(0);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.exit(0);
 		}
 		gameInfoView.init();
 		gameBoardView.init();
