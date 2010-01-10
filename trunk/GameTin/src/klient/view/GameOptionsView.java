@@ -162,19 +162,19 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 				str[0] = ia.toString();
 			} catch (UnknownHostException e1) {
 				// don't close window - bad address
-				JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta");
+				JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			if(ia==null) {
-				JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta");
+				JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			} 
 		} else if(checkIp(str[0]) == false && str[1].isEmpty()==true) {
-			JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta");
+			JOptionPane.showMessageDialog(null, "Zly adres ip/nazwa hosta", "Error", JOptionPane.ERROR_MESSAGE);
 			return;						
 		}
 		if(str[2].isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Nie podano nicka");
+			JOptionPane.showMessageDialog(null, "Nie podano nicka", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		this.setVisible(false);
