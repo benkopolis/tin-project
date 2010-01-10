@@ -3,6 +3,8 @@ package klient.controller;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+import javax.swing.JOptionPane;
+
 import klient.controller.keyboardctrl.KeyboardController;
 import klient.controller.networkctrl.NetworkController;
 import klient.model.IllegalOperation;
@@ -41,8 +43,10 @@ public class ViewsController {
 		try {
 			networkController = new NetworkController(ip, 666, model, this);
 		} catch (UnknownHostException e) {
+			JOptionPane.showMessageDialog(null, "Blad polaczenia - nie ma takiego serwera", "Error", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Blad polaczenia - nie ma takiego serwera", "Error", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
 		gameInfoView.init();
