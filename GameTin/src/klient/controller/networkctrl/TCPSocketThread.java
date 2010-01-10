@@ -31,6 +31,7 @@ public class TCPSocketThread extends Thread {
 			String send = "hello:"+ model.getLocalPlayerNick() + "\n";
 			try {
 				OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
+				System.out.println("<<" + send);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -59,6 +60,7 @@ public class TCPSocketThread extends Thread {
 							this.interrupt();
 						}
 						else if (tokens[0].equals("players")) {
+							System.out.println(t);
 							for(int i=1; i<tokens.length; i++) {
 								String nick = tokens[i].split(",")[0];
 								int id = Integer.parseInt(tokens[i].split(",")[1]);
@@ -78,6 +80,7 @@ public class TCPSocketThread extends Thread {
 						}
 						else if (tokens[0].equals("countingdown")) {
 							int number = Integer.parseInt(tokens[1]);
+							System.out.println(">>" + number);
 							if (number == 1) {
 								model.startGame();
 								viewsctrl.refreshInfoView();
@@ -92,6 +95,7 @@ public class TCPSocketThread extends Thread {
 						/* tokens - tablica stringow rozdzielonych dwukropkiem */
 						String[] tokens = t.split(":");
 						if (tokens[0].equals("end")) {
+							System.out.println(">>" + t);
 							model.getLm().loadFromMessage(tokens[1]);
 							for(int i=2; i<tokens.length; i++) {
 								int id = Integer.parseInt(tokens[i].split(",")[0]);
@@ -111,6 +115,7 @@ public class TCPSocketThread extends Thread {
 					String send = String.valueOf(model.getLocalPlayerId());
 					send = send.concat(":quit\n");
 					OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
+					System.out.println("<<" + send);
 					viewsctrl.closeApplication();
 					this.interrupt();
 				}
@@ -125,7 +130,7 @@ public class TCPSocketThread extends Thread {
 				e.printStackTrace();
 			}
 			
-			
+			System.out.println("Watek TCP zakonczony");
 		}
 	}
 }

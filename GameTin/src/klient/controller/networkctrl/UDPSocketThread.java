@@ -43,6 +43,7 @@ public class UDPSocketThread extends Thread{
 						DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
 			                            					group, 555);
 						dSocket.send(d);
+						System.out.println("<<" + msg);
 					}
 					
 					byte[] buf = new byte[1000];
@@ -52,6 +53,7 @@ public class UDPSocketThread extends Thread{
 					/* tokens - tablica stringow rozdzielonych dwukropkiem */
 					String[] tokens = str.split(":");
 					if (tokens[0].equals("coins")) {
+						System.out.println(">>" + str);
 						int coins = Integer.getInteger(tokens[1]);
 						for (int i=2; i<coins+2; i++) {
 							int x = Integer.parseInt(tokens[i].split(",")[0]);
@@ -79,6 +81,8 @@ public class UDPSocketThread extends Thread{
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+			
+			System.out.println("Watek UDP zakonczony");
 		}
 	}
 
