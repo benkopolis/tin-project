@@ -119,7 +119,7 @@ public class ViewsController {
 	 * Pierwsze wywo³anie powinno nast¹pic dopiero po starcie gry - 
 	 * gdy wszyscy gracze sa juz dodani.
 	 */
-	public synchronized void refreshInfoView() throws IllegalOperation {
+	public void refreshInfoView() throws IllegalOperation {
 		if(model.isGameOn()==false)
 			throw new IllegalOperation("Nie mozna odswierzac, zanim zaczela sie rozgrywka");
 		gameInfoView.refresh();
