@@ -6,6 +6,7 @@ import java.net.Socket;
 import klient.controller.ViewsController;
 import klient.model.IllegalOperation;
 import klient.model.Model;
+import klient.model.fields.Player;
 
 
 
@@ -49,12 +50,14 @@ public class TCPSocketThread extends Thread {
 						}
 						else if (tokens[0].equals("deny")) {
 							model.connectionDenied(tokens[1]);
+							//TODO:
 						}
 						else if (tokens[0].equals("players")) {
 							for(int i=1; i<tokens.length; i++) {
 								String nick = tokens[i].split(",")[0];
 								int id = Integer.parseInt(tokens[i].split(",")[1]);
-								model.addPlayer(nick, id);
+								Player p = model.addPlayer(nick, id);
+								viewsctrl.addPlayerToInfoView(p);
 							}
 						}
 						else if (tokens[0].equals("board")) {
