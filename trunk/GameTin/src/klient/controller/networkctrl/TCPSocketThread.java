@@ -44,6 +44,10 @@ public class TCPSocketThread extends Thread {
 					/* tab - tablica przeslanych pakietow */
 					String[] tab = InputReader.getStringsFromPacket(socket.getInputStream());
 					/* t - linia stringa, ktora jest pakietem */
+					if (tab == null) {
+						System.out.println("Watek TCP zakonczony");
+						viewsctrl.closeApplication();
+					}
 					for(String t:tab) {
 						/* tokens - tablica stringow rozdzielonych dwukropkiem */
 						String[] tokens = t.split(":");
@@ -71,6 +75,7 @@ public class TCPSocketThread extends Thread {
 						else if (tokens[0].equals("board")) {
 							model.getLm().loadFromMessage(tokens[1]);
 							System.out.println(">>" + tokens[0] + ":" + tokens[1]);
+							//System.out.println(model.getLm().levelToString(false));
 							for(int i=2; i<tokens.length; i++) {
 								int id = Integer.parseInt(tokens[i].split(",")[0]);
 								int x = Integer.parseInt(tokens[i].split(",")[1]);
@@ -117,14 +122,12 @@ public class TCPSocketThread extends Thread {
 					send = send.concat(":quit\n");
 					OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
 					System.out.print("<<" + send);
+					System.out.println("Watek TCP zakonczony");
 					viewsctrl.closeApplication();
-					System.out.println("Watek TCP zakonczony (interrupt)");
-					this.interrupt();
 				}
 			} catch (SocketException e) {
+				System.out.println("Watek TCP zakonczony");
 				viewsctrl.closeApplication();
-				System.out.println("Watek TCP zakonczony (interrupt)");
-				this.interrupt();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
