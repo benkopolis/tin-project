@@ -68,7 +68,7 @@ public class GameBoardView extends GameView implements KeyListener {
 							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
 						} else if(fields[i][j] instanceof Player) {
 							if(((Player)fields[i][j]).getId() == root.getModel().getLocalPlayerId())
-								g.setColor(Color.ORANGE);
+								g.setColor(Color.BLUE);
 							else
 								g.setColor(Color.RED);
 							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
