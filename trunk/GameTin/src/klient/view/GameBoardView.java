@@ -63,9 +63,6 @@ public class GameBoardView extends GameView implements KeyListener {
 						if(fields[i][j] instanceof Wall) {
 							g.setColor(Color.GRAY);
 							g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
-						} else if(fields[i][j] instanceof Grass) {
-//							g.setColor(Color.GREEN);
-//							g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
 						} else if(fields[i][j] instanceof Coin) {
 							g.setColor(Color.YELLOW);
 							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
