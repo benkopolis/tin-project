@@ -32,6 +32,7 @@ public class GameInfoView extends GameView {
 	public GameInfoView(ViewsController viewsController) {
 		super(viewsController);
 		setLocation(100, 200);
+		setTitle("Punktacja");
 	}
 	
 	public void addPlayer(Player p) {
