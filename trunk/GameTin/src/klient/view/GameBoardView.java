@@ -110,6 +110,7 @@ public class GameBoardView extends GameView implements KeyListener {
 		panel.setSize(w*rectSize, h*rectSize);
 		this.add(panel);
 		panel.addKeyListener(this);
+		this.addKeyListener(this);
 		panel.setVisible(true);
 		panel.paintComponent(this.getGraphics());
 		//panel.fillBoard(this.getGraphics());
@@ -138,10 +139,12 @@ public class GameBoardView extends GameView implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		System.out.println("Key released!");
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
+		System.out.println("Key typed!");
 	}
 	
 	/**
