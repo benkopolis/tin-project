@@ -129,6 +129,11 @@ public class ViewsController {
 	 * Powoduje przemalowanie planszy, wed³ug informacji zawartych w modelu.
 	 */
 	public void refreshBoardView() {
+		try {
+			System.out.println(model.getLm().levelToString(false));
+		} catch (IllegalOperation e) {
+			e.printStackTrace();
+		}
 		gameBoardView.repaintBoard();
 	}
 	
