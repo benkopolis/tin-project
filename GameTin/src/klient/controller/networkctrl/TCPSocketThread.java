@@ -2,6 +2,7 @@ package klient.controller.networkctrl;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 
 import javax.swing.JOptionPane;
 
@@ -51,9 +52,9 @@ public class TCPSocketThread extends Thread {
 							model.setLocalPlayerId(ID);
 						}
 						else if (tokens[0].equals("deny")) {
-							//model.endGame();
+							model.endGame();
 							JOptionPane.showMessageDialog(null, tokens[1]);
-							//TODO:
+							viewsctrl.closeApplication();
 						}
 						else if (tokens[0].equals("players")) {
 							for(int i=1; i<tokens.length; i++) {
@@ -109,6 +110,8 @@ public class TCPSocketThread extends Thread {
 					OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
 					this.interrupt();
 				}
+			} catch (SocketException e) {
+				this.interrupt();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
