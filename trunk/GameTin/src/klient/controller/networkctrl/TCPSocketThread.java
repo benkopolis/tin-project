@@ -20,9 +20,19 @@ public class TCPSocketThread extends Thread {
 	}
 
 	public void run() {
+		if ((model.isGameOn() == false) && (model.isGameOff() == false)) {
+			String send = "hello:"+ model.getLocalPlayerNick() + "\n";
+			try {
+				OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		while(!isInterrupted()) {
 			try {
 				if ((model.isGameOn() == false) && (model.isGameOff() == false)){
+					
 					/* tab - tablica przeslanych pakietow */
 					String[] tab = InputReader.getStringsFromPacket(socket.getInputStream());
 					/* t - linia stringa, ktora jest pakietem */
@@ -84,8 +94,9 @@ public class TCPSocketThread extends Thread {
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
 					String send = String.valueOf(model.getLocalPlayerId());
-					send.concat(":quit\n");
+					send = send.concat(":quit\n");
 					OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
+					this.interrupt();
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
