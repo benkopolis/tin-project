@@ -25,7 +25,7 @@ public class Model extends Observable {
 	
 	protected boolean gameOff = false;
 	
-	protected LinkedBlockingQueue<Move> moves = new LinkedBlockingQueue<Move>();
+	protected LinkedBlockingQueue<Move> moves = new LinkedBlockingQueue<Move>(Integer.MAX_VALUE);
 	
 	
 	public Model() {

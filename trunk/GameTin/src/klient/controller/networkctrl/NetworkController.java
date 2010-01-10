@@ -26,13 +26,18 @@ public class NetworkController {
 		this.model = m;
 		this.viewsctrl = v;
 		
+		///////////////// TCP ////////////////////////
 		tcpsocket = new Socket(adres, port);
 		tcpThread = new TCPSocketThread(tcpsocket, m, v);
 		tcpThread.start();
 		
+		///////////////// UDP ////////////////////////
+		///////////////// multicast //////////////////
 		udpMsocket = new MulticastSocket(555);
 		group = InetAddress.getByName("225.225.225.225");
 		udpMsocket.joinGroup(group);
+		///////////////// datagram ///////////////////
+		udpDsocket = new DatagramSocket(556);
 		udpThread = new UDPSocketThread(udpDsocket, adres, udpMsocket, group, m, v);
 		udpThread.start();
 	}
