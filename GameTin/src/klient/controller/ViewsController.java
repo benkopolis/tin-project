@@ -14,6 +14,7 @@ import klient.view.GameOptionsView;
  * 
  * @author zby
  *
+ * G³ówny kontroler programu. Odpala widok pocz¹tkowy.
  */
 public class ViewsController {
 
