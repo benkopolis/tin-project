@@ -26,7 +26,7 @@ public class Model extends Observable {
 	
 	
 	
-	/* ustawienie id klienta */
+	/* ustawienie id klienta - lokalny player */
 	public void setPlayerID(int id) {
 		// TODO Auto-generated method stub
 		
