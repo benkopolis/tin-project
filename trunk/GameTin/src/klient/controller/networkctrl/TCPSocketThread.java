@@ -50,6 +50,7 @@ public class TCPSocketThread extends Thread {
 						if(tokens[0].equals("allow")) {
 							int ID = Integer.parseInt(tokens[1]);
 							model.setLocalPlayerId(ID);
+							JOptionPane.showMessageDialog(null, "Gra rozpocznie sie, gdy pojawi sie okno z informacjami o innych graczach.\n Prosze czekac.\n");
 						}
 						else if (tokens[0].equals("deny")) {
 							model.endGame();
