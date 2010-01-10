@@ -43,7 +43,7 @@ public class GameInfoView extends GameView {
 		if(labelsShowed == false) {
 			setSize(150, 40*labels.size()+40);
 			panel.setSize(150, 40*labels.size());
-			panel.setLayout(new GridLayout(1, labels.size()));
+			panel.setLayout(new GridLayout(labels.size(), 1));
 			setVisible(true);
 			panel.setVisible(true);
 		}
