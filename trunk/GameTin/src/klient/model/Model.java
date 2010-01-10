@@ -3,6 +3,7 @@ package klient.model;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import klient.model.fields.Player;
 
@@ -14,11 +15,15 @@ public class Model extends Observable {
 	
 	protected String localPlayerNick;
 	
+	protected PlayerInfo localPlayerInfo;
+	
 	protected List<PlayerInfo> players = new LinkedList<PlayerInfo>();
 	
 	protected boolean gameOn = false;
 	
 	protected boolean gameOff = false;
+	
+	protected LinkedBlockingQueue<Move> moves = new LinkedBlockingQueue<Move>();
 	
 	
 	public Model() {
@@ -131,6 +136,30 @@ public class Model extends Observable {
 	public void setActualCoinPosition(int x, int y) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	public synchronized PlayerInfo getLocalPlayerInfo() {
+		return localPlayerInfo;
+	}
+
+
+
+	public synchronized void setLocalPlayerInfo(PlayerInfo localPlayerInfo) {
+		this.localPlayerInfo = localPlayerInfo;
+	}
+
+
+
+	public synchronized LinkedBlockingQueue<Move> getMoves() {
+		return moves;
+	}
+
+
+
+	protected synchronized void setMoves(LinkedBlockingQueue<Move> moves) {
+		this.moves = moves;
 	}
 
 }

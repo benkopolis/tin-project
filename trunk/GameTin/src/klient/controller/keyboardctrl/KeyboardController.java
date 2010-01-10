@@ -5,6 +5,7 @@ package klient.controller.keyboardctrl;
 
 import klient.controller.ViewsController;
 import klient.model.IllegalOperation;
+import klient.model.Move;
 import klient.model.PlayerInfo;
 import klient.model.fields.Coin;
 import klient.model.fields.Field;
@@ -15,6 +16,11 @@ import klient.model.fields.Grass;
 /**
  * @author zby
  *
+ * Klasa kontroluj¹ca zachowanie programu wzglêdem klawiatury, podczas gry.
+ * Pozwala na wykonywanie ruchów, które w czasie rzeczywistym mog¹ by aktualizowane
+ * na ekranie, ka¿dy ruch ksiêgowany jest w kolejce blokuj¹cej w modelu,
+ * z której korzysta mog¹ w¹tki komunikacyjne, w celu powiadomienia serwera o
+ * chêci wykonania ruchu, przez gracza. 
  */
 public class KeyboardController {
 	
@@ -26,6 +32,8 @@ public class KeyboardController {
 	
 	protected int newY = 0;
 	
+	protected Move move = null;
+	
 	public KeyboardController(ViewsController vc) {
 		parent = vc;
 	}
@@ -36,14 +44,10 @@ public class KeyboardController {
 		try {
 			newY = (localPlayerInfo.getY()+1)%parent.getModel().getLm().getHeight();
 			newX = (localPlayerInfo.getX())%parent.getModel().getLm().getWidth();
-			if((parent.getModel().getLm().getField(newX, newY, false) instanceof Grass) ||
-				(parent.getModel().getLm().getField(newX, newY, false) instanceof Coin)) {
-					parent.getModel().getLm().setField(localPlayerInfo.getX(), localPlayerInfo.getY(), new Grass());
-					parent.getModel().getLm().setField(newX, newY, (Field)localPlayerInfo.getPlayer());
-					//TODO poinformowac watek o wykonanym ruchu
-			}
+			doMove();
 		} catch (IllegalOperation e) {
-		
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -54,14 +58,10 @@ public class KeyboardController {
 		try {
 			newY = (localPlayerInfo.getY()-1)%parent.getModel().getLm().getHeight();
 			newX = (localPlayerInfo.getX())%parent.getModel().getLm().getWidth();
-			if((parent.getModel().getLm().getField(newX, newY, false) instanceof Grass) ||
-				(parent.getModel().getLm().getField(newX, newY, false) instanceof Coin)) {
-					parent.getModel().getLm().setField(localPlayerInfo.getX(), localPlayerInfo.getY(), new Grass());
-					parent.getModel().getLm().setField(newX, newY, (Field)localPlayerInfo.getPlayer());
-					//TODO poinformowac watek o wykonanym ruchu
-			}
+			doMove();
 		} catch (IllegalOperation e) {
-		
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -72,14 +72,10 @@ public class KeyboardController {
 		try {
 			newY = (localPlayerInfo.getY())%parent.getModel().getLm().getHeight();
 			newX = (localPlayerInfo.getX()-1)%parent.getModel().getLm().getWidth();
-			if((parent.getModel().getLm().getField(newX, newY, false) instanceof Grass) ||
-				(parent.getModel().getLm().getField(newX, newY, false) instanceof Coin)) {
-					parent.getModel().getLm().setField(localPlayerInfo.getX(), localPlayerInfo.getY(), new Grass());
-					parent.getModel().getLm().setField(newX, newY, (Field)localPlayerInfo.getPlayer());
-					//TODO poinformowac watek o wykonanym ruchu
-			}
+			doMove();
 		} catch (IllegalOperation e) {
-		
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -90,14 +86,10 @@ public class KeyboardController {
 		try {
 			newY = (localPlayerInfo.getY())%parent.getModel().getLm().getHeight();
 			newX = (localPlayerInfo.getX()+1)%parent.getModel().getLm().getWidth();
-			if((parent.getModel().getLm().getField(newX, newY, false) instanceof Grass) ||
-				(parent.getModel().getLm().getField(newX, newY, false) instanceof Coin)) {
-					parent.getModel().getLm().setField(localPlayerInfo.getX(), localPlayerInfo.getY(), new Grass());
-					parent.getModel().getLm().setField(newX, newY, (Field)localPlayerInfo.getPlayer());
-					//TODO poinformowac watek o wykonanym ruchu
-			}
+			doMove();
 		} catch (IllegalOperation e) {
-		
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -109,4 +101,21 @@ public class KeyboardController {
 		}
 	}
 	
+	/**
+	 * Je¿eli to mo¿liwe, to metoda wykonuje ruch na planszy i jednoczesnie, wstawia
+	 * informacje o wykonanym ruchu do kolejki w modelu.
+	 * @throws IllegalOperation
+	 * @throws InterruptedException
+	 */
+	protected void doMove() throws IllegalOperation, InterruptedException {
+		if((parent.getModel().getLm().getField(newX, newY, false) instanceof Grass) ||
+			(parent.getModel().getLm().getField(newX, newY, false) instanceof Coin)) {
+				parent.getModel().getLm().setField(localPlayerInfo.getX(), localPlayerInfo.getY(), new Grass());
+				parent.getModel().getLm().setField(newX, newY, (Field)localPlayerInfo.getPlayer());
+				move = new Move(localPlayerInfo.getX(), localPlayerInfo.getY(), newX, newY);
+				localPlayerInfo.setX(newX);
+				localPlayerInfo.setY(newY);
+				parent.getModel().getMoves().put(move);
+		}
+	}
 }
