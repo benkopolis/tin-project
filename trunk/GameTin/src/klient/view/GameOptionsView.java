@@ -179,7 +179,7 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 			JOptionPane.showMessageDialog(null, "Nie podano nicka", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		this.setVisible(false);
+		super.dispose();
 		this.root.play(str[0], str[2]);
 	}
 }
