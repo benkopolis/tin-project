@@ -11,9 +11,9 @@ import klient.model.fields.Field;
  */
 public class Player extends Field {
 	
-	protected int id;
-	protected int score;
-	protected String nick;
+	protected int id=0;
+	protected int score=0;
+	protected String nick=null;
 
 	public Player(int id2, String nick2) {
 		sign = 'p';

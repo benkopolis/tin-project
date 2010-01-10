@@ -9,7 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import klient.controller.ViewsController;
@@ -23,6 +23,8 @@ import klient.model.fields.Wall;
 /**
  * @author zby
  *
+ * Klasa ta odpowiada za malowanie planszy. Wywo³uje równie¿ odpowiednie metody
+ * kontrolera klawiatury.
  */
 public class GameBoardView extends GameView implements KeyListener {
 	
@@ -85,14 +87,6 @@ public class GameBoardView extends GameView implements KeyListener {
 				e.printStackTrace();
 			}
 		}
-		
-		public void fillField(Graphics g, int x, int y) throws IllegalOperation {
-			
-		}
-		
-		public void fillFields(Graphics g, int[] x, int[] y) throws IllegalOperation {
-			
-		}
 	}
 	
 	/**
@@ -108,7 +102,8 @@ public class GameBoardView extends GameView implements KeyListener {
 
 	public GameBoardView(ViewsController viewsController) {
 		super(viewsController);
-		setLocation(200, 200);
+		setLocation(400, 200);
+		setTitle("Plansza");
 		try {
 			h = this.root.getModel().getLm().getHeight();
 			w = this.root.getModel().getLm().getWidth();
@@ -127,6 +122,7 @@ public class GameBoardView extends GameView implements KeyListener {
 		panel.addKeyListener(this);
 		panel.setVisible(true);
 		panel.paintComponent(this.getGraphics());
+		JOptionPane.showMessageDialog(null, "Gra rozpocznie sie, gdy pojawi sie okno z informacjami o innych graczach.\n Prosze czekac.\n");
 		//panel.fillBoard(this.getGraphics());
 	}
 	
@@ -135,27 +131,6 @@ public class GameBoardView extends GameView implements KeyListener {
 	 */
 	public void fillBoard() {
 		panel.fillBoard(this.getGraphics());
-	}
-	
-	/**
-	 * Metoda wypelnia tylko zadane pole, pobierajac dane z modelu
-	 * @param x - musi sie miescic w granicach
-	 * @param y - musi sie miescic w granicach
-	 * @throws rzuca wyj¹tek, je¿eli x, lub y nie mieszcz¹ siê na planszy.
-	 */
-	public void fillField(int x, int y) throws IllegalOperation {
-		panel.fillField(this.getGraphics(), x, y);
-	}
-	
-	/**
-	 * Metoda wypelnia zadane pola, pobierajac dane z modelu.
-	 * @param x - musi miec ten sam rozmiar co y
-	 * @param y - musi miec ten sam rozmiar co x
-	 * @throws rzuca wyj¹tek, je¿eli jakakolwiek wartoœc z tabeli x lub y
-	 * nie mieœci siê w granicach, lub je¿eli ich rozmiary s¹ ró¿ne.
-	 */
-	public void fillFields(int[] x, int[] y) throws IllegalOperation {
-		panel.fillFields(this.getGraphics(), x, y);
 	}
 
 	@Override
@@ -173,13 +148,16 @@ public class GameBoardView extends GameView implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	}
+	
+	/**
+	 * Metoda odmalowuje planszê.
+	 */
+	public void repaintBoard() {
+		panel.paintComponent(getGraphics());
 	}
 }
