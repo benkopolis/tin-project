@@ -49,7 +49,7 @@ public class GameInfoView extends GameView {
 		}
 		for(Player p: labels.keySet()) {
 			if(labelsShowed == false) {
-				
+				panel.add(labels.get(p));
 			}
 			labels.get(p).setText(p.getNick()+" ma "+p.getScore()+" puntkow.");
 		}
