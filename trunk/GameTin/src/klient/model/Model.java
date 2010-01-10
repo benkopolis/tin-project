@@ -40,13 +40,15 @@ public class Model extends Observable {
 		return p;
 	}
 
-	public void setActualPlayerPosition(int id, int x, int y) {
+	public void setActualPlayerPosition(int id, int x, int y, boolean init) {
 		Player p = null;
 		try {
 			for(PlayerInfo i: players) {
 				if(i.getPlayer().getId() == id) {
 					p = i.getPlayer();
-					this.lm.setField(i.getX(), i.getY(), new Grass());
+					if(init == false) {
+						this.lm.setField(i.getX(), i.getY(), new Grass());
+					}
 					i.setX(x);
 					i.setY(y);
 					break;

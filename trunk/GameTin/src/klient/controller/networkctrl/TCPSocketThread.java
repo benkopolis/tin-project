@@ -75,7 +75,7 @@ public class TCPSocketThread extends Thread {
 								int id = Integer.parseInt(tokens[i].split(",")[0]);
 								int x = Integer.parseInt(tokens[i].split(",")[1]);
 								int y = Integer.parseInt(tokens[i].split(",")[2]);
-								model.setActualPlayerPosition(id, x, y);
+								model.setActualPlayerPosition(id, x, y, true);
 							}
 							viewsctrl.refreshBoardView();
 						}
@@ -103,7 +103,7 @@ public class TCPSocketThread extends Thread {
 								int x = Integer.parseInt(tokens[i].split(",")[1]);
 								int y = Integer.parseInt(tokens[i].split(",")[2]);
 								int points = Integer.parseInt(tokens[i].split(",")[3]);
-								model.setActualPlayerPosition(id, x, y);
+								model.setActualPlayerPosition(id, x, y, false);
 								model.setPoints(id, points);
 								model.endGame(); // ustawia zmienna gameOff na true
 							}

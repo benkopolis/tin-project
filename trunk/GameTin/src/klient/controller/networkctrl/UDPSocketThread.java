@@ -66,7 +66,7 @@ public class UDPSocketThread extends Thread{
 							int newX = Integer.parseInt(tokens[i].split(",")[1]);
 							int newY = Integer.parseInt(tokens[i].split(",")[2]);
 							int points = Integer.parseInt(tokens[i].split(",")[3]);
-							model.setActualPlayerPosition(id, newX, newY);
+							model.setActualPlayerPosition(id, newX, newY, false);
 							model.setPoints(id, points);
 							viewsctrl.refreshInfoView();
 						}
