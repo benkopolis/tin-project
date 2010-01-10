@@ -30,13 +30,6 @@ public class Model extends Observable {
 	}
 	
 	
-	
-	/* ustawienie id klienta - lokalny player */
-	public void setPlayerID(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	/* funkcja obslugujaca odrzucenie gracza */
 	public void connectionDenied(String string) {
 		// TODO Auto-generated method stub

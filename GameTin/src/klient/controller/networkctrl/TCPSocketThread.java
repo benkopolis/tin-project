@@ -3,6 +3,8 @@ package klient.controller.networkctrl;
 import java.io.IOException;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 import klient.controller.ViewsController;
 import klient.model.IllegalOperation;
 import klient.model.Model;
@@ -46,10 +48,11 @@ public class TCPSocketThread extends Thread {
 						// klient zaakceptowany
 						if(tokens[0].equals("allow")) {
 							int ID = Integer.parseInt(tokens[1]);
-							model.setPlayerID(ID);
+							model.setLocalPlayerId(ID);
 						}
 						else if (tokens[0].equals("deny")) {
-							model.connectionDenied(tokens[1]);
+							//model.endGame();
+							JOptionPane.showMessageDialog(null, tokens[1]);
 							//TODO:
 						}
 						else if (tokens[0].equals("players")) {
