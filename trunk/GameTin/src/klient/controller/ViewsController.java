@@ -134,9 +134,7 @@ public class ViewsController {
 	public void closeApplication() {
 		this.gameBoardView.setVisible(false);
 		this.gameInfoView.setVisible(false);
-		this.gameBoardView.dispose();
-		this.gameInfoView.dispose();
 		this.gameOptionsView.setVisible(false);
-		this.gameOptionsView.dispose();
+		System.exit(0);
 	}
 }

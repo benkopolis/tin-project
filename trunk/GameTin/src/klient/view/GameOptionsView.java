@@ -105,7 +105,7 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 	}
 
 	public void closeApplication() {
-		dispose();
+		System.exit(0);
 	}
 	
 	public static boolean checkIp (String sip)
