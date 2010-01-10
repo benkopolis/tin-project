@@ -40,7 +40,6 @@ public class TCPSocketThread extends Thread {
 		while(!isInterrupted()) {
 			try {
 				if ((model.isGameOn() == false) && (model.isGameOff() == false)){
-					
 					/* tab - tablica przeslanych pakietow */
 					String[] tab = InputReader.getStringsFromPacket(socket.getInputStream());
 					/* t - linia stringa, ktora jest pakietem */
@@ -97,6 +96,10 @@ public class TCPSocketThread extends Thread {
 				else if (model.isGameOn() && (model.isGameOff() == false)) {
 					/* tab - tablica przeslanych pakietow */
 					String[] tab = InputReader.getStringsFromPacket(socket.getInputStream());
+					if (tab == null) {
+						System.out.println("Watek TCP zakonczony");
+						viewsctrl.closeApplication();
+					}
 					for(String t:tab) {	
 						/* tokens - tablica stringow rozdzielonych dwukropkiem */
 						String[] tokens = t.split(":");
