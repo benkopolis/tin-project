@@ -40,7 +40,7 @@ public class UDPSocketThread extends Thread{
 					if (move != null) {
 						count++;
 						String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
-						msg = msg.concat(":" + move.getOldX() + "," + move.getNewY());
+						msg = msg.concat(":" + move.getOldX() + "," + move.getNewY() + ":");
 						msg = msg.concat(move.getNewX() + "," + move.getNewY() + "\n");
 						
 						DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
@@ -48,6 +48,14 @@ public class UDPSocketThread extends Thread{
 						dSocket.send(d);
 						System.out.print("<<" + msg);
 					}
+					count++;
+					String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
+					msg = msg.concat(":" + 2 + "," + 2 + ":");
+					msg = msg.concat(3 + "," + 2 + "\n");
+					DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
+        					adres, 556);
+					dSocket.send(d);
+					System.out.print("<<" + msg);
 					
 					byte[] buf = new byte[1000];
 					DatagramPacket recv = new DatagramPacket(buf, buf.length);
