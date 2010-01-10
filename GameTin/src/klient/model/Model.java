@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import klient.model.fields.Coin;
+import klient.model.fields.Grass;
 import klient.model.fields.Player;
 
 public class Model extends Observable {
@@ -30,13 +31,6 @@ public class Model extends Observable {
 	public Model() {
 	}
 	
-	
-	/* funkcja obslugujaca odrzucenie gracza */
-	public void connectionDenied(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	/* ustawienie id i nick'a innych graczy */
 	public Player addPlayer(String nick, int id) {
 		Player p = new Player(id, nick);
@@ -48,23 +42,20 @@ public class Model extends Observable {
 
 	public void setActualPlayerPosition(int id, int x, int y) {
 		Player p = null;
-		for(PlayerInfo i: players) {
-			if(i.getPlayer().getId() == id) {
-				p = i.getPlayer();
-				break;
-			}
-		}
 		try {
+			for(PlayerInfo i: players) {
+				if(i.getPlayer().getId() == id) {
+					p = i.getPlayer();
+					this.lm.setField(i.getX(), i.getY(), new Grass());
+					i.setX(x);
+					i.setY(y);
+					break;
+				}
+			}
 			this.lm.setField(x, y, p);
 		} catch (IllegalOperation e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public void countDown(int parseInt) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public synchronized LevelsManager getLm() {
