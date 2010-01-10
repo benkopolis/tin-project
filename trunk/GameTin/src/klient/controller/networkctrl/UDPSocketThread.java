@@ -75,6 +75,7 @@ public class UDPSocketThread extends Thread{
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
 					//TODO: sokety
 					mSocket.leaveGroup(group);
+					System.out.println("Watek UDP zakonczony (interrupt)");
 					this.interrupt();
 				}
 			} catch (Exception e) {

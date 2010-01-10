@@ -118,10 +118,12 @@ public class TCPSocketThread extends Thread {
 					OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
 					System.out.print("<<" + send);
 					viewsctrl.closeApplication();
+					System.out.println("Watek TCP zakonczony (interrupt)");
 					this.interrupt();
 				}
 			} catch (SocketException e) {
 				viewsctrl.closeApplication();
+				System.out.println("Watek TCP zakonczony (interrupt)");
 				this.interrupt();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
