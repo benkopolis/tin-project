@@ -122,7 +122,6 @@ public class GameBoardView extends GameView implements KeyListener {
 		panel.addKeyListener(this);
 		panel.setVisible(true);
 		panel.paintComponent(this.getGraphics());
-		JOptionPane.showMessageDialog(null, "Gra rozpocznie sie, gdy pojawi sie okno z informacjami o innych graczach.\n Prosze czekac.\n");
 		//panel.fillBoard(this.getGraphics());
 	}
 	
