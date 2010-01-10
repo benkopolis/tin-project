@@ -125,13 +125,13 @@ public class GameBoardView extends GameView implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println("Key pressed!");
-		if(e.getKeyCode() == KeyEvent.VK_UP) {
+		if(e.getKeyCode() == KeyEvent.VK_W) {
 			root.getKeyboardController().onClickedUp();
-		} else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+		} else if(e.getKeyCode() == KeyEvent.VK_S) {
 			root.getKeyboardController().onClickedDown();
-		} else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+		} else if(e.getKeyCode() == KeyEvent.VK_A) {
 			root.getKeyboardController().onClickedLeft();
-		} else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		} else if(e.getKeyCode() == KeyEvent.VK_D) {
 			root.getKeyboardController().onClickedRight();
 		}
 	}
