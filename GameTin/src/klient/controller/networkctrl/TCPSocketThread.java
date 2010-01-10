@@ -117,16 +117,13 @@ public class TCPSocketThread extends Thread {
 							}
 							viewsctrl.refreshBoardView();
 							//TODO refresh end game
+							sendQuit();
 						}
 					}
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
-					String send = String.valueOf(model.getLocalPlayerId());
-					send = send.concat(":quit\n");
-					OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
-					System.out.print("<<" + send);
-					System.out.println("Watek TCP zakonczony - koniec gry");
-					viewsctrl.closeApplication();
+					System.out.println("bla");
+					sendQuit();
 				}
 			} catch (SocketException e) {
 				System.out.println("Watek TCP zakonczony - exeption");
@@ -140,5 +137,17 @@ public class TCPSocketThread extends Thread {
 			}
 		}
 		System.out.println("Watek TCP zakonczony");
+	}
+
+	/**
+	 * @throws IOException
+	 */
+	public void sendQuit() throws IOException {
+		String send = String.valueOf(model.getLocalPlayerId());
+		send = send.concat(":quit\n");
+		OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
+		System.out.print("<<" + send);
+		System.out.println("Watek TCP zakonczony - koniec gry");
+		viewsctrl.closeApplication();
 	}
 }
