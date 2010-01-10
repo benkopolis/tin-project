@@ -157,6 +157,16 @@ public class GameBoardView extends GameView implements KeyListener {
 	 * Metoda odmalowuje planszê.
 	 */
 	public void repaintBoard() {
+		try {
+			if(this.root.getModel().getLm().getHeight() != h ||
+					this.root.getModel().getLm().getWidth() != w) {
+				h = this.root.getModel().getLm().getHeight();
+				w = this.root.getModel().getLm().getWidth();
+				setSize(w*rectSize+10, h*rectSize+20);
+			}
+		} catch (IllegalOperation e) {
+			e.printStackTrace();
+		}
 		panel.paintComponent(getGraphics());
 	}
 }
