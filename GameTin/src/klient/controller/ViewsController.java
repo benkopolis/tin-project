@@ -1,11 +1,10 @@
 package klient.controller;
 
-import java.io.IOException;
-import java.net.UnknownHostException;
-
 import klient.controller.keyboardctrl.KeyboardController;
 import klient.controller.networkctrl.NetworkController;
+import klient.model.IllegalOperation;
 import klient.model.Model;
+import klient.model.fields.Player;
 import klient.view.GameBoardView;
 import klient.view.GameInfoView;
 import klient.view.GameOptionsView;
@@ -95,6 +94,35 @@ public class ViewsController {
 	public synchronized void setKeyboardController(
 			KeyboardController keyboardController) {
 		this.keyboardController = keyboardController;
+	}
+	
+	/**
+	 * Dodaje gracza, do listy graczy wyœwietlanej u¿ytkownikowi.
+	 * Wywolanie tej funkcji nie powinny wystapic po rozpoczeciu gry.
+	 * @param p
+	 */
+	public void addPlayerToInfoView(Player p) throws IllegalOperation {
+		if(model.isGameOn())
+			throw new IllegalOperation("Nie wolno dodawac nowych graczy, po starcie gry");
+		gameInfoView.addPlayer(p);
+	}
+	
+	/**
+	 * Odœwierza wyœwietlane informacje o graczach.
+	 * Pierwsze wywo³anie powinno nast¹pic dopiero po starcie gry - 
+	 * gdy wszyscy gracze sa juz dodani.
+	 */
+	public void refreshInfoView() throws IllegalOperation {
+		if(model.isGameOn()==false)
+			throw new IllegalOperation("Nie mozna odswierzac, zanim zaczela sie rozgrywka");
+		gameInfoView.refresh();
+	}
+	
+	/**
+	 * Powoduje przemalowanie planszy, wed³ug informacji zawartych w modelu.
+	 */
+	public void refreshBoardView() {
+		gameBoardView.repaintBoard();
 	}
 	
 }
