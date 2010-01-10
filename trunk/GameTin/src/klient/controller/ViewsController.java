@@ -1,5 +1,8 @@
 package klient.controller;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import klient.controller.keyboardctrl.KeyboardController;
 import klient.controller.networkctrl.NetworkController;
 import klient.model.IllegalOperation;
@@ -35,13 +38,13 @@ public class ViewsController {
 	
 	public void play(String ip, String nick) {
 		model.setLocalPlayerNick(nick);
-//		try {
-//			networkController = new NetworkController(ip, 666, model);
-//		} catch (UnknownHostException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			networkController = new NetworkController(ip, 666, model);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		gameInfoView.init();
 		gameBoardView.init();
 	}
