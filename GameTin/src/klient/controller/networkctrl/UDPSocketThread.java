@@ -2,6 +2,7 @@ package klient.controller.networkctrl;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketAddress;
@@ -13,15 +14,18 @@ import klient.model.Move;
 
 public class UDPSocketThread extends Thread{
 
-	private MulticastSocket socket;
+	private MulticastSocket mSocket;
+	private DatagramSocket dSocket;
 	private InetAddress group;
 	private Model model;
 	private ViewsController viewsctrl;
 	
-	public UDPSocketThread(MulticastSocket socket, Model m, ViewsController v) {
-		this.socket = socket;
+	public UDPSocketThread(DatagramSocket d, MulticastSocket socket, InetAddress g, Model m, ViewsController v) {
+		this.mSocket = socket;
+		this.group = g;
 		this.model = m;
 		this.viewsctrl = v;
+		this.dSocket = d;
 	}
 	
 	public void run() {
@@ -29,10 +33,6 @@ public class UDPSocketThread extends Thread{
 		while(!isInterrupted()) {
 			try {
 				if (model.isGameOn() && (model.isGameOff() == false)) {
-					//String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
-					//DatagramPacket hi = new DatagramPacket(msg.getBytes(), msg.length(),
-                      //      group, 6789);
-					//socket.send(hi);
 					Move move = model.getMoves().poll();
 					if (move != null) {
 						count++;
@@ -42,12 +42,12 @@ public class UDPSocketThread extends Thread{
 						
 						DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
 			                            					group, 555);
-						socket.send(d);
+						dSocket.send(d);
 					}
 					
 					byte[] buf = new byte[1000];
 					DatagramPacket recv = new DatagramPacket(buf, buf.length);
-					socket.receive(recv);
+					mSocket.receive(recv);
 					String str = new String(buf);
 					/* tokens - tablica stringow rozdzielonych dwukropkiem */
 					String[] tokens = str.split(":");
@@ -72,7 +72,7 @@ public class UDPSocketThread extends Thread{
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
 					//TODO: sokety
-					socket.leaveGroup(group);
+					mSocket.leaveGroup(group);
 					this.interrupt();
 				}
 			} catch (Exception e) {
