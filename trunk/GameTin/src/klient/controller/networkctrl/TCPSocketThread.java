@@ -3,6 +3,7 @@ package klient.controller.networkctrl;
 import java.io.IOException;
 import java.net.Socket;
 
+import klient.controller.ViewsController;
 import klient.model.IllegalOperation;
 import klient.model.Model;
 
@@ -13,10 +14,12 @@ public class TCPSocketThread extends Thread {
 	
 	private Socket socket;
 	private Model model;
+	private ViewsController viewsctrl;
 
-	public TCPSocketThread(Socket socket, Model m) {
+	public TCPSocketThread(Socket socket, Model m, ViewsController v) {
 		this.socket = socket;
 		this.model = m;
+		this.viewsctrl = v;
 	}
 
 	public void run() {
@@ -62,12 +65,14 @@ public class TCPSocketThread extends Thread {
 								int y = Integer.parseInt(tokens[i].split(",")[2]);
 								model.setActualPlayerPosition(id, x, y);
 							}
+							viewsctrl.refreshBoardView();
 						}
 						else if (tokens[0].equals("countingdown")) {
 							int number = Integer.parseInt(tokens[1]);
 							model.countDown(number);
 							if (number == 1) {
-							model.startGame();
+								model.startGame();
+								viewsctrl.refreshInfoView();
 							}
 						}
 					}
