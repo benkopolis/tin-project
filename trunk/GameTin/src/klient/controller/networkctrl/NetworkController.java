@@ -1,6 +1,8 @@
 package klient.controller.networkctrl;
 
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.Socket;
@@ -12,7 +14,8 @@ import klient.model.Model;
 
 public class NetworkController {
 	private Socket tcpsocket;
-	private MulticastSocket udpsocket;
+	private MulticastSocket udpMsocket;
+	private DatagramSocket udpDsocket;
 	private Model model;
 	private ViewsController viewsctrl;
 	private TCPSocketThread tcpThread;
@@ -27,10 +30,10 @@ public class NetworkController {
 		tcpThread = new TCPSocketThread(tcpsocket, m, v);
 		tcpThread.start();
 		
-		udpsocket = new MulticastSocket(555);
+		udpMsocket = new MulticastSocket(555);
 		group = InetAddress.getByName("225.225.225.225");
-		udpsocket.joinGroup(group);
-		udpThread = new UDPSocketThread(udpsocket, m, v);
+		udpMsocket.joinGroup(group);
+		udpThread = new UDPSocketThread(udpDsocket, udpMsocket, group, m, v);
 		udpThread.start();
 	}
 }
