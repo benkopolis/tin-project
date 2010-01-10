@@ -55,6 +55,7 @@ public class TCPSocketThread extends Thread {
 							model.endGame();
 							JOptionPane.showMessageDialog(null, tokens[1]);
 							viewsctrl.closeApplication();
+							this.interrupt();
 						}
 						else if (tokens[0].equals("players")) {
 							for(int i=1; i<tokens.length; i++) {
@@ -76,7 +77,6 @@ public class TCPSocketThread extends Thread {
 						}
 						else if (tokens[0].equals("countingdown")) {
 							int number = Integer.parseInt(tokens[1]);
-							model.countDown(number);
 							if (number == 1) {
 								model.startGame();
 								viewsctrl.refreshInfoView();
@@ -101,6 +101,7 @@ public class TCPSocketThread extends Thread {
 								model.setPoints(id, points);
 								model.endGame(); // ustawia zmienna gameOff na true
 							}
+							viewsctrl.refreshBoardView();
 						}
 					}
 				}
@@ -108,9 +109,11 @@ public class TCPSocketThread extends Thread {
 					String send = String.valueOf(model.getLocalPlayerId());
 					send = send.concat(":quit\n");
 					OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
+					viewsctrl.closeApplication();
 					this.interrupt();
 				}
 			} catch (SocketException e) {
+				viewsctrl.closeApplication();
 				this.interrupt();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
