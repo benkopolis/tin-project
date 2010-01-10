@@ -50,15 +50,8 @@ public class GameBoardView extends GameView implements KeyListener {
 		 */
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			g.setColor(Color.BLACK);
+			g.setColor(Color.GREEN);
 			g.fillRect(0, 0, w*rectSize, h*rectSize);
-			g.setColor(Color.YELLOW);
-			for(int i=0; i<w; ++i) {
-				for(int j=0; j<h; ++j) {
-					g.drawLine(i*rectSize, 0, i*rectSize, h*rectSize);
-					g.drawLine(0, j*rectSize, w*rectSize, j*rectSize);
-				}
-			}
 			this.fillBoard(g);
 		}
 		
@@ -71,8 +64,8 @@ public class GameBoardView extends GameView implements KeyListener {
 							g.setColor(Color.GRAY);
 							g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
 						} else if(fields[i][j] instanceof Grass) {
-							g.setColor(Color.GREEN);
-							g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
+//							g.setColor(Color.GREEN);
+//							g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
 						} else if(fields[i][j] instanceof Coin) {
 							g.setColor(Color.YELLOW);
 							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);

@@ -130,7 +130,7 @@ public class ViewsController {
 	 */
 	public void refreshBoardView() {
 		try {
-			System.out.println(model.getLm().levelToString(false));
+			System.out.print(model.getLm().levelToString(false));
 		} catch (IllegalOperation e) {
 			e.printStackTrace();
 		}
