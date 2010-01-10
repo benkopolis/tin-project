@@ -67,7 +67,10 @@ public class GameBoardView extends GameView implements KeyListener {
 							g.setColor(Color.YELLOW);
 							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
 						} else if(fields[i][j] instanceof Player) {
-							g.setColor(Color.RED);
+							if(((Player)fields[i][j]).getId() == root.getModel().getLocalPlayerId())
+								g.setColor(Color.ORANGE);
+							else
+								g.setColor(Color.RED);
 							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
 						}
 						g.setColor(Color.BLACK);
@@ -125,7 +128,7 @@ public class GameBoardView extends GameView implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("Key pressed!");
+//		System.out.println("Key pressed!");
 		if(e.getKeyCode() == KeyEvent.VK_W) {
 			root.getKeyboardController().onClickedUp();
 		} else if(e.getKeyCode() == KeyEvent.VK_S) {
@@ -139,12 +142,12 @@ public class GameBoardView extends GameView implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		System.out.println("Key released!");
+//		System.out.println("Key released!");
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("Key typed!");
+//		System.out.println("Key typed!");
 	}
 	
 	/**
