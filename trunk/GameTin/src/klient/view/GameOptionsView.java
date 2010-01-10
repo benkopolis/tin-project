@@ -102,7 +102,7 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 		panel.setVisible(true);
 	}
 
-	protected void closeApplication() {
+	public void closeApplication() {
 		dispose();
 	}
 	
