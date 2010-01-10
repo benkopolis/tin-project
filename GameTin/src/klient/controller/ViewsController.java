@@ -108,7 +108,7 @@ public class ViewsController {
 	 * Wywolanie tej funkcji nie powinny wystapic po rozpoczeciu gry.
 	 * @param p
 	 */
-	public synchronized void addPlayerToInfoView(Player p) throws IllegalOperation {
+	public void addPlayerToInfoView(Player p) throws IllegalOperation {
 		if(model.isGameOn())
 			throw new IllegalOperation("Nie wolno dodawac nowych graczy, po starcie gry");
 		gameInfoView.addPlayer(p);

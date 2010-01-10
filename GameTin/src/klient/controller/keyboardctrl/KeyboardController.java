@@ -42,7 +42,7 @@ public class KeyboardController {
 		if(localPlayerInfo == null)
 			this.findLocalPlayer();
 		try {
-			newY = (localPlayerInfo.getY()+1)%parent.getModel().getLm().getHeight();
+			newY = (localPlayerInfo.getY()-1)%parent.getModel().getLm().getHeight();
 			newX = (localPlayerInfo.getX())%parent.getModel().getLm().getWidth();
 			doMove();
 		} catch (IllegalOperation e) {
@@ -56,7 +56,7 @@ public class KeyboardController {
 		if(localPlayerInfo == null)
 			this.findLocalPlayer();
 		try {
-			newY = (localPlayerInfo.getY()-1)%parent.getModel().getLm().getHeight();
+			newY = (localPlayerInfo.getY()+1)%parent.getModel().getLm().getHeight();
 			newX = (localPlayerInfo.getX())%parent.getModel().getLm().getWidth();
 			doMove();
 		} catch (IllegalOperation e) {
