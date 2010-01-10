@@ -21,10 +21,11 @@ public class UDPSocketThread extends Thread{
 	}
 	
 	public void run() {
+		int count=0;
 		while(!isInterrupted()) {
 			try {
 				if (model.isGameOn() && (model.isGameOff() == false)) {
-					//String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(i);
+					//String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
 					//DatagramPacket hi = new DatagramPacket(msg.getBytes(), msg.length(),
                       //      group, 6789);
 					//socket.send(hi);
