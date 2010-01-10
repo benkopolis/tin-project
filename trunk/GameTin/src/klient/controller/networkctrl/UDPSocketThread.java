@@ -59,7 +59,9 @@ public class UDPSocketThread extends Thread{
 					}
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
+					//TODO: sokety
 					socket.leaveGroup(group);
+					this.interrupt();
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
