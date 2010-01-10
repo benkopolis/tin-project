@@ -108,10 +108,9 @@ public class KeyboardController {
 	 * @throws InterruptedException
 	 */
 	protected void doMove() throws IllegalOperation, InterruptedException {
-		if((parent.getModel().getLm().getField(newX, newY, false) instanceof Grass) ||
-			(parent.getModel().getLm().getField(newX, newY, false) instanceof Coin)) {
+		if((parent.getModel().getLm().getField(newX, newY, false) instanceof Grass)) {
 				parent.getModel().getLm().setField(localPlayerInfo.getX(), localPlayerInfo.getY(), new Grass());
-				parent.getModel().getLm().setField(newX, newY, (Field)localPlayerInfo.getPlayer());
+				parent.getModel().getLm().setField(newX, newY, localPlayerInfo.getPlayer());
 				move = new Move(localPlayerInfo.getX(), localPlayerInfo.getY(), newX, newY);
 				localPlayerInfo.setX(newX);
 				localPlayerInfo.setY(newY);

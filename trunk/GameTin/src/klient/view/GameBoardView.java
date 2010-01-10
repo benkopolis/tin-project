@@ -157,6 +157,8 @@ public class GameBoardView extends GameView implements KeyListener {
 		} catch (IllegalOperation e) {
 			e.printStackTrace();
 		}
-		panel.paintComponent(getGraphics());
+		panel.invalidate();
+		panel.repaint();
+//		panel.paintComponent(getGraphics());
 	}
 }
