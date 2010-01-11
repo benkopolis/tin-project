@@ -65,15 +65,15 @@ public class UDPSocketThread extends Thread{
 					                             group, 555);
 					mSocket.send(hi);
 					//System.out.println("<<" + msg2 + "!");
-					this.interrupt();
 
 					////////////////////////////////////
 					
 					byte[] buf = new byte[1000];
 					DatagramPacket recv = new DatagramPacket(buf, buf.length);
-					mSocket.receive(recv);
+					//mSocket.receive(recv);
+					dSocket.receive(recv);
 					String str = new String(buf);
-					System.out.println(":)" + str);
+					System.out.println(">>:)" + str);
 					/* tokens - tablica stringow rozdzielonych dwukropkiem */
 					String[] tokens = str.split(":");
 					if (tokens[0].equals("coins")) {
@@ -95,6 +95,7 @@ public class UDPSocketThread extends Thread{
 							viewsctrl.refreshInfoView();
 						}
 					}
+					break;
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
 					//TODO: sokety
