@@ -1,5 +1,6 @@
 package klient.model;
 
+import klient.model.fields.Field;
 import klient.model.fields.Player;
 
 /**
@@ -55,6 +56,13 @@ public class PlayerInfo {
 		this.onCoin = onCoin;
 	}
 	
-	
+	public synchronized boolean isVisible(Field[][] fields, int x, int y) {
+		float dy;
+		float dx;
+		float rx, ry;
+		int sx = this.x-x;
+		int sy = this.y-y;
+		return true;
+	}
 	
 }
