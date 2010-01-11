@@ -79,7 +79,7 @@ public class UDPSocketReceiveThread extends Thread {
 				e.printStackTrace();
 			}
 			try {
-				sleep(1000);
+				sleep(7000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catchblock
 				e.printStackTrace();
