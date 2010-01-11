@@ -43,18 +43,18 @@ public class UDPSocketReceiveThread extends Thread {
 //						ix++;
 //						System.out.println("" + ix + ": " + t);
 //					}
-					if (tokens[0].equals("coins")) {
+					if (tokens[1].equals("coins")) {
 						System.out.println(">>" + str);
 						int coins = Integer.parseInt(tokens[1]);
 						LevelsManager.getInstance().changeAllCoinsToGrass();
-						for (int i=2; i<coins+2; i++) {
+						for (int i=3; i<coins+3; i++) {
 							int x = Integer.parseInt(tokens[i].split(",")[0]);
 							int y = Integer.parseInt(tokens[i].split(",")[1]);
 							model.setActualCoinPosition(x,y);
 						}
 						viewsctrl.refreshBoardView();
 						
-						for (int i=coins+4; i<tokens.length; i++) {
+						for (int i=coins+5; i<tokens.length; i++) {
 							int id = Integer.parseInt(tokens[i].split(",")[0]);
 							int newX = Integer.parseInt(tokens[i].split(",")[1]);
 							int newY = Integer.parseInt(tokens[i].split(",")[2]);
