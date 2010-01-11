@@ -87,7 +87,7 @@ public class GameBoardView extends GameView implements KeyListener {
 	
 	protected Board panel = new Board();
 	
-	protected int rectSize = 10;
+	protected int rectSize = 15;
 	protected int w;
 	protected int h;
 
@@ -95,7 +95,6 @@ public class GameBoardView extends GameView implements KeyListener {
 		super(viewsController);
 		setLocation(400, 200);
 		setVisible(false);
-		panel.setVisible(false);
 	}
 
 	@Override
@@ -110,21 +109,13 @@ public class GameBoardView extends GameView implements KeyListener {
 		}
 		panel.setLayout(new GridLayout(h, w));
 		panel.setSize(w*rectSize, h*rectSize);
-		this.add(panel);
+		add(panel);
 		panel.addKeyListener(this);
-		this.addKeyListener(this);
+		addKeyListener(this);
 		panel.setVisible(true);
-		this.setVisible(true);
+		setVisible(true);
 		invalidate();
 		repaint();
-		//panel.fillBoard(this.getGraphics());
-	}
-	
-	/**
-	 * Metoda wypelnia plansze pobierajac dane z modelu
-	 */
-	public void fillBoard() {
-		panel.fillBoard(this.getGraphics());
 	}
 
 	@Override
