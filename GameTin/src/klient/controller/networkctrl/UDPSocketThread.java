@@ -37,12 +37,6 @@ public class UDPSocketThread extends Thread{
 			try {
 				if (model.isGameOn() && (model.isGameOff() == false)) {
 					Move move = model.workOnMoves(false, null);
-					int s = model.getMoves().size();
-					Move move = model.getMoves().poll();
-					if(s>model.getMoves().size())
-						System.out.println("Poll seems to be working - size has changed.");
-					else
-						System.out.println("Size remain unchanged after poll...");
 					if (move != null) {
 						count++;
 						System.out.println("Move is polled " + count);
