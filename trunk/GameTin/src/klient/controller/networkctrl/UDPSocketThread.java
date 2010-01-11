@@ -48,14 +48,14 @@ public class UDPSocketThread extends Thread{
 						dSocket.send(d);
 						System.out.print("<<" + msg + "if");
 					}
-					count++;
-					String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
-					msg = msg.concat(":" + 2 + "," + 2 + ":");
-					msg = msg.concat(3 + "," + 2 + "\n");
-					DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
-        					adres, 556);
-					dSocket.send(d);
-					System.out.print("<<" + msg);
+//					count++;
+//					String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
+//					msg = msg.concat(":" + 2 + "," + 2 + ":");
+//					msg = msg.concat(3 + "," + 2 + "\n");
+//					DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
+//        					adres, 556);
+//					dSocket.send(d);
+//					System.out.print("<<" + msg);
 					////////////////////////////////////
 					String msg2 = "Hello\n";
 					//System.out.print("<<" + msg2);
@@ -95,7 +95,6 @@ public class UDPSocketThread extends Thread{
 							viewsctrl.refreshInfoView();
 						}
 					}
-					break;
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
 					//TODO: sokety
