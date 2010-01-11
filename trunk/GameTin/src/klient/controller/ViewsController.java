@@ -51,6 +51,7 @@ public class ViewsController {
 		}
 		gameBoardView.init();
 		gameInfoView.init();
+		gameBoardView.setVisible(true);
 	}
 
 	public synchronized GameOptionsView getGameOptionsView() {
