@@ -49,7 +49,7 @@ public class UDPSocketSendThread extends Thread{
 						System.out.println("move != null");
 						count++;
 						String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
-						msg = msg.concat(":" + move.getOldX() + "," + move.getNewY() + ":");
+						msg = msg.concat(":" + move.getOldX() + "," + move.getOldY() + ":");
 						msg = msg.concat(move.getNewX() + "," + move.getNewY() + "\n");
 						
 						DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
