@@ -29,6 +29,7 @@ public class NetworkController {
 		///////////////// TCP ////////////////////////
 		tcpsocket = new Socket(adres, port);
 		tcpThread = new TCPSocketThread(tcpsocket, m, v);
+		tcpThread.setDaemon(true);
 		tcpThread.start();
 		
 		///////////////// UDP ////////////////////////
@@ -39,6 +40,7 @@ public class NetworkController {
 		///////////////// datagram ///////////////////
 		udpDsocket = new DatagramSocket(556);
 		udpThread = new UDPSocketThread(udpDsocket, adres, udpMsocket, group, m, v);
+		udpThread.setDaemon(true);
 		udpThread.start();
 	}
 }

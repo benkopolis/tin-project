@@ -46,7 +46,7 @@ public class UDPSocketThread extends Thread{
 						DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
 			                            					adres, 556);
 						dSocket.send(d);
-						System.out.print("<<" + msg);
+						System.out.print("<<" + msg + "if");
 					}
 					count++;
 					String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
@@ -57,13 +57,14 @@ public class UDPSocketThread extends Thread{
 					dSocket.send(d);
 					System.out.print("<<" + msg);
 					////////////////////////////////////
-					String msg2 = "Hello";
+					String msg2 = "Hello\n";
+					//System.out.print("<<" + msg2);
 					//MulticastSocket s = new MulticastSocket(555);
 					//s.joinGroup(group);
 					DatagramPacket hi = new DatagramPacket(msg2.getBytes(), msg2.length(),
 					                             group, 555);
 					mSocket.send(hi);
-					System.out.print("<<" + msg2);
+					//System.out.println("<<" + msg2 + "!");
 					this.interrupt();
 
 					////////////////////////////////////
@@ -72,7 +73,7 @@ public class UDPSocketThread extends Thread{
 					DatagramPacket recv = new DatagramPacket(buf, buf.length);
 					mSocket.receive(recv);
 					String str = new String(buf);
-					System.out.println(str);
+					System.out.println(":)" + str);
 					/* tokens - tablica stringow rozdzielonych dwukropkiem */
 					String[] tokens = str.split(":");
 					if (tokens[0].equals("coins")) {
