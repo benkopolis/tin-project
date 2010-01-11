@@ -74,9 +74,6 @@ public class UDPSocketSendThread extends Thread{
 //					System.out.println("<<" + msg2 + "!");
 
 					////////////////////////////////////
-					if (move != null) {
-						
-					}
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
 					//TODO: sokety
