@@ -2,8 +2,8 @@ package klient.controller.networkctrl;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
+//import java.net.InetAddress;
+//import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 
 import klient.controller.ViewsController;
@@ -13,7 +13,7 @@ import klient.model.Model;
 public class UDPSocketReceiveThread extends Thread {
 
 	private DatagramSocket dSocket;
-	private InetAddress adres;
+	//private InetAddress adres;
 	private Model model;
 	private ViewsController viewsctrl;
 	
@@ -21,11 +21,10 @@ public class UDPSocketReceiveThread extends Thread {
 		this.model = m;
 		this.viewsctrl = v;
 		this.dSocket = d;
-		this.adres = InetAddress.getByName(adres);
+		//this.adres = InetAddress.getByName(adres);
 	}
 	
 	public void run() {
-		int count=0;
 		while(!isInterrupted()) {
 			try {
 				if (model.isGameOn() && (model.isGameOff() == false)) {
@@ -78,12 +77,12 @@ public class UDPSocketReceiveThread extends Thread {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-			try {
-				sleep(7000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catchblock
-				e.printStackTrace();
-			}
+//			try {
+//				sleep(7000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catchblock
+//				e.printStackTrace();
+//			}
 		}
 		System.out.println("Watek UDP zakonczony");
 	}
