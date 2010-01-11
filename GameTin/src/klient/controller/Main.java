@@ -3,17 +3,76 @@
  */
 package klient.controller;
 
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
+
+import klient.model.Move;
+
 /**
  * @author zby
  *
  */
 public class Main {
 
+	private class TestThread extends Thread {
+		
+		protected LinkedBlockingQueue<Move> moves = null;
+		
+		public TestThread(LinkedBlockingQueue<Move> m) {
+			setDaemon(true);
+			moves = m;
+			start();
+		}
+		
+		@Override
+		public synchronized void run() {
+			Move  m = null;
+			while(!isInterrupted()) {
+//				try {
+					//m = moves.poll(10L, TimeUnit.MILLISECONDS);
+					m = moves.poll();
+					if(m!=null)
+						System.out.println("Sukces!");
+				//	else 
+				//		System.out.println("Porazka!");
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+			}
+		}
+	}
+	
+	public TestThread tt = null;
+	
+	public Main(LinkedBlockingQueue<Move> moves) {
+		TestThread tt = new TestThread(moves);
+	}
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-	ViewsController viewscontrl = new ViewsController();
+		ViewsController viewscontrl = new ViewsController();
+		//test();
+	}
+
+	/**
+	 * 
+	 */
+	public static void test() {
+		LinkedBlockingQueue<Move> moves = new LinkedBlockingQueue<Move>(Integer.MAX_VALUE);
+		Main main = new Main(moves);
+		int i=0;
+		while(i<10) {
+			try {
+				Thread.sleep(50L);
+				if(moves.offer(new Move(0,0,0,0)))
+					System.out.println("Inserted!");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			++i;
+		}
 	}
 
 }
