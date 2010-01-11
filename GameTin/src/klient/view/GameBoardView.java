@@ -58,7 +58,7 @@ public class GameBoardView extends GameView implements KeyListener {
 				if (root.getModel().getLocalPlayerInfo() == null)
 					return;
 				int i=0;
-				int j=root.getModel().getLm().getHeight();
+				int j=root.getModel().getLocalPlayerInfo().getY();
 				for(i=0; i<root.getModel().getLm().getWidth(); ++i) {
 					if(root.getModel().getLocalPlayerInfo().isVisible(i, j)) {
 						if(root.getModel().getLm().getField(i, j, false) instanceof Wall) {
@@ -77,7 +77,7 @@ public class GameBoardView extends GameView implements KeyListener {
 						g.setColor(Color.BLACK);
 					}
 				}
-				i = root.getModel().getLm().getWidth();
+				i = root.getModel().getLocalPlayerInfo().getX();
 				for(j=0; j<root.getModel().getLm().getHeight(); ++j) {
 					if(root.getModel().getLocalPlayerInfo().isVisible(i, j)) {
 						if(root.getModel().getLm().getField(i, j, false) instanceof Wall) {
