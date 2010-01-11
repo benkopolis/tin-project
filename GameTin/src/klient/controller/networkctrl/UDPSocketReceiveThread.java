@@ -45,7 +45,7 @@ public class UDPSocketReceiveThread extends Thread {
 					if (tokens[1].equals("coins")) {
 						System.out.println(">>" + str);
 						int coins = Integer.parseInt(tokens[2]);
-						//LevelsManager.getInstance().changeAllCoinsToGrass();
+						LevelsManager.getInstance().changeAllCoinsToGrass();
 						for (int i=3; i<coins+3; i++) {
 							int x = Integer.parseInt(tokens[i].split(",")[0]);
 							int y = Integer.parseInt(tokens[i].split(",")[1]);
