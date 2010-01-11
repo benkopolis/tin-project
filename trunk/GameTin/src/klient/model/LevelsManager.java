@@ -329,9 +329,9 @@ public class LevelsManager {
 		}		
 	}
 	
-	public synchronized Field[][] getLevel() {
-		return level;
-	}
+//	public synchronized Field[][] getLevel() {
+//		return level;
+//	}
 }
 
 

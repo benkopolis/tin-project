@@ -56,13 +56,11 @@ public class PlayerInfo {
 		this.onCoin = onCoin;
 	}
 	
-	public synchronized boolean isVisible(Field[][] fields, int x, int y) {
-		float dy;
-		float dx;
-		float rx, ry;
-		int sx = this.x-x;
-		int sy = this.y-y;
-		return true;
+	public synchronized boolean isVisible(int x, int y) {
+		if(x == this.x || y == this.y)
+			return true;
+		else 
+			return false;
 	}
 	
 }
