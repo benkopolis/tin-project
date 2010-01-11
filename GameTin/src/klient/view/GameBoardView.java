@@ -54,24 +54,25 @@ public class GameBoardView extends GameView implements KeyListener {
 		}
 		
 		public void fillBoard(Graphics g) {
-			Field[][] fields = root.getModel().getLm().getLevel();
 			try {
 				for(int i=0; i<root.getModel().getLm().getWidth(); ++i) { //i -x, w
 					for(int j=0; j<root.getModel().getLm().getHeight(); ++j) { // j -y, h
-						if(fields[i][j] instanceof Wall) {
-							g.setColor(Color.GRAY);
-							g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
-						} else if(fields[i][j] instanceof Coin) {
-							g.setColor(Color.YELLOW);
-							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
-						} else if(fields[i][j] instanceof Player) {
-							if(((Player)fields[i][j]).getId() == root.getModel().getLocalPlayerId())
-								g.setColor(Color.BLUE);
-							else
-								g.setColor(Color.RED);
-							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
+						if(root.getModel().getLocalPlayerInfo().isVisible(i, j)) {
+							if(root.getModel().getLm().getField(i, j, false) instanceof Wall) {
+								g.setColor(Color.GRAY);
+								g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
+							} else if(root.getModel().getLm().getField(i, j, false) instanceof Coin) {
+								g.setColor(Color.YELLOW);
+								g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
+							} else if(root.getModel().getLm().getField(i, j, false) instanceof Player) {
+								if(((Player)root.getModel().getLm().getField(i, j, false)).getId() == root.getModel().getLocalPlayerId())
+									g.setColor(Color.BLUE);
+								else
+									g.setColor(Color.RED);
+								g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
+							}
+							g.setColor(Color.BLACK);
 						}
-						g.setColor(Color.BLACK);
 					}
 				}
 			} catch (IllegalOperation e) {
