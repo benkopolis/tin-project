@@ -29,7 +29,7 @@ public class UDPSocketReceiveThread extends Thread {
 		while(!isInterrupted()) {
 			try {
 				if (model.isGameOn() && (model.isGameOff() == false)) {
-					byte[] buf = new byte[1000];
+					byte[] buf = new byte[10000];
 					DatagramPacket recv = new DatagramPacket(buf, buf.length);
 					dSocket.receive(recv);
 					String str = new String(buf);
