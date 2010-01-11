@@ -36,6 +36,7 @@ public class UDPSocketThread extends Thread{
 		while(!isInterrupted()) {
 			try {
 				if (model.isGameOn() && (model.isGameOff() == false)) {
+					Move move = model.workOnMoves(false, null);
 					int s = model.getMoves().size();
 					Move move = model.getMoves().poll();
 					if(s>model.getMoves().size())
@@ -63,19 +64,20 @@ public class UDPSocketThread extends Thread{
 //					dSocket.send(d);
 //					System.out.print("<<" + msg);
 					////////////////////////////////////
-//					String msg2 = "Hello\n";
-//					System.out.print("<<" + msg2);
-//					MulticastSocket s = new MulticastSocket(555);
-//					s.joinGroup(group);
-//					DatagramPacket hi = new DatagramPacket(msg2.getBytes(), msg2.length(),
-//					                             group, 555);
-//					mSocket.send(hi);
-//					System.out.println("<<" + msg2 + "!");
+					String msg2 = "Hello\n";
+					//System.out.print("<<" + msg2);
+					//MulticastSocket s = new MulticastSocket(555);
+					//s.joinGroup(group);
+					DatagramPacket hi = new DatagramPacket(msg2.getBytes(), msg2.length(),
+					                             group, 555);
+					mSocket.send(hi);
+					//System.out.println("<<" + msg2 + "!");
 
 					////////////////////////////////////
 					
 					byte[] buf = new byte[1000];
 					DatagramPacket recv = new DatagramPacket(buf, buf.length);
+					//mSocket.receive(recv);
 					dSocket.receive(recv);
 					String str = new String(buf);
 					System.out.println(">>:)" + str);

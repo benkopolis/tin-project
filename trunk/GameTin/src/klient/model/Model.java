@@ -148,8 +148,19 @@ public class Model extends Observable {
 
 
 
-	public synchronized LinkedBlockingQueue<Move> getMoves() {
-		return moves;
+	public synchronized Move workOnMoves(boolean insert, Move m) throws InterruptedException, IllegalOperation {
+		int s = moves.size();
+		if(insert) {
+			moves.put(m);
+			if(s == moves.size())
+				throw new IllegalOperation("Put to queue didn't work.");
+			return null;
+		} else {
+			Move mm = moves.poll();
+			if(s == moves.size())
+				throw new IllegalOperation("Poll from queue didn't work.");
+			return mm;
+		}
 	}
 
 
