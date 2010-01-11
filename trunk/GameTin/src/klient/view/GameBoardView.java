@@ -9,14 +9,12 @@ import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import klient.controller.ViewsController;
 import klient.model.IllegalOperation;
 import klient.model.fields.Coin;
 import klient.model.fields.Field;
-import klient.model.fields.Grass;
 import klient.model.fields.Player;
 import klient.model.fields.Wall;
 

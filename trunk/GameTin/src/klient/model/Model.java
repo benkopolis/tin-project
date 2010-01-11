@@ -29,6 +29,8 @@ public class Model extends Observable {
 	
 	private Coin localCoin = new Coin();
 	
+	private Grass localGrass = new Grass();
+	
 	public Model() {
 	}
 	
@@ -173,6 +175,22 @@ public class Model extends Observable {
 
 	protected synchronized void setMoves(LinkedBlockingQueue<Move> moves) {
 		this.moves = moves;
+	}
+
+	public synchronized Coin getLocalCoin() {
+		return localCoin;
+	}
+
+	public synchronized void setLocalCoin(Coin localCoin) {
+		this.localCoin = localCoin;
+	}
+
+	public synchronized Grass getLocalGrass() {
+		return localGrass;
+	}
+
+	public synchronized void setLocalGrass(Grass localGrass) {
+		this.localGrass = localGrass;
 	}
 
 }

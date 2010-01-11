@@ -11,6 +11,8 @@ public class PlayerInfo {
 	
 	protected Player player;
 	
+	protected boolean onCoin = false;
+	
 	int x;
 	
 	int y;
@@ -43,6 +45,14 @@ public class PlayerInfo {
 
 	public synchronized void setY(int y) {
 		this.y = y;
+	}
+
+	public synchronized boolean isOnCoin() {
+		return onCoin;
+	}
+
+	public synchronized void setOnCoin(boolean onCoin) {
+		this.onCoin = onCoin;
 	}
 	
 	
