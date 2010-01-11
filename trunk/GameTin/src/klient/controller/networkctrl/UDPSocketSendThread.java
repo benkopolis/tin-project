@@ -51,7 +51,7 @@ public class UDPSocketSendThread extends Thread{
 						msg = msg.concat(move.getNewX() + "," + move.getNewY() + "\n");
 						
 						DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
-			                            					adres, 556);
+			                            					adres, dSocket.getLocalPort());
 						dSocket.send(d);
 						System.out.print("<<" + msg);
 					}
