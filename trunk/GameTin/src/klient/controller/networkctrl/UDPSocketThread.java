@@ -9,6 +9,7 @@ import java.net.SocketAddress;
 import java.net.UnknownHostException;
 
 import klient.controller.ViewsController;
+import klient.model.IllegalOperation;
 import klient.model.Model;
 import klient.model.Move;
 
@@ -103,9 +104,11 @@ public class UDPSocketThread extends Thread{
 					mSocket.leaveGroup(group);
 					this.interrupt();
 				}
+			} catch (IllegalOperation e) {
+				System.out.println(e.getMessage());
 			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
+				System.out.println(e.getMessage());
+				//e.printStackTrace();
 			}
 		}
 		System.out.println("Watek UDP zakonczony");
