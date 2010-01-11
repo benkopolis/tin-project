@@ -84,14 +84,14 @@ public class TCPSocketThread extends Thread {
 								int y = Integer.parseInt(tokens[i].split(",")[2]);
 								model.setActualPlayerPosition(id, x, y, true);
 							}
-							viewsctrl.refreshBoardView();
+//							viewsctrl.refreshBoardView();
 						}
 						else if (tokens[0].equals("countingdown")) {
 							int number = Integer.parseInt(tokens[1]);
 							System.out.println(">>" + number);
 							if (number == 1) {
 								model.startGame();
-								viewsctrl.refreshInfoView();
+//								viewsctrl.refreshInfoView();
 							}
 						}
 					}

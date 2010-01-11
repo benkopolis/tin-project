@@ -52,7 +52,7 @@ public class UDPSocketReceiveThread extends Thread {
 							int y = Integer.parseInt(tokens[i].split(",")[1]);
 							model.setActualCoinPosition(x,y);
 						}
-						viewsctrl.refreshBoardView();
+//						viewsctrl.refreshBoardView();
 						
 						for (int i=coins+5; i<tokens.length; i++) {
 							int id = Integer.parseInt(tokens[i].split(",")[0]);
@@ -62,7 +62,7 @@ public class UDPSocketReceiveThread extends Thread {
 							model.setActualPlayerPosition(id, newX, newY, false);
 							model.setPoints(id, points);
 						}
-						viewsctrl.refreshInfoView();
+						//viewsctrl.refreshInfoView();
 						
 					}
 				}

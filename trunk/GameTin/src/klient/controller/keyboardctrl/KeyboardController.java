@@ -124,7 +124,7 @@ public class KeyboardController {
 			localPlayerInfo.setX(newX);
 			localPlayerInfo.setY(newY);
 			parent.getModel().workOnMoves(true, move);
-			parent.refreshBoardView();
+//			parent.refreshBoardView();
 		}
 	}
 }
