@@ -1,6 +1,7 @@
 package klient.controller.networkctrl;
 
 import java.io.IOException;
+import java.net.DatagramSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
@@ -19,16 +20,18 @@ public class TCPSocketThread extends Thread {
 	private Socket socket;
 	private Model model;
 	private ViewsController viewsctrl;
+	private DatagramSocket datagsocket;
 
-	public TCPSocketThread(Socket socket, Model m, ViewsController v) {
+	public TCPSocketThread(Socket socket, Model m, ViewsController v, DatagramSocket udpsocket) {
 		this.socket = socket;
 		this.model = m;
 		this.viewsctrl = v;
+		this.datagsocket = udpsocket;
 	}
 
 	public void run() {
 		if ((model.isGameOn() == false) && (model.isGameOff() == false)) {
-			String send = "hello:"+ model.getLocalPlayerNick() + "\n";
+			String send = "hello:"+ model.getLocalPlayerNick() + ":" + datagsocket.getLocalPort() + "\n";
 			try {
 				OutputWriter.sendStringAsPacket(send, socket.getOutputStream());
 				System.out.print("<<" + send);
