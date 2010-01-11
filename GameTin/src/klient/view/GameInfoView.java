@@ -73,7 +73,7 @@ public class GameInfoView extends GameView {
 			g.setColor(Color.WHITE);
 			g.fillRect(0, 0, getWidth(), getHeight());
 			g.setColor(Color.BLACK);
-			int yPos = 50;
+			int yPos = 30;
 			for(Player p: labels.keySet()) {
 				g.drawString(p.getNick()+" ma "+p.getScore()+" puntkow.", 10, yPos);
 				yPos = yPos + 30;
