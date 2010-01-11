@@ -51,16 +51,28 @@ public class UDPSocketThread extends Thread{
 					count++;
 					String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
 					msg = msg.concat(":" + 2 + "," + 2 + ":");
-					msg = msg.concat(2 + "," + 3 + "\n");
+					msg = msg.concat(3 + "," + 2 + "\n");
 					DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
         					adres, 556);
 					dSocket.send(d);
 					System.out.print("<<" + msg);
+					////////////////////////////////////
+					String msg2 = "Hello";
+					//MulticastSocket s = new MulticastSocket(555);
+					//s.joinGroup(group);
+					DatagramPacket hi = new DatagramPacket(msg2.getBytes(), msg2.length(),
+					                             group, 555);
+					mSocket.send(hi);
+					System.out.print("<<" + msg2);
+					this.interrupt();
+
+					////////////////////////////////////
 					
 					byte[] buf = new byte[1000];
 					DatagramPacket recv = new DatagramPacket(buf, buf.length);
 					mSocket.receive(recv);
 					String str = new String(buf);
+					System.out.println(str);
 					/* tokens - tablica stringow rozdzielonych dwukropkiem */
 					String[] tokens = str.split(":");
 					if (tokens[0].equals("coins")) {
@@ -85,8 +97,8 @@ public class UDPSocketThread extends Thread{
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
 					//TODO: sokety
-					mSocket.leaveGroup(group);
 					System.out.println("Watek UDP zakonczony (interrupt)");
+					mSocket.leaveGroup(group);
 					this.interrupt();
 				}
 			} catch (Exception e) {
