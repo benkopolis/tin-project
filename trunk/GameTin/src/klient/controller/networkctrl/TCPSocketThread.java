@@ -118,7 +118,7 @@ public class TCPSocketThread extends Thread {
 								model.setPoints(id, points);
 								model.endGame(); // ustawia zmienna gameOff na true
 							}
-							viewsctrl.refreshBoardView();
+//							viewsctrl.refreshBoardView();
 							//TODO refresh end game
 							sendQuit();
 						}
