@@ -49,8 +49,8 @@ public class ViewsController {
 			JOptionPane.showMessageDialog(null, "Blad polaczenia - nie ma takiego serwera", "Error", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
-		gameInfoView.init();
 		gameBoardView.init();
+		gameInfoView.init();
 	}
 
 	public synchronized GameOptionsView getGameOptionsView() {
