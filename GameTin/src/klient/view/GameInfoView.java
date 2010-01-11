@@ -3,12 +3,17 @@
  */
 package klient.view;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.HashMap;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import sun.java2d.loops.FontInfo;
 
 import klient.controller.ViewsController;
 import klient.model.fields.Player;
@@ -26,7 +31,7 @@ public class GameInfoView extends GameView {
 	
 	protected boolean labelsShowed = false;
 	
-	protected JPanel panel = new JPanel();
+	protected ScorePanel panel = new ScorePanel();
 	protected HashMap<Player, JLabel> labels = new HashMap<Player, JLabel>();
 
 	public GameInfoView(ViewsController viewsController) {
@@ -44,22 +49,37 @@ public class GameInfoView extends GameView {
 		if(labelsShowed == false) {
 			setSize(150, 40*labels.size()+40);
 			panel.setSize(150, 40*labels.size());
-			panel.setLayout(new GridLayout(labels.size(), 1));
 			setVisible(true);
 			panel.setVisible(true);
 			labelsShowed = true;
 		}
-		for(Player p: labels.keySet()) {
-			if(labelsShowed == false) {
-				panel.add(labels.get(p));
-			}
-			labels.get(p).setText(p.getNick()+" ma "+p.getScore()+" puntkow.");
-		}
+		invalidate();
+		repaint();
 	}
 
 	@Override
 	public void init() {
 		add(panel);
+	}
+	
+	protected class ScorePanel extends JPanel {
+		
+		public ScorePanel() {
+			
+		}
+		
+		@Override
+		public void paintComponent(Graphics g) {
+			g.setColor(Color.WHITE);
+			g.fillRect(0, 0, getWidth(), getHeight());
+			g.setColor(Color.BLACK);
+			int yPos = 50;
+			for(Player p: labels.keySet()) {
+				g.drawString(p.getNick()+" ma "+p.getScore()+" puntkow.", 10, yPos);
+				yPos = yPos + 30;
+			}
+
+		}
 	}
 
 }

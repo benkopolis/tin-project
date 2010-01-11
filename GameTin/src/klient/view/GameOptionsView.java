@@ -72,7 +72,6 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 		add(panel);
 		panel.setLayout(new GridLayout(4,2));
 		setTitle("Okno opcji gry w zbieranie monet");
-		setVisible(true);
 		labels[FieldKind.IP_FIELD.ordinal()].setSize(100, 30);
 		textFields[FieldKind.IP_FIELD.ordinal()].setSize(100, 30);
 		textFields[FieldKind.IP_FIELD.ordinal()].setText("192.168.47.138");
@@ -101,7 +100,9 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 			t.setVisible(true);
 			t.addKeyListener(this);
 		}
+		validate();
 		panel.setVisible(true);
+		setVisible(true);
 	}
 
 	public void closeApplication() {
