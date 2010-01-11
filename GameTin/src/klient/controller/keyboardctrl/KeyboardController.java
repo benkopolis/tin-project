@@ -109,17 +109,12 @@ public class KeyboardController {
 	 */
 	protected void doMove() throws IllegalOperation, InterruptedException {
 		if((parent.getModel().getLm().getField(newX, newY, false) instanceof Grass)) {
-			int s = parent.getModel().getMoves().size();
 			parent.getModel().getLm().setField(localPlayerInfo.getX(), localPlayerInfo.getY(), new Grass());
 			parent.getModel().getLm().setField(newX, newY, localPlayerInfo.getPlayer());
 			move = new Move(localPlayerInfo.getX(), localPlayerInfo.getY(), newX, newY);
 			localPlayerInfo.setX(newX);
 			localPlayerInfo.setY(newY);
-			parent.getModel().getMoves().put(move);
-			if(s!=parent.getModel().getMoves().size())
-				System.out.println("Inserted new move to Queue - but its size seems unchanged.");
-			else
-				System.out.println("Inserted new move to Queue succeded.");
+			parent.getModel().workOnMoves(true, move);
 			parent.refreshBoardView();
 		}
 	}
