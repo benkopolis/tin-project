@@ -48,7 +48,7 @@ public class GameBoardView extends GameView implements KeyListener {
 		 */
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			g.setColor(Color.GREEN);
+			g.setColor(new Color(120, 150, 120));
 			g.fillRect(0, 0, w*rectSize, h*rectSize);
 			this.fillBoard(g);
 		}
@@ -87,13 +87,14 @@ public class GameBoardView extends GameView implements KeyListener {
 	
 	protected Board panel = new Board();
 	
-	protected int rectSize = 40;
+	protected int rectSize = 10;
 	protected int w;
 	protected int h;
 
 	public GameBoardView(ViewsController viewsController) {
 		super(viewsController);
 		setLocation(400, 200);
+		setVisible(false);
 		setTitle("Plansza");
 		try {
 			h = this.root.getModel().getLm().getHeight();
@@ -102,18 +103,20 @@ public class GameBoardView extends GameView implements KeyListener {
 		} catch (IllegalOperation e) {
 			e.printStackTrace();
 		}
+		panel.setVisible(false);
 	}
 
 	@Override
 	public void init() {
-		this.setVisible(true);
 		panel.setLayout(new GridLayout(h, w));
 		panel.setSize(w*rectSize, h*rectSize);
 		this.add(panel);
 		panel.addKeyListener(this);
 		this.addKeyListener(this);
 		panel.setVisible(true);
-		panel.paintComponent(this.getGraphics());
+		this.setVisible(true);
+		invalidate();
+		repaint();
 		//panel.fillBoard(this.getGraphics());
 	}
 	

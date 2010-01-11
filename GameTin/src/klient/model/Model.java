@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import klient.model.fields.Coin;
 import klient.model.fields.Grass;
@@ -162,7 +163,7 @@ public class Model extends Observable {
 				throw new IllegalOperation("Put to queue didn't work.");
 			return null;
 		} else {
-			Move mm = moves.poll();
+			Move mm = moves.poll(10L, TimeUnit.MILLISECONDS);
 			//if (mm != null) System.out.println("pobrano");
 			//else System.out.println("pobrano null");
 //			if(s == moves.size())
