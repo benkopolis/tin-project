@@ -27,6 +27,7 @@ public class Model extends Observable {
 	
 	protected LinkedBlockingQueue<Move> moves = new LinkedBlockingQueue<Move>(Integer.MAX_VALUE);
 	
+	private Coin localCoin = new Coin();
 	
 	public Model() {
 	}
@@ -127,7 +128,9 @@ public class Model extends Observable {
 	/* ustawia wspolrzedne monety ktore zostaly odebrane od serwera */
 	public void setActualCoinPosition(int x, int y) {
 		try {
-			this.lm.setField(x, y, new Coin());
+			this.lm.setField(x, y, localCoin);
+			if((this.lm.getField(x, y, false) instanceof Coin) == false)
+				System.err.println("ERROR: -Failed to add new coin to board!");
 		} catch (IllegalOperation e) {
 			e.printStackTrace();
 		}
