@@ -45,8 +45,9 @@ public class GameInfoView extends GameView {
 			setSize(150, 40*labels.size()+40);
 			panel.setSize(150, 40*labels.size());
 			panel.setLayout(new GridLayout(labels.size(), 1));
-			//setVisible(true);
+			setVisible(true);
 			panel.setVisible(true);
+			labelsShowed = true;
 		}
 		for(Player p: labels.keySet()) {
 			if(labelsShowed == false) {
