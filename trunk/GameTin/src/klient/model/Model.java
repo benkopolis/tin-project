@@ -152,13 +152,17 @@ public class Model extends Observable {
 		int s = moves.size();
 		if(insert) {
 			moves.put(m);
+			System.out.println("wtawiono do kolejki");
 			if(s == moves.size())
 				throw new IllegalOperation("Put to queue didn't work.");
 			return null;
 		} else {
+//			Move mm = moves.poll();
 			Move mm = moves.poll();
-			if(s == moves.size())
-				throw new IllegalOperation("Poll from queue didn't work.");
+			//if (mm != null) System.out.println("pobrano");
+			//else System.out.println("pobrano null");
+//			if(s == moves.size())
+//				throw new IllegalOperation("Poll from queue didn't work.");
 			return mm;
 		}
 	}

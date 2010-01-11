@@ -126,7 +126,7 @@ public class TCPSocketThread extends Thread {
 					sendQuit();
 				}
 			} catch (SocketException e) {
-				System.out.println("Watek TCP zakonczony - exeption");
+				System.out.println("Watek TCP zakonczony - socket exception");
 				viewsctrl.closeApplication();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

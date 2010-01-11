@@ -19,8 +19,9 @@ public class NetworkController {
 	private Model model;
 	private ViewsController viewsctrl;
 	private TCPSocketThread tcpThread;
-	private UDPSocketThread udpThread;
+	private UDPSocketSendThread udpSendThread;
 	private InetAddress group;
+	private UDPSocketReceiveThread udpReceiveThread;
 	
 	public NetworkController(String adres, int port, Model m, ViewsController v) throws UnknownHostException, IOException {
 		this.model = m;
@@ -34,13 +35,18 @@ public class NetworkController {
 		
 		///////////////// UDP ////////////////////////
 		///////////////// multicast //////////////////
-		udpMsocket = new MulticastSocket(555);
-		group = InetAddress.getByName("225.225.225.225");
-		udpMsocket.joinGroup(group);
-		///////////////// datagram ///////////////////
+//		udpMsocket = new MulticastSocket(555);
+//		group = InetAddress.getByName("225.225.225.225");
+//		udpMsocket.joinGroup(group);
+		///////////////// datagram send ///////////////
 		udpDsocket = new DatagramSocket(556);
-		udpThread = new UDPSocketThread(udpDsocket, adres, udpMsocket, group, m, v);
-		udpThread.setDaemon(true);
-		udpThread.start();
+		udpSendThread = new UDPSocketSendThread(udpDsocket, adres, m);
+		udpSendThread.setDaemon(true);
+		udpSendThread.start();
+		///////////////// datagram receive ////////////
+		//udpDsocket = new DatagramSocket(556);
+		udpReceiveThread = new UDPSocketReceiveThread(udpDsocket, adres, m, v);
+		udpReceiveThread.setDaemon(true);
+		udpReceiveThread.start();
 	}
 }
