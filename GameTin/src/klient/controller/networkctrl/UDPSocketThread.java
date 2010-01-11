@@ -51,7 +51,7 @@ public class UDPSocketThread extends Thread{
 					count++;
 					String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
 					msg = msg.concat(":" + 2 + "," + 2 + ":");
-					msg = msg.concat(3 + "," + 2 + "\n");
+					msg = msg.concat(2 + "," + 3 + "\n");
 					DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
         					adres, 556);
 					dSocket.send(d);
