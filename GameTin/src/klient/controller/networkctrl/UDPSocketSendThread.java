@@ -46,7 +46,6 @@ public class UDPSocketSendThread extends Thread{
 					Move move = model.workOnMoves(false, null);
 					//System.out.println("pobiera move");
 					if (move != null) {
-						System.out.println("move != null");
 						count++;
 						String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
 						msg = msg.concat(":" + move.getOldX() + "," + move.getOldY() + ":");
