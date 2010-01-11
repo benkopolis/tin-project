@@ -36,12 +36,12 @@ public class UDPSocketReceiveThread extends Thread {
 				
 					/* tokens - tablica stringow rozdzielonych dwukropkiem */
 					String[] tokens = str.split(":");
-					if (tokens == null) continue;
-					int ix = 0;
-					for (String t : tokens) {
-						ix++;
-						System.out.println("" + ix + ": " + t);
-					}
+//					if (tokens == null) continue;
+//					int ix = 0;
+//					for (String t : tokens) {
+//						ix++;
+//						System.out.println("" + ix + ": " + t);
+//					}
 					if (tokens[0].equals("coins")) {
 						System.out.println(">>" + str + ", length = " + tokens.length);
 						System.out.println("wtf " + tokens[1]);
