@@ -4,16 +4,11 @@
 package klient.view;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.util.HashMap;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import sun.java2d.loops.FontInfo;
 
 import klient.controller.ViewsController;
 import klient.model.fields.Player;
@@ -64,6 +59,11 @@ public class GameInfoView extends GameView {
 	
 	protected class ScorePanel extends JPanel {
 		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 3252661363063540935L;
+
 		public ScorePanel() {
 			
 		}

@@ -10,7 +10,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
