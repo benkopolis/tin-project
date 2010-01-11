@@ -2,6 +2,8 @@ package klient.controller;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JOptionPane;
 
@@ -28,6 +30,34 @@ public class ViewsController {
 	protected NetworkController networkController = null;
 	protected KeyboardController keyboardController = null;
 	protected Model model = new Model();
+	protected RefreshingThread rt = null;
+	
+	protected class RefreshingThread extends Thread {
+		protected LinkedBlockingQueue<Object> stoper = new LinkedBlockingQueue<Object>();
+		
+		public RefreshingThread() {
+			super();
+			setDaemon(true);
+			start();
+		}
+		
+		public void run() {
+			while(!isInterrupted()) {
+				try {
+					stoper.poll(10L, TimeUnit.MILLISECONDS);
+					refreshBoardView();
+//					refreshInfoView();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} //catch (IllegalOperation e) {
+					//e.printStackTrace();
+				//}
+				
+			}
+		}
+		
+	}
+	
 	
 	public ViewsController() {
 		getModel().getLm().createNewLevel(10, 10, false);
@@ -52,6 +82,7 @@ public class ViewsController {
 		gameBoardView.init();
 		gameInfoView.init();
 		gameBoardView.toFront();
+		rt = new RefreshingThread();
 	}
 
 	public synchronized GameOptionsView getGameOptionsView() {
