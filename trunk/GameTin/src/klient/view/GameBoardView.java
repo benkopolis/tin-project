@@ -95,6 +95,11 @@ public class GameBoardView extends GameView implements KeyListener {
 		super(viewsController);
 		setLocation(400, 200);
 		setVisible(false);
+		panel.setVisible(false);
+	}
+
+	@Override
+	public void init() {
 		setTitle("Plansza");
 		try {
 			h = this.root.getModel().getLm().getHeight();
@@ -103,11 +108,6 @@ public class GameBoardView extends GameView implements KeyListener {
 		} catch (IllegalOperation e) {
 			e.printStackTrace();
 		}
-		panel.setVisible(false);
-	}
-
-	@Override
-	public void init() {
 		panel.setLayout(new GridLayout(h, w));
 		panel.setSize(w*rectSize, h*rectSize);
 		this.add(panel);
