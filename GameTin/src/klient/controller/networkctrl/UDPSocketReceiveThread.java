@@ -7,6 +7,7 @@ import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 
 import klient.controller.ViewsController;
+import klient.model.LevelsManager;
 import klient.model.Model;
 
 public class UDPSocketReceiveThread extends Thread {
@@ -44,6 +45,7 @@ public class UDPSocketReceiveThread extends Thread {
 //					}
 					if (tokens[0].equals("coins")) {
 						System.out.println(">>" + str);
+						LevelsManager.getInstance().changeAllCoinsToGrass();
 						int coins = Integer.parseInt(tokens[1]);
 						for (int i=2; i<coins+2; i++) {
 							int x = Integer.parseInt(tokens[i].split(",")[0]);
