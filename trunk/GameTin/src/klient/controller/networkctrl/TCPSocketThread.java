@@ -137,6 +137,7 @@ public class TCPSocketThread extends Thread {
 			}
 		}
 		System.out.println("Watek TCP zakonczony");
+		viewsctrl.closeApplication();
 	}
 
 	/**
