@@ -72,7 +72,7 @@ public class UDPSocketReceiveThread extends Thread {
 					this.interrupt();
 				}
 			} catch (NullPointerException e) {
-					
+					System.out.println("czemu jest null point exc? :(");
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
