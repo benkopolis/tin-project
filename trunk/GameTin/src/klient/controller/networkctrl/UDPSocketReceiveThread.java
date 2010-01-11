@@ -78,6 +78,12 @@ public class UDPSocketReceiveThread extends Thread {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+			try {
+				sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catchblock
+				e.printStackTrace();
+			}
 		}
 		System.out.println("Watek UDP zakonczony");
 	}
