@@ -38,9 +38,10 @@ public class Model extends Observable {
 	/* ustawienie id i nick'a innych graczy */
 	public Player addPlayer(String nick, int id) {
 		Player p = new Player(id, nick);
-		players.add(new PlayerInfo(p , 0, 0));
-		if(nick == localPlayerNick)
-			localPlayerId = id;
+		PlayerInfo pi = new PlayerInfo(p , 0, 0);
+		players.add(pi);
+		if(id == localPlayerId)
+			localPlayerInfo = pi;
 		return p;
 	}
 
