@@ -39,7 +39,7 @@ public class UDPSocketThread extends Thread{
 				if (model.isGameOn() && (model.isGameOff() == false)) {
 					Move move = model.workOnMoves(false, null);
 					if (move != null) {
-						count++;
+						count++; count--; count++;
 						System.out.println("Move is polled " + count);
 						String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
 						msg = msg.concat(":" + move.getOldX() + "," + move.getNewY() + ":");
