@@ -17,35 +17,35 @@ public class Move {
 		newX = nx;
 	}
 
-	public synchronized int getOldX() {
+	public int getOldX() {
 		return oldX;
 	}
 
-	public synchronized void setOldX(int oldX) {
+	public void setOldX(int oldX) {
 		this.oldX = oldX;
 	}
 
-	public synchronized int getOldY() {
+	public int getOldY() {
 		return oldY;
 	}
 
-	public synchronized void setOldY(int oldY) {
+	public void setOldY(int oldY) {
 		this.oldY = oldY;
 	}
 
-	public synchronized int getNewX() {
+	public int getNewX() {
 		return newX;
 	}
 
-	public synchronized void setNewX(int newX) {
+	public void setNewX(int newX) {
 		this.newX = newX;
 	}
 
-	public synchronized int getNewY() {
+	public int getNewY() {
 		return newY;
 	}
 
-	public synchronized void setNewY(int newY) {
+	public void setNewY(int newY) {
 		this.newY = newY;
 	}
 	

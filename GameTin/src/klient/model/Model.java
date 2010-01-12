@@ -65,37 +65,37 @@ public class Model extends Observable {
 		}
 	}
 
-	public synchronized LevelsManager getLm() {
+	public  LevelsManager getLm() {
 		return lm;
 	}
 
-	public synchronized void setLm(LevelsManager lm) {
+	public  void setLm(LevelsManager lm) {
 		this.lm = lm;
 	}
 
-	public synchronized List<PlayerInfo> getPlayers() {
+	public  List<PlayerInfo> getPlayers() {
 		return players;
 	}
 
-	public synchronized void setPlayers(List<PlayerInfo> players) {
+	public  void setPlayers(List<PlayerInfo> players) {
 		this.players = players;
 	}
 
 	/* funkcja ma ustawiac zmienna (ktora wskazuje czy gra jest w toku) na true */
-	public synchronized void startGame() {
+	public  void startGame() {
 		this.gameOn = true;
 	}
 	
-	public synchronized void endGame() {
+	public  void endGame() {
 		this.gameOff = true;
 		this.gameOn = false;
 	}
 	
-	public synchronized boolean isGameOn() {
+	public  boolean isGameOn() {
 		return gameOn;
 	}
 	
-	public synchronized boolean isGameOff() {
+	public  boolean isGameOff() {
 		return gameOff;
 	}
 
@@ -108,23 +108,23 @@ public class Model extends Observable {
 		
 	}
 
-	public synchronized int getLocalPlayerId() {
+	public  int getLocalPlayerId() {
 		return localPlayerId;
 	}
 
-	public synchronized void setLocalPlayerId(int localPlayerId) {
+	public  void setLocalPlayerId(int localPlayerId) {
 		this.localPlayerId = localPlayerId;
 	}
 
-	public synchronized String getLocalPlayerNick() {
+	public  String getLocalPlayerNick() {
 		return localPlayerNick;
 	}
 
-	public synchronized void setLocalPlayerNick(String localPlayerNick) {
+	public  void setLocalPlayerNick(String localPlayerNick) {
 		this.localPlayerNick = localPlayerNick;
 	}
 
-	public synchronized void setGameOn(boolean gameOn) {
+	public  void setGameOn(boolean gameOn) {
 		this.gameOn = gameOn;
 	}
 
@@ -143,19 +143,19 @@ public class Model extends Observable {
 
 
 
-	public synchronized PlayerInfo getLocalPlayerInfo() {
+	public  PlayerInfo getLocalPlayerInfo() {
 		return localPlayerInfo;
 	}
 
 
 
-	public synchronized void setLocalPlayerInfo(PlayerInfo localPlayerInfo) {
+	public  void setLocalPlayerInfo(PlayerInfo localPlayerInfo) {
 		this.localPlayerInfo = localPlayerInfo;
 	}
 
 
 
-	public synchronized Move workOnMoves(boolean insert, Move m) throws InterruptedException, IllegalOperation {
+	public  Move workOnMoves(boolean insert, Move m) throws InterruptedException, IllegalOperation {
 		int s = moves.size();
 		if(insert) {
 			moves.put(m);
@@ -175,23 +175,23 @@ public class Model extends Observable {
 
 
 
-	protected synchronized void setMoves(LinkedBlockingQueue<Move> moves) {
+	protected  void setMoves(LinkedBlockingQueue<Move> moves) {
 		this.moves = moves;
 	}
 
-	public synchronized Coin getLocalCoin() {
+	public  Coin getLocalCoin() {
 		return localCoin;
 	}
 
-	public synchronized void setLocalCoin(Coin localCoin) {
+	public  void setLocalCoin(Coin localCoin) {
 		this.localCoin = localCoin;
 	}
 
-	public synchronized Grass getLocalGrass() {
+	public  Grass getLocalGrass() {
 		return localGrass;
 	}
 
-	public synchronized void setLocalGrass(Grass localGrass) {
+	public  void setLocalGrass(Grass localGrass) {
 		this.localGrass = localGrass;
 	}
 
