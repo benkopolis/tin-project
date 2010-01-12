@@ -21,6 +21,10 @@ import klient.view.GameOptionsView;
  * @author zby
  *
  * G³ówny kontroler programu. Odpala widok pocz¹tkowy.
+ * TODO Widoki gry, powinny byc odpalane na zadanie watku TCP
+ * TODO Widok punktacji, powinien byc dostepny tylko dla jednego watku - tcp sie na nim chyba zawiesza
+ * TODO Model powinien byc Observable, a ViewsController Observer
+ * TODO UDPSender powinien byc klasa tworzona i uzywana przez ViewsControllera, wysylanie pakietow UDP tylko w reakcji na odpowiednie zmiany modelu
  */
 public class ViewsController {
 
