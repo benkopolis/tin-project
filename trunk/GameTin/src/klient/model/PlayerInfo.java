@@ -24,39 +24,39 @@ public class PlayerInfo {
 		this.y = y;
 	}
 
-	public synchronized Player getPlayer() {
+	public Player getPlayer() {
 		return player;
 	}
 
-	public synchronized void setPlayer(Player player) {
+	public void setPlayer(Player player) {
 		this.player = player;
 	}
 
-	public synchronized int getX() {
+	public int getX() {
 		return x;
 	}
 
-	public synchronized void setX(int x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 
-	public synchronized int getY() {
+	public int getY() {
 		return y;
 	}
 
-	public synchronized void setY(int y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 
-	public synchronized boolean isOnCoin() {
+	public boolean isOnCoin() {
 		return onCoin;
 	}
 
-	public synchronized void setOnCoin(boolean onCoin) {
+	public void setOnCoin(boolean onCoin) {
 		this.onCoin = onCoin;
 	}
 	
-	public synchronized boolean isVisible(int x, int y) {
+	public boolean isVisible(int x, int y) {
 		if(x == this.x || y == this.y)
 			return true;
 		else 

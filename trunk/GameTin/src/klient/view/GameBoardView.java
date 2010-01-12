@@ -57,6 +57,7 @@ public class GameBoardView extends GameView implements KeyListener {
 			try {
 				if (root.getModel().getLocalPlayerInfo() == null)
 					return;
+				System.out.println("fillBoord");
 				int i=0;
 				int j=root.getModel().getLocalPlayerInfo().getY();
 				for(i=0; i<root.getModel().getLm().getWidth(); ++i) {
@@ -178,6 +179,7 @@ public class GameBoardView extends GameView implements KeyListener {
 		} catch (IllegalOperation e) {
 			e.printStackTrace();
 		}
+		System.out.println("RepaintBoard before invalidate.");
 		panel.invalidate();
 		panel.repaint();
 //		panel.paintComponent(getGraphics());
