@@ -73,7 +73,7 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 		setTitle("Okno opcji gry w zbieranie monet");
 		labels[FieldKind.IP_FIELD.ordinal()].setSize(100, 30);
 		textFields[FieldKind.IP_FIELD.ordinal()].setSize(100, 30);
-		textFields[FieldKind.IP_FIELD.ordinal()].setText("192.168.47.117");
+		textFields[FieldKind.IP_FIELD.ordinal()].setText("192.168.47.138");
 		labels[FieldKind.HOST_FIELD.ordinal()].setSize(100, 30);
 		textFields[FieldKind.HOST_FIELD.ordinal()].setSize(100, 30);
 		labels[FieldKind.NICK_FIELD.ordinal()].setSize(100, 30);
