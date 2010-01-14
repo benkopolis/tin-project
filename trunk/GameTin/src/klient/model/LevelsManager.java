@@ -150,6 +150,7 @@ public class LevelsManager {
 		if (message == null) throw new IllegalArgumentException("Message is null.");
 
 		String[] tokens = message.split(";");
+	System.out.println(message);
 		for(String s: tokens)
 			System.out.println(s);
 		if (tokens == null || tokens.length != 3) throw new IllegalArgumentException("Message is not a valid level.");
