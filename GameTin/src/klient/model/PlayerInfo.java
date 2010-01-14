@@ -69,20 +69,22 @@ public class PlayerInfo {
 		
 		if ((Math.abs(this.x - x) <= 2) && (Math.abs(this.y - y) <= 2)) {
 				if(x == this.x && y == this.y)
-				return true;
+					return true;
 				boolean res = false;
 //				for (int temp = Math.abs(this.x - x)-2; temp < Math.abs(this.x - x) + 2; temp++) {
-				for (int temp = -2; temp < 2; temp++)
+				for (int temp = -2; temp < 2; temp++) {
 					res = (LevelsManager.getInstance().isWallBetweenV(this.x+temp,this.y, x+temp,y));
-//				}
-				if (res == false) {
+					if (res == false) return false;
+				}
+				if (res == true) {
 //				for (int temp = Math.abs(this.y - y)-2; temp < Math.abs(this.y - y) + 2; temp++) {
-					for (int temp = -2; temp < 2; temp++)
+					for (int temp = -2; temp < 2; temp++) {
 						res = (LevelsManager.getInstance().isWallBetwee1nH(this.x, this.y+temp, x,y+temp));
-	//				}
+						if (res == false) return false;
+					}
 					
 				}
-				return res;
+				return true;
 		}
 		return false;
 	}
