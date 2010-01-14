@@ -92,52 +92,52 @@ public class ViewsController {
 		rt = new RefreshingThread();
 	}
 
-	public  GameOptionsView getGameOptionsView() {
+	public GameOptionsView getGameOptionsView() {
 		return gameOptionsView;
 	}
 
-	public  void setGameOptionsView(GameOptionsView gameOptionsView) {
+	public void setGameOptionsView(GameOptionsView gameOptionsView) {
 		this.gameOptionsView = gameOptionsView;
 	}
 
-	public  GameInfoView getGameInfoView() {
+	public GameInfoView getGameInfoView() {
 		return gameInfoView;
 	}
 
-	public  void setGameInfoView(GameInfoView gameInfoView) {
+	public void setGameInfoView(GameInfoView gameInfoView) {
 		this.gameInfoView = gameInfoView;
 	}
 
-	public  GameBoardView getGameBoardView() {
+	public GameBoardView getGameBoardView() {
 		return gameBoardView;
 	}
 
-	public  void setGameBoardView(GameBoardView gameBoardView) {
+	public void setGameBoardView(GameBoardView gameBoardView) {
 		this.gameBoardView = gameBoardView;
 	}
 
-	public  NetworkController getNetworkController() {
+	public NetworkController getNetworkController() {
 		return networkController;
 	}
 
-	public  void setNetworkController(
+	public void setNetworkController(
 			NetworkController networkController) {
 		this.networkController = networkController;
 	}
 
-	public  Model getModel() {
+	public Model getModel() {
 		return model;
 	}
 
-	public  void setModel(Model model) {
+	public void setModel(Model model) {
 		this.model = model;
 	}
 
-	public  KeyboardController getKeyboardController() {
+	public KeyboardController getKeyboardController() {
 		return keyboardController;
 	}
 
-	public  void setKeyboardController(
+	public void setKeyboardController(
 			KeyboardController keyboardController) {
 		this.keyboardController = keyboardController;
 	}
@@ -158,7 +158,7 @@ public class ViewsController {
 	 * Pierwsze wywo�anie powinno nast�pic dopiero po starcie gry - 
 	 * gdy wszyscy gracze sa juz dodani.
 	 */
-	public  void refreshInfoView() throws IllegalOperation {
+	public void refreshInfoView() throws IllegalOperation {
 		if(model.isGameOn()==false)
 			throw new IllegalOperation("Nie mozna odswierzac, zanim zaczela sie rozgrywka");
 		gameInfoView.refresh();
