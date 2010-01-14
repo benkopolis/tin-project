@@ -18,8 +18,8 @@ import klient.model.fields.Wall;
 
 
 /**
- * Klasa udostêpniaj¹ca poziom gry. Umo¿liwia za³adowanie go 
- * z zewnêtrznego pliku, jak i utworzenie w czasie dzia³ania aplikacji.
+ * Klasa udostï¿½pniajï¿½ca poziom gry. Umoï¿½liwia zaï¿½adowanie go 
+ * z zewnï¿½trznego pliku, jak i utworzenie w czasie dziaï¿½ania aplikacji.
  * <br><br>
  * Jest zbudowany w oparciu o wzorzec singletone'a.
  * <br><br>
@@ -30,16 +30,16 @@ import klient.model.fields.Wall;
 public class LevelsManager {
 	
 	/**
-	 * Tablica dwuwymiarowa przechowuj¹ca planszê.
+	 * Tablica dwuwymiarowa przechowujï¿½ca planszï¿½.
 	 */
 	private Field[][] level;
 	
 	/**
-	 * Szerokoœæ planszy.
+	 * Szerokoï¿½ï¿½ planszy.
 	 */
 	private int width;	
 	/**
-	 * Wysokoœæ planszy.
+	 * Wysokoï¿½ï¿½ planszy.
 	 */
 	private int height;
 	
@@ -49,7 +49,7 @@ public class LevelsManager {
 	private static LevelsManager instance = null;
 	
 	/**
-	 * Prywatny (ze wzglêdu na singleton) konstruktor klasy.
+	 * Prywatny (ze wzglï¿½du na singleton) konstruktor klasy.
 	 */
 	private LevelsManager() {
 		createNewLevel(10, 10, true);
@@ -65,10 +65,10 @@ public class LevelsManager {
 	}
 	
 	/**
-	 * Tworzy now¹ planszê (usuwaj¹c star¹, jeœli by³a za³adowana do pamiêci).
-	 * @param width - szerokoœæ (w polach)
-	 * @param height - wysokoœæ (w polach)
-	 * @param borders - czy nale¿y od razu utworzyæ obramowanie ?
+	 * Tworzy nowï¿½ planszï¿½ (usuwajï¿½c starï¿½, jeï¿½li byï¿½a zaï¿½adowana do pamiï¿½ci).
+	 * @param width - szerokoï¿½ï¿½ (w polach)
+	 * @param height - wysokoï¿½ï¿½ (w polach)
+	 * @param borders - czy naleï¿½y od razu utworzyï¿½ obramowanie ?
 	 */
 	public void createNewLevel(int width, int height, boolean borders) {
 		level = new Field[width][height];
@@ -86,9 +86,9 @@ public class LevelsManager {
 	}
 	
 	/**
-	 * Zwraca planszê w postaci tekstowej.
+	 * Zwraca planszï¿½ w postaci tekstowej.
 	 * @return String - zapis planszy w postaci tekstowej
-	 * @throws IllegalOperation - gdy poziom nie zosta³ utworzony/wczytany 
+	 * @throws IllegalOperation - gdy poziom nie zostaï¿½ utworzony/wczytany 
 	 */
 	public String levelToString(boolean showColsAndRows) throws IllegalOperation {
 		if (level == null) throw new IllegalOperation("Level is not created !");
@@ -118,11 +118,11 @@ public class LevelsManager {
 	}
 	
 	/**
-	 * Metoda, która zapisuje zawartoœæ planszy do Stringa, który nadaje siê
-	 * bezpoœrednio do wys³ania przez sieæ.
+	 * Metoda, ktï¿½ra zapisuje zawartoï¿½ï¿½ planszy do Stringa, ktï¿½ry nadaje siï¿½
+	 * bezpoï¿½rednio do wysï¿½ania przez sieï¿½.
 	 * <br><br>
 	 * Format: <br>
-	 * szerokoœæ;wysokoœæ;kolejne pola zapisane wierszami od 0 do getHeight()-1;
+	 * szerokoï¿½ï¿½;wysokoï¿½ï¿½;kolejne pola zapisane wierszami od 0 do getHeight()-1;
 	 * @return String
 	 * @throws IllegalOperation - gdy plansza nie jest utworzona
 	 */
@@ -142,7 +142,7 @@ public class LevelsManager {
 	}
 	
 	/**
-	 * Wczytuje zawartoœæ planszy ze stringa wygenerowanego poprzez u¿ycie metody levelToMessage().
+	 * Wczytuje zawartoï¿½ï¿½ planszy ze stringa wygenerowanego poprzez uï¿½ycie metody levelToMessage().
 	 * @param String message - string z zapisana plansza
 	 * @throws IllegalOperation 
 	 */
@@ -182,8 +182,8 @@ public class LevelsManager {
 	}
 
 	/**
-	 * @return wysokoœæ planszy
-	 * @throws IllegalOperation - gdy poziom nie zosta³ utworzony/wczytany
+	 * @return wysokoï¿½ï¿½ planszy
+	 * @throws IllegalOperation - gdy poziom nie zostaï¿½ utworzony/wczytany
 	 */
 	public int getHeight() throws IllegalOperation {
 		if (level == null) throw new IllegalOperation("Level is not created !");
@@ -191,8 +191,8 @@ public class LevelsManager {
 	}
 
 	/**
-	 * @return szerokoœæ planszy
-	 * @throws IllegalOperation - gdy poziom nie zosta³ utworzony/wczytany
+	 * @return szerokoï¿½ï¿½ planszy
+	 * @throws IllegalOperation - gdy poziom nie zostaï¿½ utworzony/wczytany
 	 */
 	public int getWidth() throws IllegalOperation {
 		if (level == null) throw new IllegalOperation("Level is not created !");
@@ -200,12 +200,12 @@ public class LevelsManager {
 	}
 	
 	/**
-	 * Umo¿liwia pobranie pola o wspó³rzêdnych podanych w argumentach.
+	 * Umoï¿½liwia pobranie pola o wspï¿½rzï¿½dnych podanych w argumentach.
 	 * @param x - wsp. X
 	 * @param y - wsp. Y
-	 * @param loop - czy wspó³rzêdne nale¿y najpierw "potraktowaæ": mod width (mod height) ?
+	 * @param loop - czy wspï¿½rzï¿½dne naleï¿½y najpierw "potraktowaï¿½": mod width (mod height) ?
 	 * @return pole z planszy
-	 * @throws IllegalOperation - gdy plansza nie zosta³a utworzona, badŸ nie istnieje pole o okreœlonych wspó³rzêdnych
+	 * @throws IllegalOperation - gdy plansza nie zostaï¿½a utworzona, badï¿½ nie istnieje pole o okreï¿½lonych wspï¿½rzï¿½dnych
 	 */
 	public Field getField(int x, int y, boolean loop) throws IllegalOperation {
 		//if (level == null) throw new IllegalOperation("Level is not created !");
@@ -224,8 +224,8 @@ public class LevelsManager {
 	 * Ustawia pole na planszy.
 	 * @param x - wsp. X
 	 * @param y - wsp. Y
-	 * @param field - rodzaj pola (œciana, trawa, etc.)
-	 * @throws IllegalOperation - gdy field == null, gdy poziom nie zosta³ utworzony/za³adowany, gdy podano z³e wspó³rzêdne.
+	 * @param field - rodzaj pola (ï¿½ciana, trawa, etc.)
+	 * @throws IllegalOperation - gdy field == null, gdy poziom nie zostaï¿½ utworzony/zaï¿½adowany, gdy podano zï¿½e wspï¿½rzï¿½dne.
 	 */
 	public void setField(int x, int y, Field field) throws IllegalOperation {
 		if (field == null) throw new IllegalOperation("Field can not be null !");
@@ -237,10 +237,10 @@ public class LevelsManager {
 	}
 	
 	/**
-	 * £aduje level z pliku tekstowego.
-	 * @param filename - œcie¿ka do pliku
-	 * @throws FileNotFoundException - gdy okreœlonego pliku nie mo¿na znaleŸæ
-	 * @throws IOException - gdy wyst¹pi³ b³¹d w readLine()
+	 * ï¿½aduje level z pliku tekstowego.
+	 * @param filename - ï¿½cieï¿½ka do pliku
+	 * @throws FileNotFoundException - gdy okreï¿½lonego pliku nie moï¿½na znaleï¿½ï¿½
+	 * @throws IOException - gdy wystï¿½piï¿½ bï¿½ï¿½d w readLine()
 	 */
 	public void loadFromFile(String filename) throws FileNotFoundException, IOException {
 		FileReader fr = new FileReader (filename);//new File("SampleLevel.txt"));
@@ -252,7 +252,7 @@ public class LevelsManager {
 		Field[] temp;
 		String line = br.readLine();
 		while (line != null) {
-			if (lineNr == 0) { // wczytywanie szerokoœci planszy
+			if (lineNr == 0) { // wczytywanie szerokoï¿½ci planszy
 				rowLength = line.length();
 			} else {
 				if (line.length() != rowLength) {
@@ -301,7 +301,7 @@ public class LevelsManager {
 	}
 	
 	/**
-	 * Zwraca wektor wype³niony pozycjami monet na planszy.
+	 * Zwraca wektor wypeï¿½niony pozycjami monet na planszy.
 	 * @return
 	 */
 	public Vector<CoinPosition> getCoinsPositions() {
@@ -317,7 +317,7 @@ public class LevelsManager {
 	}
 	
 	/**
-	 * Zmienia wszystkie monety na planszy w trawê.
+	 * Zmienia wszystkie monety na planszy w trawï¿½.
 	 */
 	public void changeAllCoinsToGrass() {
 		for (int x = 0; x < width; x++) {
@@ -327,6 +327,40 @@ public class LevelsManager {
 				}
 			}
 		}		
+	}
+
+	public boolean isWallBetweenV(int x, int y, int x2, int y2) {
+		int j = 0;
+		int end = 0;
+		if(y < y2) {
+			j = y;
+			end = y2;
+		} else {
+			j = y2;
+			end = y;
+		}
+		for(; j<end; j++) {
+			if(this.level[x][j] instanceof Wall)
+				return false;
+		}
+		return true;
+	}
+
+	public boolean isWallBetwee1nH(int x, int y, int x2, int y2) {
+		int j = 0;
+		int end = 0;
+		if(x < x2) {
+			j = x;
+			end = x2;
+		} else {
+			j = x2;
+			end = x;
+		}
+		for(; j<end; j++) {
+			if(this.level[j][y] instanceof Wall)
+				return false;
+		}
+		return true;
 	}
 	
 //	public synchronized Field[][] getLevel() {
@@ -351,8 +385,8 @@ public class LevelsManager {
 //import klient.model.fields.Wall;
 //
 ///**
-// * Klasa udostêpniaj¹ca poziom gry. Umo¿liwia za³adowanie go 
-// * z zewnêtrznego pliku, jak i utworzenie w czasie dzia³ania aplikacji.
+// * Klasa udostï¿½pniajï¿½ca poziom gry. Umoï¿½liwia zaï¿½adowanie go 
+// * z zewnï¿½trznego pliku, jak i utworzenie w czasie dziaï¿½ania aplikacji.
 // * <br><br>
 // * Jest zbudowany w oparciu o wzorzec singletone'a.
 // * <br><br>
@@ -363,16 +397,16 @@ public class LevelsManager {
 //public class LevelsManager {
 //	
 //	/**
-//	 * Tablica dwuwymiarowa przechowuj¹ca planszê.
+//	 * Tablica dwuwymiarowa przechowujï¿½ca planszï¿½.
 //	 */
 //	private Field[][] level;
 //	
 //	/**
-//	 * Szerokoœæ planszy.
+//	 * Szerokoï¿½ï¿½ planszy.
 //	 */
 //	private int width;	
 //	/**
-//	 * Wysokoœæ planszy.
+//	 * Wysokoï¿½ï¿½ planszy.
 //	 */
 //	private int height;
 //	
@@ -382,7 +416,7 @@ public class LevelsManager {
 //	private static LevelsManager instance = null;
 //	
 //	/**
-//	 * Prywatny (ze wzglêdu na singleton) konstruktor klasy.
+//	 * Prywatny (ze wzglï¿½du na singleton) konstruktor klasy.
 //	 */
 //	private LevelsManager() {
 //		//...
@@ -398,10 +432,10 @@ public class LevelsManager {
 //	}
 //	
 //	/**
-//	 * Tworzy now¹ planszê (usuwaj¹c star¹, jeœli by³a za³adowana do pamiêci).
-//	 * @param width - szerokoœæ (w polach)
-//	 * @param height - wysokoœæ (w polach)
-//	 * @param borders - czy nale¿y od razu utworzyæ obramowanie ?
+//	 * Tworzy nowï¿½ planszï¿½ (usuwajï¿½c starï¿½, jeï¿½li byï¿½a zaï¿½adowana do pamiï¿½ci).
+//	 * @param width - szerokoï¿½ï¿½ (w polach)
+//	 * @param height - wysokoï¿½ï¿½ (w polach)
+//	 * @param borders - czy naleï¿½y od razu utworzyï¿½ obramowanie ?
 //	 */
 //	public void createNewLevel(int width, int height, boolean borders) {
 //		level = new Field[width][height];
@@ -419,9 +453,9 @@ public class LevelsManager {
 //	}
 //	
 //	/**
-//	 * Zwraca planszê w postaci tekstowej.
+//	 * Zwraca planszï¿½ w postaci tekstowej.
 //	 * @return String - zapis planszy w postaci tekstowej
-//	 * @throws IllegalOperation - gdy poziom nie zosta³ utworzony/wczytany 
+//	 * @throws IllegalOperation - gdy poziom nie zostaï¿½ utworzony/wczytany 
 //	 */
 //	public String levelToString(boolean showColsAndRows) throws IllegalOperation {
 //		if (level == null) throw new IllegalOperation("Level is not created !");
@@ -451,11 +485,11 @@ public class LevelsManager {
 //	}
 //	
 //	/**
-//	 * Metoda, która zapisuje zawartoœæ planszy do Stringa, który nadaje siê
-//	 * bezpoœrednio do wys³ania przez sieæ.
+//	 * Metoda, ktï¿½ra zapisuje zawartoï¿½ï¿½ planszy do Stringa, ktï¿½ry nadaje siï¿½
+//	 * bezpoï¿½rednio do wysï¿½ania przez sieï¿½.
 //	 * <br><br>
 //	 * Format: <br>
-//	 * szerokoœæ;wysokoœæ;kolejne pola zapisane wierszami od 0 do getHeight()-1;
+//	 * szerokoï¿½ï¿½;wysokoï¿½ï¿½;kolejne pola zapisane wierszami od 0 do getHeight()-1;
 //	 * @return String
 //	 * @throws IllegalOperation - gdy plansza nie jest utworzona
 //	 */
@@ -475,7 +509,7 @@ public class LevelsManager {
 //	}
 //	
 //	/**
-//	 * Wczytuje zawartoœæ planszy ze stringa wygenerowanego poprzez u¿ycie metody levelToMessage().
+//	 * Wczytuje zawartoï¿½ï¿½ planszy ze stringa wygenerowanego poprzez uï¿½ycie metody levelToMessage().
 //	 * @param String message - string z zapisana plansza
 //	 * @throws IllegalOperation 
 //	 */
@@ -515,8 +549,8 @@ public class LevelsManager {
 //	}
 //
 //	/**
-//	 * @return wysokoœæ planszy
-//	 * @throws IllegalOperation - gdy poziom nie zosta³ utworzony/wczytany
+//	 * @return wysokoï¿½ï¿½ planszy
+//	 * @throws IllegalOperation - gdy poziom nie zostaï¿½ utworzony/wczytany
 //	 */
 //	public int getHeight() throws IllegalOperation {
 //		if (level == null) throw new IllegalOperation("Level is not created !");
@@ -524,8 +558,8 @@ public class LevelsManager {
 //	}
 //
 //	/**
-//	 * @return szerokoœæ planszy
-//	 * @throws IllegalOperation - gdy poziom nie zosta³ utworzony/wczytany
+//	 * @return szerokoï¿½ï¿½ planszy
+//	 * @throws IllegalOperation - gdy poziom nie zostaï¿½ utworzony/wczytany
 //	 */
 //	public int getWidth() throws IllegalOperation {
 //		if (level == null) throw new IllegalOperation("Level is not created !");
@@ -533,12 +567,12 @@ public class LevelsManager {
 //	}
 //	
 //	/**
-//	 * Umo¿liwia pobranie pola o wspó³rzêdnych podanych w argumentach.
+//	 * Umoï¿½liwia pobranie pola o wspï¿½rzï¿½dnych podanych w argumentach.
 //	 * @param x - wsp. X
 //	 * @param y - wsp. Y
-//	 * @param loop - czy wspó³rzêdne nale¿y najpierw "potraktowaæ": mod width (mod height) ?
+//	 * @param loop - czy wspï¿½rzï¿½dne naleï¿½y najpierw "potraktowaï¿½": mod width (mod height) ?
 //	 * @return pole z planszy
-//	 * @throws IllegalOperation - gdy plansza nie zosta³a utworzona, badŸ nie istnieje pole o okreœlonych wspó³rzêdnych
+//	 * @throws IllegalOperation - gdy plansza nie zostaï¿½a utworzona, badï¿½ nie istnieje pole o okreï¿½lonych wspï¿½rzï¿½dnych
 //	 */
 //	public Field getField(int x, int y, boolean loop) throws IllegalOperation {
 //		if (level == null) throw new IllegalOperation("Level is not created !");
@@ -557,8 +591,8 @@ public class LevelsManager {
 //	 * Ustawia pole na planszy.
 //	 * @param x - wsp. X
 //	 * @param y - wsp. Y
-//	 * @param field - rodzaj pola (œciana, trawa, etc.)
-//	 * @throws IllegalOperation - gdy field == null, gdy poziom nie zosta³ utworzony/za³adowany, gdy podano z³e wspó³rzêdne.
+//	 * @param field - rodzaj pola (ï¿½ciana, trawa, etc.)
+//	 * @throws IllegalOperation - gdy field == null, gdy poziom nie zostaï¿½ utworzony/zaï¿½adowany, gdy podano zï¿½e wspï¿½rzï¿½dne.
 //	 */
 //	public void setField(int x, int y, Field field) throws IllegalOperation {
 //		if (field == null) throw new IllegalOperation("Field can not be null !");
@@ -570,10 +604,10 @@ public class LevelsManager {
 //	}
 //	
 //	/**
-//	 * £aduje level z pliku tekstowego.
-//	 * @param filename - œcie¿ka do pliku
-//	 * @throws FileNotFoundException - gdy okreœlonego pliku nie mo¿na znaleŸæ
-//	 * @throws IOException - gdy wyst¹pi³ b³¹d w readLine()
+//	 * ï¿½aduje level z pliku tekstowego.
+//	 * @param filename - ï¿½cieï¿½ka do pliku
+//	 * @throws FileNotFoundException - gdy okreï¿½lonego pliku nie moï¿½na znaleï¿½ï¿½
+//	 * @throws IOException - gdy wystï¿½piï¿½ bï¿½ï¿½d w readLine()
 //	 */
 //	public void loadFromFile(String filename) throws FileNotFoundException, IOException {
 //		FileReader fr = new FileReader (new File("SampleLevel.txt"));
@@ -585,7 +619,7 @@ public class LevelsManager {
 //		Field[] temp;
 //		String line = br.readLine();
 //		while (line != null) {
-//			if (lineNr == 0) { // wczytywanie szerokoœci planszy
+//			if (lineNr == 0) { // wczytywanie szerokoï¿½ci planszy
 //				rowLength = line.length();
 //			} else {
 //				if (line.length() != rowLength) {

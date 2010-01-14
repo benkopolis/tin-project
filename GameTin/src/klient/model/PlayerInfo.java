@@ -57,10 +57,15 @@ public class PlayerInfo {
 	}
 	
 	public boolean isVisible(int x, int y) {
-		if(x == this.x || y == this.y)
+		if(x == this.x && y == this.y)
 			return true;
-		else 
-			return false;
+		if (this.x == x) {
+			return !(LevelsManager.getInstance().isWallBetweenV(this.x,this.y, x,y));
+		}
+		if (this.y == y){
+			return !(LevelsManager.getInstance().isWallBetwee1nH(this.x, this.y, x,y));
+		}
+		return false;
 	}
 	
 }
