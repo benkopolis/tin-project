@@ -57,7 +57,7 @@ public class GameBoardView extends GameView implements KeyListener {
 			try {
 				if (root.getModel().getLocalPlayerInfo() == null)
 					return;
-				System.out.println("fillBoord");
+//				System.out.println("fillBoord");
 				int i=0;
 				int j=root.getModel().getLocalPlayerInfo().getY();
 				for(i=0; i<root.getModel().getLm().getWidth(); ++i) {
