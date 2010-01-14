@@ -84,7 +84,7 @@ public class ViewsController {
 			System.exit(0);
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Blad polaczenia - nie ma takiego serwera - IOError", "Error", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
+//			e.printStackTrace();
 			System.exit(0);
 		}
 	}
