@@ -33,15 +33,6 @@ public class UDPSocketSendThread extends Thread{
 		while(!isInterrupted()) {
 			try {
 				if (model.isGameOn() && (model.isGameOff() == false)) {
-//					String msg1 = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
-//					msg1 = msg1.concat(":" + 1 + "," + 1 + ":");
-//					msg1 = msg1.concat(1 + "," + 1 + "\n");
-//					
-//					DatagramPacket d1 = new DatagramPacket(msg1.getBytes(), msg1.length(),
-//		                            					adres, 556);
-//					dSocket.send(d1);
-//					System.out.print("<<<<" + msg1);
-					//////////////////////////////////////////////////
 					
 					Move move = model.workOnMoves(false, null);
 					if (move != null) {
@@ -55,28 +46,8 @@ public class UDPSocketSendThread extends Thread{
 						dSocket.send(d);
 						System.out.print("<<" + msg);
 					}
-//					count++;
-//					String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
-//					msg = msg.concat(":" + 2 + "," + 2 + ":");
-//					msg = msg.concat(3 + "," + 2 + "\n");
-//					DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
-//        					adres, 556);
-//					dSocket.send(d);
-//					System.out.print("<<" + msg);
-					////////////////////////////////////
-//					String msg2 = "Hello\n";
-//					System.out.print("<<" + msg2);
-//					MulticastSocket s = new MulticastSocket(555);
-//					s.joinGroup(group);
-//					DatagramPacket hi = new DatagramPacket(msg2.getBytes(), msg2.length(),
-//					                             group, 555);
-//					mSocket.send(hi);
-//					System.out.println("<<" + msg2 + "!");
-
-					////////////////////////////////////
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
-					//TODO: sokety
 					System.out.println("Watek UDP zakonczony (interrupt)");
 					//mSocket.leaveGroup(group);
 					this.interrupt();

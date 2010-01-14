@@ -45,7 +45,7 @@ public class TCPSocketThread extends Thread {
 				if ((model.isGameOn() == false) && (model.isGameOff() == false)){
 					/* tab - tablica przeslanych pakietow */
 					String[] tab = InputReader.getStringsFromPacket(socket.getInputStream());
-					System.out.println(">>" + tab[0]);
+					//System.out.println(">>" + tab[0]);
 					/* t - linia stringa, ktora jest pakietem */
 					if (tab == null) {
 						System.out.println("Watek TCP zakonczony");
@@ -56,11 +56,13 @@ public class TCPSocketThread extends Thread {
 						String[] tokens = t.split(":");
 						// klient zaakceptowany
 						if(tokens[0].equals("allow")) {
+							System.out.println(">>" + t);
 							int ID = Integer.parseInt(tokens[1]);
 							model.setLocalPlayerId(ID);
 							//JOptionPane.showMessageDialog(null, "Gra rozpocznie sie, gdy pojawi sie okno z informacjami o innych graczach.\n Prosze czekac.\n");
 						}
 						else if (tokens[0].equals("deny")) {
+							System.out.println(">>" + t);
 							model.endGame();
 							JOptionPane.showMessageDialog(null, tokens[1]);
 							viewsctrl.closeApplication();
