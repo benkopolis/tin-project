@@ -46,6 +46,9 @@ public class ViewsController {
 		}
 		
 		public void run() {
+			gameBoardView.init();
+			gameInfoView.init();
+			gameBoardView.toFront();
 			while(!isInterrupted()) {
 				try {
 					stoper.poll(10L, TimeUnit.MILLISECONDS);
@@ -86,9 +89,6 @@ public class ViewsController {
 	}
 
 	public void startPlayViews() {
-		gameBoardView.init();
-		gameInfoView.init();
-		gameBoardView.toFront();
 		rt = new RefreshingThread();
 	}
 
