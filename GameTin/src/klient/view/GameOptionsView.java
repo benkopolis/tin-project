@@ -105,6 +105,7 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 	}
 
 	public void closeApplication() {
+		System.out.println("Apps closed");
 		System.exit(0);
 	}
 	

@@ -29,15 +29,12 @@ public class Main {
 			Move  m = null;
 			while(!isInterrupted()) {
 //				try {
-					//m = moves.poll(10L, TimeUnit.MILLISECONDS);
-					m = moves.poll();
-					if(m!=null)
-						System.out.println("Sukces!");
-				//	else 
-				//		System.out.println("Porazka!");
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
+					try {
+						m = moves.poll(10000L, TimeUnit.MILLISECONDS);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}
 		}
 	}
@@ -53,7 +50,8 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		ViewsController viewscontrl = new ViewsController();
-		//test();
+		Main m = new Main(new LinkedBlockingQueue<Move>());
+		System.out.println("Loool");
 	}
 
 	/**
