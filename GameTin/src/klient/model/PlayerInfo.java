@@ -67,18 +67,22 @@ public class PlayerInfo {
 		}
 		return false;*/
 		
-		if (Math.abs(this.x - x) <= 2) {
-			if (Math.abs(this.y - y) <= 2) {
+		if ((Math.abs(this.x - x) <= 2) && (Math.abs(this.y - y) <= 2)) {
 				if(x == this.x && y == this.y)
 				return true;
-				if (this.x == x) {
-					return (LevelsManager.getInstance().isWallBetweenV(this.x,this.y, x,y));
+				boolean res = false;
+//				for (int temp = Math.abs(this.x - x)-2; temp < Math.abs(this.x - x) + 2; temp++) {
+				for (int temp = -2; temp < 2; temp++)
+					res = (LevelsManager.getInstance().isWallBetweenV(this.x+temp,this.y, x+temp,y));
+//				}
+				if (res == false) {
+//				for (int temp = Math.abs(this.y - y)-2; temp < Math.abs(this.y - y) + 2; temp++) {
+					for (int temp = -2; temp < 2; temp++)
+						res = (LevelsManager.getInstance().isWallBetwee1nH(this.x, this.y+temp, x,y+temp));
+	//				}
+					
 				}
-				if (this.y == y){
-					return (LevelsManager.getInstance().isWallBetwee1nH(this.x, this.y, x,y));
-				}
-				return false;
-			}
+				return res;
 		}
 		return false;
 	}

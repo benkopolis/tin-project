@@ -340,8 +340,11 @@ public class LevelsManager {
 			end = y;
 		}
 		for(; j<end; j++) {
-			if(this.level[x][j] instanceof Wall)
-				return false;
+			try {
+				if(this.getField(x, j, false) instanceof Wall)
+					return false;
+			} catch (IllegalOperation e) {
+			}
 		}
 		return true;
 	}
@@ -357,8 +360,11 @@ public class LevelsManager {
 			end = x;
 		}
 		for(; j<end; j++) {
-			if(this.level[j][y] instanceof Wall)
-				return false;
+			try {
+				if(this.getField(j, y, false) instanceof Wall)
+					return false;
+			} catch (IllegalOperation e) {
+			}
 		}
 		return true;
 	}
