@@ -70,17 +70,17 @@ public class GameBoardView extends GameView implements KeyListener {
 						if(f instanceof Wall) {
 							g.setColor(Color.GRAY);
 							g.fillRect(x*rectSize, y*rectSize, rectSize, rectSize);
-							System.out.println("WALL");
+//							System.out.println("WALL");
 						} else {
 								if(root.getModel().getLocalPlayerInfo().isVisible(x, y)) {
 								
 									if(f instanceof Coin) {
-										System.out.println("coin");
+//										System.out.println("coin");
 										g.setColor(Color.YELLOW);
 										g.fillOval(x*rectSize, y*rectSize, rectSize, rectSize);
 									} else 
 									if(f instanceof Player) {
-										System.out.println("player !");
+//										System.out.println("player !");
 										if(((Player)f).getId() == root.getModel().getLocalPlayerId())
 											g.setColor(Color.BLUE);
 										else
