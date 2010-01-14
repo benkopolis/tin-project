@@ -80,10 +80,11 @@ public class ViewsController {
 		try {
 			networkController = new NetworkController(ip, 666, model, this);
 		} catch (UnknownHostException e) {
-			JOptionPane.showMessageDialog(null, "Blad polaczenia - nie ma takiego serwera", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Blad polaczenia - nie ma takiego serwera - UnknowHost", "Error", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Blad polaczenia - nie ma takiego serwera", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Blad polaczenia - nie ma takiego serwera - IOError", "Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
 			System.exit(0);
 		}
 	}
