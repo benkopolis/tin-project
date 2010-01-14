@@ -70,7 +70,7 @@ public class PlayerInfo {
 		if ((Math.abs(this.x - x) <= 2) && (Math.abs(this.y - y) <= 2)) {
 				if(x == this.x && y == this.y)
 					return true;
-				boolean res = false;
+			/*	boolean res = false;
 //				for (int temp = Math.abs(this.x - x)-2; temp < Math.abs(this.x - x) + 2; temp++) {
 				for (int temp = -2; temp < 2; temp++) {
 					res = (LevelsManager.getInstance().isWallBetweenV(this.x+temp,this.y, x+temp,y));
@@ -84,7 +84,17 @@ public class PlayerInfo {
 					}
 					
 				}
-				return true;
+				return true;*/
+				
+				if ((Math.abs(this.x - x) <= 1) && (Math.abs(this.y - y) <= 1)) return true;
+				
+				if (this.x == x) {
+					if (!LevelsManager.getInstance().isWallBetweenV(this.x, this.y, x, y)) return false; else return true;
+				} else 
+				if (this.y == y) {
+					if (!LevelsManager.getInstance().isWallBetweenH(this.x, this.y, x, y)) return false; else return true;
+				}
+				
 		}
 		return false;
 	}
