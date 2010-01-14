@@ -88,6 +88,9 @@ public class GameBoardView extends GameView implements KeyListener {
 										g.fillOval(x*rectSize, y*rectSize, rectSize, rectSize);
 									}
 									
+								} else {
+									g.setColor(new Color(120, 150, 120).darker().darker());
+									g.fillRect(x*rectSize, y*rectSize, rectSize, rectSize);
 								}
 						}
 //							g.setColor(Color.BLACK);
