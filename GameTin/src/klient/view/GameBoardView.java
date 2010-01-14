@@ -58,44 +58,40 @@ public class GameBoardView extends GameView implements KeyListener {
 				if (root.getModel().getLocalPlayerInfo() == null)
 					return;
 //				System.out.println("fillBoord");
-				int i=0;
-				int j=root.getModel().getLocalPlayerInfo().getY();
-				for(i=0; i<root.getModel().getLm().getWidth(); ++i) {
-					if(root.getModel().getLocalPlayerInfo().isVisible(i, j)) {
-						if(root.getModel().getLm().getField(i, j, false) instanceof Wall) {
+				int x=0;
+				int y=0;
+				Field f = null;
+				int w=root.getModel().getLm().getWidth();
+				int h=root.getModel().getLm().getHeight();
+				for(x = 0; x<w; ++x) {
+					for(y=0; y<h; ++y) {
+						f = root.getModel().getLm().getField(x, y, false);
+						if (f == null) System.out.println("AAAAA"); 
+						if(f instanceof Wall) {
 							g.setColor(Color.GRAY);
-							g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
-						} else if(root.getModel().getLm().getField(i, j, false) instanceof Coin) {
-							g.setColor(Color.YELLOW);
-							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
-						} else if(root.getModel().getLm().getField(i, j, false) instanceof Player) {
-							if(((Player)root.getModel().getLm().getField(i, j, false)).getId() == root.getModel().getLocalPlayerId())
-								g.setColor(Color.BLUE);
-							else
-								g.setColor(Color.RED);
-							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
+							g.fillRect(x*rectSize, y*rectSize, rectSize, rectSize);
+							System.out.println("WALL");
+						} else {
+								if(root.getModel().getLocalPlayerInfo().isVisible(x, y)) {
+								
+									if(f instanceof Coin) {
+										System.out.println("coin");
+										g.setColor(Color.YELLOW);
+										g.fillOval(x*rectSize, y*rectSize, rectSize, rectSize);
+									} else 
+									if(f instanceof Player) {
+										System.out.println("player !");
+										if(((Player)f).getId() == root.getModel().getLocalPlayerId())
+											g.setColor(Color.BLUE);
+										else
+											g.setColor(Color.RED);
+										g.fillOval(x*rectSize, y*rectSize, rectSize, rectSize);
+									}
+									
+								}
 						}
-						g.setColor(Color.BLACK);
+//							g.setColor(Color.BLACK);
 					}
-				}
-				i = root.getModel().getLocalPlayerInfo().getX();
-				for(j=0; j<root.getModel().getLm().getHeight(); ++j) {
-					if(root.getModel().getLocalPlayerInfo().isVisible(i, j)) {
-						if(root.getModel().getLm().getField(i, j, false) instanceof Wall) {
-							g.setColor(Color.GRAY);
-							g.fillRect(i*rectSize, j*rectSize, rectSize, rectSize);
-						} else if(root.getModel().getLm().getField(i, j, false) instanceof Coin) {
-							g.setColor(Color.YELLOW);
-							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
-						} else if(root.getModel().getLm().getField(i, j, false) instanceof Player) {
-							if(((Player)root.getModel().getLm().getField(i, j, false)).getId() == root.getModel().getLocalPlayerId())
-								g.setColor(Color.BLUE);
-							else
-								g.setColor(Color.RED);
-							g.fillOval(i*rectSize, j*rectSize, rectSize, rectSize);
-						}
-						g.setColor(Color.BLACK);
-					}					
 				}
 			} catch (IllegalOperation e) {
 				e.printStackTrace();
