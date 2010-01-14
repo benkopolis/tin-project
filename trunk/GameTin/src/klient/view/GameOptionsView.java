@@ -180,6 +180,6 @@ public class GameOptionsView extends GameView implements ActionListener, KeyList
 			return;
 		}
 		super.dispose();
-		this.root.play(str[0], str[2]);
+		this.root.initNetworkController(str[0], str[2]);
 	}
 }

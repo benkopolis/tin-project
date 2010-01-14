@@ -20,7 +20,7 @@ import klient.view.GameOptionsView;
  * 
  * @author zby
  *
- * G³ówny kontroler programu. Odpala widok pocz¹tkowy.
+ * Gï¿½ï¿½wny kontroler programu. Odpala widok poczï¿½tkowy.
  * TODO Widoki gry, powinny byc odpalane na zadanie watku TCP
  * TODO Widok punktacji, powinien byc dostepny tylko dla jednego watku - tcp sie na nim chyba zawiesza
  * TODO Model powinien byc Observable, a ViewsController Observer
@@ -72,7 +72,7 @@ public class ViewsController {
 		gameOptionsView.init();
 	}
 	
-	public void play(String ip, String nick) {
+	public void initNetworkController(String ip, String nick) {
 		model.setLocalPlayerNick(nick);
 		try {
 			networkController = new NetworkController(ip, 666, model, this);
@@ -83,6 +83,9 @@ public class ViewsController {
 			JOptionPane.showMessageDialog(null, "Blad polaczenia - nie ma takiego serwera", "Error", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
+	}
+
+	public void startPlayViews() {
 		gameBoardView.init();
 		gameInfoView.init();
 		gameBoardView.toFront();
@@ -140,7 +143,7 @@ public class ViewsController {
 	}
 	
 	/**
-	 * Dodaje gracza, do listy graczy wyœwietlanej u¿ytkownikowi.
+	 * Dodaje gracza, do listy graczy wyï¿½wietlanej uï¿½ytkownikowi.
 	 * Wywolanie tej funkcji nie powinny wystapic po rozpoczeciu gry.
 	 * @param p
 	 */
@@ -151,8 +154,8 @@ public class ViewsController {
 	}
 	
 	/**
-	 * Odœwierza wyœwietlane informacje o graczach.
-	 * Pierwsze wywo³anie powinno nast¹pic dopiero po starcie gry - 
+	 * Odï¿½wierza wyï¿½wietlane informacje o graczach.
+	 * Pierwsze wywoï¿½anie powinno nastï¿½pic dopiero po starcie gry - 
 	 * gdy wszyscy gracze sa juz dodani.
 	 */
 	public synchronized void refreshInfoView() throws IllegalOperation {
@@ -162,7 +165,7 @@ public class ViewsController {
 	}
 	
 	/**
-	 * Powoduje przemalowanie planszy, wed³ug informacji zawartych w modelu.
+	 * Powoduje przemalowanie planszy, wedï¿½ug informacji zawartych w modelu.
 	 */
 	public synchronized void refreshBoardView() {
 //		try {
