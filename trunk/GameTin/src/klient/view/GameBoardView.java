@@ -21,7 +21,7 @@ import klient.model.fields.Wall;
 /**
  * @author zby
  *
- * Klasa ta odpowiada za malowanie planszy. Wywo³uje równie¿ odpowiednie metody
+ * Klasa ta odpowiada za malowanie planszy. Wywoï¿½uje rï¿½wnieï¿½ odpowiednie metody
  * kontrolera klawiatury.
  */
 public class GameBoardView extends GameView implements KeyListener {
@@ -29,7 +29,7 @@ public class GameBoardView extends GameView implements KeyListener {
 	/**
 	 * @author zby
 	 * 
-	 * Klasa bêd¹ca rysowan¹ plansz¹.
+	 * Klasa bï¿½dï¿½ca rysowanï¿½ planszï¿½.
 	 *
 	 */
 	protected class Board extends JPanel {
@@ -44,7 +44,7 @@ public class GameBoardView extends GameView implements KeyListener {
 		}
 		
 		/**
-		 * Wype³nia planszê na pocz¹tek.
+		 * Wypeï¿½nia planszï¿½ na poczï¿½tek.
 		 */
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -166,7 +166,7 @@ public class GameBoardView extends GameView implements KeyListener {
 	}
 	
 	/**
-	 * Metoda odmalowuje planszê.
+	 * Metoda odmalowuje planszï¿½.
 	 */
 	public void repaintBoard() {
 		try {
@@ -179,7 +179,7 @@ public class GameBoardView extends GameView implements KeyListener {
 		} catch (IllegalOperation e) {
 			e.printStackTrace();
 		}
-		System.out.println("RepaintBoard before invalidate.");
+//		System.out.println("RepaintBoard before invalidate.");
 		panel.invalidate();
 		panel.repaint();
 //		panel.paintComponent(getGraphics());
