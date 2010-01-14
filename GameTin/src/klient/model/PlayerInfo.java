@@ -60,10 +60,10 @@ public class PlayerInfo {
 		if(x == this.x && y == this.y)
 			return true;
 		if (this.x == x) {
-			return !(LevelsManager.getInstance().isWallBetweenV(this.x,this.y, x,y));
+			return (LevelsManager.getInstance().isWallBetweenV(this.x,this.y, x,y));
 		}
 		if (this.y == y){
-			return !(LevelsManager.getInstance().isWallBetwee1nH(this.x, this.y, x,y));
+			return (LevelsManager.getInstance().isWallBetwee1nH(this.x, this.y, x,y));
 		}
 		return false;
 	}
