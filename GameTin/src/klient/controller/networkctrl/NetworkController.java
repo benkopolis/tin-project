@@ -49,4 +49,9 @@ public class NetworkController {
 		udpReceiveThread.setDaemon(true);
 		udpReceiveThread.start();
 	}
+	
+	public void startUdpThreads() {
+		
+		
+	}
 }

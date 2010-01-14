@@ -96,6 +96,7 @@ public class TCPSocketThread extends Thread {
 								model.startGame();
 //								viewsctrl.refreshInfoView();
 								viewsctrl.startPlayViews();
+								this.wait();
 							}
 						}
 					}
@@ -135,6 +136,9 @@ public class TCPSocketThread extends Thread {
 			} catch (SocketException e) {
 				System.out.println("Watek TCP zakonczony - socket exception");
 				viewsctrl.closeApplication();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
