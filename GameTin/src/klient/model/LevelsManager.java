@@ -349,7 +349,7 @@ public class LevelsManager {
 		return true;
 	}
 
-	public boolean isWallBetwee1nH(int x, int y, int x2, int y2) {
+	public boolean isWallBetweenH(int x, int y, int x2, int y2) {
 		int j = 0;
 		int end = 0;
 		if(x < x2) {
