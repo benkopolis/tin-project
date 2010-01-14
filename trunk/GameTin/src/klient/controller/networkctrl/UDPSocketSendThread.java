@@ -38,19 +38,19 @@ public class UDPSocketSendThread extends Thread{
 					
 					Move move = model.workOnMoves(false, null);
 					if (move != null) {
-						System.out.println(new GregorianCalendar().getTime());
+						//System.out.println(new GregorianCalendar().getTime());
 						count++;
 						String msg = String.valueOf(model.getLocalPlayerId())+ ":" + String.valueOf(count);
 						msg = msg.concat(":" + move.getOldX() + "," + move.getOldY() + ":");
 						msg = msg.concat(move.getNewX() + "," + move.getNewY() + "\n");
-						System.out.println(new GregorianCalendar().getTime());
+						//System.out.println(new GregorianCalendar().getTime());
 						
 						DatagramPacket d = new DatagramPacket(msg.getBytes(), msg.length(),
 			                            					adres, dSocket.getLocalPort());
-						System.out.println(new GregorianCalendar().getTime());
+						//System.out.println(new GregorianCalendar().getTime());
 						
 						dSocket.send(d);
-						System.out.println(new GregorianCalendar().getTime());
+						//System.out.println(new GregorianCalendar().getTime());
 						System.out.print("<<" + msg);
 					}
 				}
