@@ -45,7 +45,7 @@ public class TCPSocketThread extends Thread {
 				if ((model.isGameOn() == false) && (model.isGameOff() == false)){
 					/* tab - tablica przeslanych pakietow */
 					String[] tab = InputReader.getStringsFromPacket(socket.getInputStream());
-					System.out.println(tab);
+					System.out.println(tab[1]);
 					/* t - linia stringa, ktora jest pakietem */
 					if (tab == null) {
 						System.out.println("Watek TCP zakonczony");
