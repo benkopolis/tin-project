@@ -56,7 +56,7 @@ public class UDPSocketSendThread extends Thread{
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
 					System.out.println("Watek UDP zakonczony (interrupt)");
-					tcp.notify();
+					//tcp.notify();
 					//mSocket.leaveGroup(group);
 					this.interrupt();
 				}
