@@ -67,9 +67,17 @@ public class PlayerInfo {
 		}
 		return false;*/
 		
-		if (Math.abs(this.x - x) <= 7) {
-			if (Math.abs(this.y - y) <= 7) {
+		if (Math.abs(this.x - x) <= 2) {
+			if (Math.abs(this.y - y) <= 2) {
+				if(x == this.x && y == this.y)
 				return true;
+				if (this.x == x) {
+					return (LevelsManager.getInstance().isWallBetweenV(this.x,this.y, x,y));
+				}
+				if (this.y == y){
+					return (LevelsManager.getInstance().isWallBetwee1nH(this.x, this.y, x,y));
+				}
+				return false;
 			}
 		}
 		return false;
