@@ -92,6 +92,7 @@ public class TCPSocketThread extends Thread {
 							if (number == 1) {
 								model.startGame();
 //								viewsctrl.refreshInfoView();
+								viewsctrl.startPlayViews();
 							}
 						}
 					}
