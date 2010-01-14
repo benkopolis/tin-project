@@ -87,10 +87,17 @@ public class ViewsController {
 			e.printStackTrace();
 			System.exit(0);
 		}
+		try {
+			gameBoardView.wait();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void startPlayViews() {
 		rt = new RefreshingThread();
+		gameBoardView.notify();
 	}
 
 	public GameOptionsView getGameOptionsView() {
