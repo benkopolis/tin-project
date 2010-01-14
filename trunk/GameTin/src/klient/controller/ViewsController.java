@@ -87,17 +87,11 @@ public class ViewsController {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		try {
-			gameBoardView.wait();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	public void startPlayViews() {
 		rt = new RefreshingThread();
-		gameBoardView.notify();
+//		gameBoardView.notify();
 	}
 
 	public GameOptionsView getGameOptionsView() {
@@ -191,6 +185,7 @@ public class ViewsController {
 		this.gameBoardView.setVisible(false);
 		this.gameInfoView.setVisible(false);
 		this.gameOptionsView.setVisible(false);
+		System.out.println("Apps close on request");
 		System.exit(0);
 	}
 }
