@@ -21,6 +21,7 @@ public class UDPSocketSendThread extends Thread{
 	private InetAddress adres;
 	private Model model;
 	//private ViewsController viewsctrl;
+	private TCPSocketThread tcp;
 	
 	public UDPSocketSendThread(DatagramSocket d, String adres, Model m) throws UnknownHostException  {
 		this.model = m;
@@ -49,6 +50,7 @@ public class UDPSocketSendThread extends Thread{
 				}
 				else if ((model.isGameOn() == false) && model.isGameOff()) {
 					System.out.println("Watek UDP zakonczony (interrupt)");
+					tcp.notify();
 					//mSocket.leaveGroup(group);
 					this.interrupt();
 				}
