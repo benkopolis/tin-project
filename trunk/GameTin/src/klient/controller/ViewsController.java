@@ -53,12 +53,12 @@ public class ViewsController {
 				try {
 					stoper.poll(10L, TimeUnit.MILLISECONDS);
 					refreshBoardView();
-//					refreshInfoView();
+					refreshInfoView();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-				} //catch (IllegalOperation e) {
-					//e.printStackTrace();
-				//}
+				} catch (IllegalOperation e) {
+					e.printStackTrace();
+				}
 				
 			}
 		}
