@@ -50,8 +50,13 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		ViewsController viewscontrl = new ViewsController();
-		Main m = new Main(new LinkedBlockingQueue<Move>());
-		System.out.println("Loool");
+		while(true) {
+			try {
+				Thread.sleep(700);
+			} catch(InterruptedException e) {
+				
+			}
+		}
 	}
 
 	/**
