@@ -88,9 +88,9 @@ public class KeyboardController {
 			newX = (localPlayerInfo.getX()+1)%parent.getModel().getLm().getWidth();
 			doMove();
 		} catch (IllegalOperation e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
