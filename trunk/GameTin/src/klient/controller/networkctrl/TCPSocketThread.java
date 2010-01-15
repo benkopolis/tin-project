@@ -79,7 +79,7 @@ public class TCPSocketThread extends Thread {
 						}
 						else if (tokens[0].equals("board")) {
 							model.getLm().loadFromMessage(tokens[1]);
-							System.out.println(">>" + tokens[0] + ":" + tokens[1]);
+							System.out.println(">>" + tokens[0] + ":" + tokens[1] + ":" + tokens[2]);
 							//System.out.println(model.getLm().levelToString(false));
 							for(int i=2; i<tokens.length; i++) {
 								int id = Integer.parseInt(tokens[i].split(",")[0]);
@@ -124,7 +124,6 @@ public class TCPSocketThread extends Thread {
 								model.endGame(); // ustawia zmienna gameOff na true
 							}
 //							viewsctrl.refreshBoardView();
-							//TODO refresh end game
 							sendQuit();
 						}
 					}
