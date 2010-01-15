@@ -148,7 +148,7 @@ public class LevelsManager {
 	 */
 	public void loadFromMessage(String message) throws IllegalOperation {
 		if (message == null) throw new IllegalArgumentException("Message is null.");
-
+		
 		String[] tokens = message.split(";");
 	System.out.println(message);
 		for(String s: tokens)
