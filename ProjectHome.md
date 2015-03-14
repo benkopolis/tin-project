@@ -1,0 +1,1 @@
+Projekt ma służyć stworzeniu abstrakcji dla komunikacji sieciowej.
